@@ -58,13 +58,14 @@
  $linkpaciente = "menu_pacientes.php?V=".urlencode(base64_encode('variable'));
 
 
-foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
+//foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 if(!isset($_GET['p']) && !isset($_GET['busca']) ){
    include("includes/error_nologin.php"); 
   }
 
   else{
 $id = $_GET['p'];
+       
 
         $sql = "SELECT nombre
                   FROM pacientes
@@ -95,7 +96,8 @@ $id = $_GET['p'];
 <nav id="hola">
   <ul>
     <li><p>
-          <a href="<?php echo  $linkpaciente; ?>">
+          <a href="<?php  echo  $linkpaciente;
+                    ?>">
             <img src="img/logo2.png"  id="logo">
           </a>
         </p>
@@ -153,10 +155,8 @@ $id = $_GET['p'];
         }
   if(empty($_GET['busca'])){
 
-      $sql = "SELECT
-              count(idanalisis)
-              FROM analisis
-              WHERE pacientes_idpacientes = '$idpacientes' ";
+      $sql = "SELECT count(idanalisis) 
+              FROM contador ";
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
       $rows = $row[0];
@@ -186,8 +186,7 @@ $id = $_GET['p'];
                       fecha,
                       medicos_idmedicos,
                       idpropio
-              FROM analisis
-              WHERE pacientes_idpacientes = '$idpacientes'
+              FROM contador
               ORDER BY idanalisis
               ASC $limit";
       $query = mysqli_query($con, $sql);
@@ -259,15 +258,22 @@ $id = $_GET['p'];
           <td><?php echo $fila['fecha']; ?></td>
           <td><?php echo $fila1['nombre']; ?> </td>
           <td>
-              <a class="text" href= "<?php echo $enviar ?> " >
+              <a class="text" href= "<?php  echo $enviar; 
+                                           
+                                            
+                                      ?> " >
                 <strong>Enviar Correo electr&oacutenico</strong>
               </a>
               |
-              <a class="text" href= "<?php echo $editar?> " >
+              <a class="text" href= "<?php  echo $editar;
+                                           
+                                       ?> " >
                 <strong>Editar</strong>
               </a>
               |
-              <a class="text" target="_blank" href= "<?php echo $ver ?> " >
+              <a class="text" target="_blank" href= "<?php  echo $ver;
+                                           
+                                                     ?> " >
                 <strong>Visualizar</strong>
               </a>
           </td>
