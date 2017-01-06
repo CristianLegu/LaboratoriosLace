@@ -128,19 +128,31 @@ if (!isset($_GET['V']) && !isset($_GET['m']) ){
        <input  name="telefono_m" tabindex="5" required  placeholder="XXX XXX XX XX" value="<?php echo utf8_encode($fila['telefono_medi']); ?>" pattern="[0-9 | \s]*">
   </div>
 
-  <div class="col-2">
+  <div class="col-3">
     <label>
       Nombre del Hospital
       <input  name="nombre_h" tabindex="6" value="<?php echo utf8_encode($fila['hospital']); ?>">
     </label>
   </div>
-  <div class="col-2">
+  <div class="col-3">
     <label>
       Domicilio Hospital
       <input  name="domicilio_h" tabindex="7" value="<?php echo utf8_encode($fila['direccion_hospital']); ?>">
     </label>
   </div>
+ <div class="col-3">
 
+        <label>
+
+          Email
+
+          <input  name="email" tabindex="6" type="email" placeholder="nombre@dominio.com" value="<?php 
+
+          if ($fila != null ){echo utf8_encode($fila['email']);} ?>">
+
+        </label>
+
+      </div>
   <div class="col-submit">
     <button class="submitbtn">Guardar</button>
   </div>

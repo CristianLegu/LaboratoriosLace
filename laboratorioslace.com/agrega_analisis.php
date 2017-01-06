@@ -42,7 +42,6 @@ if ($idpropio == 0) {
       $area          = $_POST["area"];
       $departamento  = $_POST["departamento"];
       $estudio       = $_POST["estudio"];
-      $comentario       = $_POST["comentario"];
       $pacientes_idpacientes = $idpaciente;
       $medicos_idmedicos = $_POST["idmedico"];
       $number        = count($_POST["pruebas"]);
@@ -67,14 +66,13 @@ if ($idpropio == 0) {
               if(mysqli_connect_errno()) {
                 }
                 $prueba          =  $_POST["pruebas"][$i];
-                $resultado       =  $_POST["resultado"][$i];
                 $unidades        =  $_POST["unidades"][$i];
                 $valorreferencia =  $_POST["valorreferencia"][$i];
                 $observaciones   =  $_POST["observaciones"][$i];
 
          //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-                $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, resultado, unidades, valorreferencia, comentario, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$departamento', '$estudio', '$prueba', '$resultado', '$unidades','$valorreferencia','$comentario','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+                $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
                 } else{
                   echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
@@ -98,11 +96,15 @@ else {
     &&  isset($_POST['estudio']) && isset($_POST['idmedico'])
     &&  isset($_POST['pruebas'])
     ){
-      $fecha         =  date("Y") . date("m") . date("j") ;
+    $dia = count( date("j"));
+      
+      
+         $fecha         =  date("Y") . date("m") . date("d") ;
+      
+     
       $area          = $_POST["area"];
       $departamento  = $_POST["departamento"];
       $estudio       = $_POST["estudio"];
-      $comentario       = $_POST["comentario"];
       $pacientes_idpacientes = $idpaciente;
       $medicos_idmedicos = $_POST["idmedico"];
       $number        = count($_POST["pruebas"]);
@@ -122,15 +124,17 @@ else {
               if (mysqli_connect_errno()) {
 
               }
+            
               $prueba          =  $_POST["pruebas"][$i];
-              $resultado       =  $_POST["resultado"][$i];
               $unidades        =  $_POST["unidades"][$i];
               $valorreferencia =  $_POST["valorreferencia"][$i];
               $observaciones   =  $_POST["observaciones"][$i];
+               
+
 
          //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-              $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, resultado, unidades, valorreferencia, comentario, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$departamento', '$estudio', '$prueba', '$resultado', '$unidades','$valorreferencia','$comentario','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+              $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
               if( mysqli_query($mysqli, $sql)){
 
               } else{

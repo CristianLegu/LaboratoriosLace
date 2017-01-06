@@ -169,7 +169,6 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
           <table class="table table-bordered" id="dynamic_field">
             <tr>
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>
-              <td><input type="form-control" name="resultado[]" placeholder="Resultado" class="form-control name_list" /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>
               <td><input  type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" /></td>
@@ -184,7 +183,6 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
   ?>   <?php $renglon = "row".$i; ?>
            <tr id="<?php echo $renglon; ?>">
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
-              <td><input  type="form-control" name="resultado[]" placeholder="Resultado" class="form-control name_list" value="<?php  echo $row ['resultado'] ?> " /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
               <td><input  type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" value="<?php  echo $row ['observaciones'] ?> " /></td>
@@ -202,12 +200,7 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       </table>
      	<?php	 }   $i ;   ?>
        </div>
-   <div class="col-2">
-    <label >
-       Comentarios
-    </label>
-           <textarea rows="6" cols="50" name="comentario" value="<?php if($fila1 != null) { echo $fila1 [8]; }?>"  style="background-color:powderblue; "></textarea>
-   </div>
+  
       <div class="col-submit button">
         <input name="idpropio" value="<?php if($fila1 != null) { echo $idpropio; } else {$idpropio = 0; echo $idpropio;}?>"  style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
@@ -225,7 +218,7 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
            i++;
 
 
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td><td><input type="form-control" name="resultado[]" placeholder="Resultado" class="form-control name_list" /></td><td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td> <td><input type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" /></td> <td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr>');
+           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td></td><td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td> <td><input type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" /></td> <td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr>');
       });
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");

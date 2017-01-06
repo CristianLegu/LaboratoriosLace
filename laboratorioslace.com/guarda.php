@@ -761,7 +761,7 @@ switch ($sesion) {
 
 
 	case 'MEDICOS':
-
+$encontro = 0;
 			if (isset($_POST['nombre_m']) && !empty($_POST['nombre_m']) &&
 
 	 		isset($_POST['domicilio_m']) && !empty($_POST['domicilio_m']) &&
@@ -785,6 +785,8 @@ switch ($sesion) {
 				$nombre_hosp  = utf8_decode($_POST['nombre_h']);
 
 				$domicilio_hos = utf8_decode($_POST['domicilio_h']);
+
+				$email      = utf8_decode($_POST['email']);
 
 
 
@@ -814,17 +816,17 @@ switch ($sesion) {
 
               }
 
-              echo $encontro;
+            
 
               if ($encontro ==0){
 
 				$sql = "INSERT INTO medicos (nombre, domicilio_medi, ciudad_medi, estado_medi,
 
-								telefono_medi, hospital, direccion_hospital)
+								telefono_medi, hospital, direccion_hospital, email)
 
 					 VALUES('$nombre', '$direccion', '$ciudad', '$estado',
 
-						 '$telefono', '$nombre_hosp', '$domicilio_hos');";
+						 '$telefono', '$nombre_hosp', '$domicilio_hos', '$email');";
 
 
 
