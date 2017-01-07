@@ -23,6 +23,7 @@
 
 
   $linkpaciente = "pacientes.php?V=".urlencode(base64_encode('variable'));
+  $linkestudio = "menu_estudios.php?V=".urlencode(base64_encode('variable'));
 
   $linkmenu  = "menu.php?V=".urlencode(base64_encode('variable')); 
 
@@ -154,7 +155,8 @@
 
     <li>
 
-      <a href="<?php echo $linkpaciente; ?>" class="add"><img src="img/addpac.png"></a>
+      <a href="<?php echo $linkpaciente; ?>" class="add2"><img src="img/addpac.png"></a>
+      <a href="<?php echo $linkestudio; ?>" class="add2" style="margin-left: 40px;"><img src="img/estudio.png"></a>
 
     </li>
 
