@@ -9,14 +9,14 @@ if(!isset($_GET['V']) ){
   }*/
 
 
-/*
+
 class PDF extends FPDF
     {
-        
+        //******Cabecera
         function Header()
         {
 
-
+/**************************************************/
             include("includes/conexion.php");
             $idpr   = 0;
             $idpac  = 0;
@@ -50,7 +50,7 @@ class PDF extends FPDF
                 $fecha          = $row['fecha'];
             }
             
-
+/***********************************************************/
 
             //Logo
             $this->Image('img/logo2.png', 10, 8, 33);
@@ -87,7 +87,7 @@ class PDF extends FPDF
             
         }
 
-
+//******Pie de pagina
         function Footer()
         {
             //Posicion: a 1.5 cm del final
@@ -99,7 +99,7 @@ class PDF extends FPDF
 
         }
 
-
+/*
         function AcceptPAgeBreak()
         {
              $this->AddPage();
@@ -113,9 +113,9 @@ class PDF extends FPDF
              $this->Cell(70, 6, 'Unidades', 1, 0, 'C', 1);
              $this->Ln();
         }
-
+*/
     }
-***/
+
 
 
 
@@ -281,7 +281,7 @@ class PDF extends FPDF
 
         
         
-        $pdf = new FPDF();
+        $pdf = new PDF();
         $pdf->Settitle("Reporte");
         $pdf->AddPage();
         $pdf->AliasNbPages();
