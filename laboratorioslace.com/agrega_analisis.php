@@ -1,7 +1,7 @@
 <?php
 
 
-date_default_timezone_set('America/Mexico_City');
+      date_default_timezone_set('America/Mexico_City');
       include("includes/conexion.php");
       $mysqli = mysqli_connect($host, $user, $pwd, $db);
 

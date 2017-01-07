@@ -14,7 +14,7 @@ $idmed  = 0;
         $idpac  = $_GET['idpac'];
         $idmed  = $_GET['idm'];
 
-        $url = 'www.laboratorioslace.com/reporte.php?idpac='.urlencode(base64_encode($idpac)).'&idpr='.urlencode(base64_encode($idpr)).'&idm='.urlencode(base64_encode($idmed));
+        $url = 'www.laboratorioslace.com/reportemail.php?idpac='.urlencode(base64_encode($idpac)).'&idpr='.urlencode(base64_encode($idpr)).'&idm='.urlencode(base64_encode($idmed));
         
         if( mysqli_connect_errno() ){
           echo "Falló la conexión: ".mysqli_connect_error();

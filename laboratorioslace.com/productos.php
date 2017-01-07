@@ -240,7 +240,7 @@ else{
     <div class="col-3">
       <label>
         Costo Prueba
-        <input  name="costo_prueba" value="<?php if($prod !=0){ echo $fila['costo_prueba'];} ?>" tabindex="9" required>
+        <input  name="costo_prueba" value="<?php if($prod !=0){ echo $fila['costo_prueba'];} ?>" tabindex="9" readonly>
       </label>
     </div>
         <div class="col-3">
