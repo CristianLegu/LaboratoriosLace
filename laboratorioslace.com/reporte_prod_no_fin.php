@@ -2,6 +2,7 @@
     include('fpdf181/fpdf.php');
     include("includes/conexion.php");
     session_start();
+    date_default_timezone_set('America/Mexico_City');
     if(empty($_SESSION['valueuser'])){
 
     include("includes/error_nologin.php");
@@ -90,7 +91,7 @@ class PDF extends FPDF
               
             
             $this->SetFont('Arial', '', 10);
-            $this->Cell(105);
+            $this->Cell(140);
             $this->Cell(30, 10, utf8_decode('Fecha: ').$fecha, 0, 0 ,'C');
 
             $this->Ln(5);
