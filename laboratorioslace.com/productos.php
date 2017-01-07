@@ -10,7 +10,7 @@
 foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 
  $linkproductos = "menu_productos.php?V=".urlencode(base64_encode("variable"));
- 
+ $prod = 0;
 if ($_GET['prod'] != '0'){
  $prod = $_GET['prod'];
   $sql    = "SELECT * FROM inventario where idinventario = '$prod' ";
@@ -139,6 +139,18 @@ else{
   </ul>
 </nav>
 
+<?php
+    $filaCosto = "";
+    
+    $con = mysqli_connect($host, $user, $pwd, $db);
+    $sqlCost   = "SELECT costo/cantidad AS cost FROM inventario WHERE idinventario='$prod'";
+    $queryCost = $con -> query($sqlCost);
+    while($row = mysqli_fetch_array($queryCost, MYSQLI_ASSOC))
+    {
+        $filaCosto = $row['cost'];
+    }
+?>
+
 
    <form action="guarda.php" method="post" autocomplete="off">
 
@@ -240,7 +252,7 @@ else{
     <div class="col-3">
       <label>
         Costo Prueba
-        <input  name="costo_prueba" value="<?php if($prod !=0){ echo $fila['costo_prueba'];} ?>" tabindex="9" readonly>
+        <input  name="costo_prueba" value="<?php if($prod !=0){ echo $filaCosto;} ?>" tabindex="9" readonly>
       </label>
     </div>
         <div class="col-3">

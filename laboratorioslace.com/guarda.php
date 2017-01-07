@@ -1162,7 +1162,7 @@ if (isset($_POST['nombre_art'])             && !empty($_POST['nombre_art'])   &&
 
 	 		isset($_POST['u_medida'])       && !empty($_POST['u_medida'])       &&
 
-	 		isset($_POST['costo_prueba'])    && !empty($_POST['costo_prueba'])    &&
+//	 		isset($_POST['costo_prueba'])    && !empty($_POST['costo_prueba'])    &&
 
 	 		isset($_POST['marca'])          && !empty($_POST['marca'])          &&
 
@@ -1228,7 +1228,7 @@ if (isset($_POST['nombre_art'])             && !empty($_POST['nombre_art'])   &&
 
 				
 
-				$costo_prueba 		= utf8_decode($_POST['costo_prueba']);
+			//	$costo_prueba 		= utf8_decode($_POST['costo_prueba']);
 
 				$marca 				= utf8_decode($_POST['marca']);
 
@@ -1262,7 +1262,7 @@ if (isset($_POST['nombre_art'])             && !empty($_POST['nombre_art'])   &&
 
 					 VALUES('$nombre_art', '$cantidad', '$Costo', '$u_medida', '$idproveedores' ,
 
-						 '$fechastock', '$fechainicio', '$fechacaducidad', '$costo_prueba', 
+						 '$fechastock', '$fechainicio', '$fechacaducidad', '0', 
 
 						 '$marca', '$prueba_kit');";
 
@@ -1276,7 +1276,7 @@ if (isset($_POST['nombre_art'])             && !empty($_POST['nombre_art'])   &&
 
 					 VALUES('$nombre_art', '$cantidad', '$Costo', '$u_medida', '$idproveedores' ,
 
-						 '$fechastock', '$fechainicio', '$fechatermino', '$fechacaducidad', '$costo_prueba', 
+						 '$fechastock', '$fechainicio', '$fechatermino', '$fechacaducidad', '0', 
 
 						 '$marca', '$prueba_kit');";
 
