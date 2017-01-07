@@ -1410,6 +1410,139 @@ if ($fechatermino == "NO"){
 
 		break;
 
+case 'ESTUDIO':
+
+$mysqli = mysqli_connect($host, $user, $pwd, $db);
+
+			$idpropio   = 0;
+           $idpaciente = 0;
+
+if(isset($_POST['idpropio']) && isset($_POST['idpaciente'])){
+      $idpropio   = $_POST["idpropio"];
+      $idpaciente = $_POST["idpaciente"];
+}
+
+if ($idpropio == 0) {
+      $sql    = "SELECT idpropio FROM estudios order by idpropio desc";
+      $query  = mysqli_query($mysqli, $sql);
+      $fila   = mysqli_fetch_array($query, MYSQLI_ASSOC);
+
+      if($fila == null) {
+        $idpropio = 1;
+      }
+      else{
+         $idpropio = $fila['idpropio'] + 1;
+      }
+     
+    if(isset($_POST['estudio']) && isset($_POST['unidades'])
+    &&  isset($_POST['pruebas']) && isset($_POST['valorreferencia'])
+    ){
+      $estudio               = $_POST["estudio"];
+      $pacientes_idpacientes = $idpaciente;
+      $number                = count($_POST["pruebas"]);
+
+
+
+
+      if($number > 0)
+      {
+          for($i=0; $i<$number; $i++)
+          {
+             if(trim($_POST["pruebas"][$i] != ''))
+             {
+                $mysqli = mysqli_connect($host, $user, $pwd, $db);
+              if(mysqli_connect_errno()) {
+                }
+              
+        $prueba          =  $_POST["pruebas"][$i];
+        $unidades        =  $_POST["unidades"][$i];
+        $valorreferencia =  $_POST["valorreferencia"][$i];
+         //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
+                $sql = "INSERT INTO estudios ( nombre_estudio, prueba, unidades, valorreferencia, idpropio)
+                    VALUES( '$estudio', '$prueba', '$unidades','$valorreferencia', '$idpropio')";
+                if( mysqli_query($mysqli, $sql)){
+                } else{
+                  echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
+                }
+                mysqli_close($mysqli);
+            }
+        }
+      }
+      else
+      {
+        echo "Please Enter Name";
+      }
+    }
+}
+else {
+
+  $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
+
+  if ($mysqli->query($eliminar) === TRUE) {
+    if(isset($_POST['area']) && isset($_POST['departamento'])
+    &&  isset($_POST['estudio']) && isset($_POST['idmedico'])
+    &&  isset($_POST['pruebas'])
+    ){
+    $dia = count( date("j"));
+      
+      
+         $fecha         =  date("Y") . date("m") . date("d") ;
+      
+     
+      $area          = $_POST["area"];
+      $departamento  = $_POST["departamento"];
+      $estudio       = $_POST["estudio"];
+      $pacientes_idpacientes = $idpaciente;
+      $medicos_idmedicos = $_POST["idmedico"];
+      $number        = count($_POST["pruebas"]);
+    if ($medicos_idmedicos != null || $medicos_idmedicos != "") {
+        //echo "ID MEDICOS dentro de if ".$medicos_idmedicos;
+      }
+      else{
+        include('includes/alert_medico.php');
+      }
+      if($number > 0)
+      {
+        for($i=0; $i<$number; $i++)
+        {
+           if(trim($_POST["pruebas"][$i] != ''))
+           {
+              $mysqli = mysqli_connect($host, $user, $pwd, $db);
+              if (mysqli_connect_errno()) {
+
+              }
+            
+              $prueba          =  $_POST["pruebas"][$i];
+              $unidades        =  $_POST["unidades"][$i];
+              $valorreferencia =  $_POST["valorreferencia"][$i];
+              $observaciones   =  $_POST["observaciones"][$i];
+               
+
+
+         //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
+              $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+              if( mysqli_query($mysqli, $sql)){
+
+              } else{
+
+                echo "Error antes de cerrar 2 ".mysqli_error($mysqli);
+                }
+              mysqli_close($mysqli);
+            }
+        }
+      }
+      else
+      {
+        echo "Please Enter Name";
+      }
+     }
+    }
+}
+
+
+		break;
+
 }
 
 ?>

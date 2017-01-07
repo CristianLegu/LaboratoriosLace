@@ -150,22 +150,63 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       			  <input name="area" value="<?php if($fila1 != null) { echo $fila1 [1]; }?>" style="background-color:powderblue; "required>
     	 </label>
   		 </div>
-  				<div class="col-4">
-      			<label >
-      					Departamento
-      					<input name="departamento" value="<?php if($fila1 != null) { echo $fila1 [2]; }?>" style="background-color:powderblue; "required>
-    				</label>
-  				</div>
-    	    <div class="col-4">
-      			<label >
-     					  Estudio
-    						<input name="estudio" value="<?php if($fila1 != null) { echo $fila1 [3]; }?>" style="background-color:powderblue; "required>
-    				</label>
-  				</div>
+  <div>
+      <label >
+        Elegir Estudio
+    <!--    <select id="idmedico"  name="idmedico" >
+-->
+<form name="add_name" id="add_name" method="post" action="agrega_analisis.php " ALIGN=center autocomplete="off">
+        <select id="idestudio"  name="idestudio" >
+          
+          <?php
+            $mysqli = mysqli_connect($host, $user, $pwd, $db);
+
+            if($idpropio != 0){
+              if(isset($_GET['idm'])){
+                $idmed = $_GET['idm'];
+              }
+              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
+              $querymedicos2 = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
+
+              
+              while ($valoresestudios =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
+                echo '<option value="'.$valoresestudios['idmedicos'].'">'.$valoresestudios['nombre'].'</option>';
+              } 
+              while ($valoresestudios =  mysqli_fetch_array($querymedicos2, MYSQLI_ASSOC)) {
+                echo '<option value="'.$valoresestudios['idmedicos'].'">'.$valoresestudios['nombre'].'</option>';
+              } 
+
+
+              /*
+              while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
+                echo '<option value="'.$valores['idmedicos'].'">'.$valores['nombre'].'</option>';
+              } 
+              */ 
+            }else{
+              echo "<option  value=".$idmedico.">Seleccionar Estudio</option>";
+              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
+              $nombreestudio = "";
+              while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
+                if($nombreestudio != $valores['nombre_estudio']){
+                echo '<option value="'.$valores['idpropio'].'">'.$valores['nombre_estudio'].'</option>';
+                  $nombreestudio = $valores['nombre_estudio'];
+              }
+                  if($nombreestudio == null){
+                 $nombreestudio = $valores['nombre_estudio'];
+                }
+
+              }
+            }
+            mysqli_close($mysqli);
+            
+          ?>
+        </select>
+      </label>
+      </div>
 
           <div class="table-responsive">
-
-<?php  if($fila == null) { ?>
+<?php 
+ if($fila == null) { ?>
           <table class="table table-bordered" id="dynamic_field">
             <tr>
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>

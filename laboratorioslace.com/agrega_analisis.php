@@ -36,13 +36,12 @@ if ($idpropio == 0) {
       else{
          $idpropio = $fila['idpropio'] + 1;
       }
-    if(isset($_POST['area']) && isset($_POST['departamento'])
+    if(isset($_POST['area']) 
     &&  isset($_POST['estudio']) && isset($_POST['idmedico'])
     &&  isset($_POST['pruebas'])
     ){
       $fecha         =  date("Y") . date("m") . date("d") ;
       $area          = $_POST["area"];
-      $departamento  = $_POST["departamento"];
       $estudio       = $_POST["estudio"];
       $pacientes_idpacientes = $idpaciente;
       $medicos_idmedicos = $_POST["idmedico"];
@@ -73,8 +72,8 @@ if ($idpropio == 0) {
                 $observaciones   =  $_POST["observaciones"][$i];
 
          //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-                $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+                $sql = "INSERT INTO analisis ( area, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
                 } else{
                   echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
@@ -94,7 +93,7 @@ else {
   $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
 
   if ($mysqli->query($eliminar) === TRUE) {
-    if(isset($_POST['area']) && isset($_POST['departamento'])
+    if(isset($_POST['area']) 
     &&  isset($_POST['estudio']) && isset($_POST['idmedico'])
     &&  isset($_POST['pruebas'])
     ){
@@ -105,7 +104,6 @@ else {
       
      
       $area          = $_POST["area"];
-      $departamento  = $_POST["departamento"];
       $estudio       = $_POST["estudio"];
       $pacientes_idpacientes = $idpaciente;
       $medicos_idmedicos = $_POST["idmedico"];
@@ -135,8 +133,8 @@ else {
 
 
          //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-              $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+              $sql = "INSERT INTO analisis ( area, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
               if( mysqli_query($mysqli, $sql)){
 
               } else{

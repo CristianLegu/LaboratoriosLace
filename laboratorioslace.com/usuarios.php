@@ -12,7 +12,7 @@ if(empty($_SESSION['valueuser'])){
 
 
 
- include("includes/error_nologin.php");
+// include("includes/error_nologin.php");
 
 
 
@@ -46,7 +46,7 @@ if(empty($_SESSION['valueuser'])){
 
 
 
-   include("includes/error_nologin.php"); 
+  // include("includes/error_nologin.php"); 
 
  }
 
