@@ -1441,9 +1441,6 @@ if ($idpropio == 0) {
       $pacientes_idpacientes = $idpaciente;
       $number                = count($_POST["pruebas"]);
 
-
-
-
       if($number > 0)
       {
           for($i=0; $i<$number; $i++)

@@ -175,6 +175,24 @@ button.agregar {
   cursor: pointer;
   color: #fff;
 }
+button.agregar2 {
+
+  background-image: -moz-linear-gradient(#0065B5,#0065B5);
+  background-image: -webkit-linear-gradient(#0065B5, #0065B5);
+  background-image: linear-gradient(#0065B5, #0065B5);
+  border-bottom: 1px solid #0065B5;
+  cursor: pointer;
+  color: #fff;
+}
+button.agregarsub {
+
+  background-image: -moz-linear-gradient(#0065B5,#0065B5);
+  background-image: -webkit-linear-gradient(#0065B5, #0065B5);
+  background-image: linear-gradient(#0065B5, #0065B5);
+  border-bottom: 1px solid #0065B5;
+  cursor: pointer;
+  color: #fff;
+}
 button.guardar {
 
   background-image: -moz-linear-gradient(#97c16b, #8ab959);
@@ -190,7 +208,7 @@ button.guardar {
     border-color: #2d672d;
 }
 button.eliminar {
-  width: 100%;
+  width: 40px;
       color: #fff;
     background-color: #d9534f;
     border-color: #d9534f;
@@ -358,6 +376,24 @@ input[type=form-control] {
     display: block;
     margin: 5px;
     width: 190px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+input[type=form-sub] {
+    white-space: pre-line;
+    display: block;
+    margin: 5px;
+    width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;

@@ -4,20 +4,17 @@
 
       session_start();
       $_SESSION['me'] ="";
-  if(!empty($_SESSION['valueuser'])){
-
-
-     }
-     else{
+  if(empty($_SESSION['valueuser'])){
   include("includes/error_nologin1.php");
 
      }
-     foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
+    // foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 if(!isset($_GET['V']) && !isset($_GET['busca']) ){
    include("includes/error_nologin1.php"); 
   }
   $linkestudio = "estudio.php?pro=".urlencode(base64_encode('0'))."?V=".urlencode(base64_encode("variable"));
   $linkmenu  = "menu_pacientes.php?V=".urlencode(base64_encode('variable')); 
+  $variable = urlencode(base64_encode("variable"));
 ?>
 <!doctype html>
 <html lang="es">
@@ -100,10 +97,6 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
     }
 /*Verifica si el campo busca esta vacio*/
     if(empty($_GET['busca'])){
-
-
-
-
       $sql = "SELECT
               count(idestudio)
               FROM estudios";
@@ -133,9 +126,10 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
       $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
       $sql = "SELECT  idestudio,
-                      nombre_estudio
+                      nombre_estudio,
+                      idpropio
               FROM estudios
-              ORDER BY idestudio
+              GROUP BY idpropio
               ASC $limit";
       $query = mysqli_query($con, $sql);
 
@@ -144,11 +138,11 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
       if($last != 1){
           if($pagenum > 1){
             $previous = $pagenum - 1;
-            $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Anterior</a> &nbsp; &nbsp; ';
+            $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?V='.$variable.'?pn='.$previous.'">Anterior</a> &nbsp; &nbsp; ';
 
             for($i = $pagenum-4; $i < $pagenum; $i++){
                 if($i > 0){
-                    $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+                    $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?V='.$variable.'?pn='.$i.'">'.$i.'</a> &nbsp; ';
                 }
 	          }
           }
@@ -156,7 +150,7 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
           $paginationCtrls .= ''.$pagenum.' &nbsp; ';
 
           for($i = $pagenum+1; $i <= $last; $i++){
-		        $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+		        $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?V='.$variable.'?pn='.$i.'">'.$i.'</a> &nbsp; ';
 		        if($i >= $pagenum+4){
 			          break;
 		        }
@@ -164,30 +158,30 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
 
           if ($pagenum != $last) {
                 $next = $pagenum + 1;
-                $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Siguiente</a> ';
+                $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?V='.$variable.'?pn='.$next.'">Siguiente</a> ';
           }
       }
+      
     }
     else{
           $pac = $_GET['busca'];
           $search = '%'.$pac.'%';
           $sql = "SELECT
                       idestudio,
-                      nombre_estudio
+                      nombre_estudio,
+                      idpropio
                     FROM estudios
-                  WHERE nombre_estudio LIKE '$search'" ;
-          $query = $con -> query($sql);
-        }
-
-
-
-         while ($fila = mysqli_fetch_array($query, MYSQLI_ASSOC)){
-         $nombre = $fila['nombre_estudio'];
-         $iddoc = $fila['idestudio'];
-         $link = "estudio.php?es=".urlencode(base64_encode($iddoc));
+                    WHERE nombre_estudio LIKE '$search'
+                    GROUP BY idpropio";
+          $query = mysqli_query($con, $sql);
+    }
+        while ($fila = mysqli_fetch_array($query, MYSQLI_ASSOC)){
+          $nombre = $fila['nombre_estudio'];
+          $iddoc = $fila['idpropio'];
+          $link = "estudio.php?es=".urlencode(base64_encode($iddoc));
  ?>
         <tr>
-          <td><?php echo $fila['idestudio']; ?></td>
+          <td><?php echo $iddoc; ?></td>
           <td><?php echo $nombre; ?></td>
           <td><a class="text" href= "<?php echo $link ?>"><strong>Ver</strong></a> </td>
         </tr>

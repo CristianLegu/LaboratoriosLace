@@ -114,11 +114,11 @@ if(isset($_GET['es'])){
               
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
             </tr>
-                <table class="table table-bordered" id="dynamic_field2">
-                  <hr>
-               </table>
           </table>
-          
+          <hr>
+          <div id="dynamic_field2">
+         
+          </div>
 <?php
       }
       else{ ?>
@@ -161,19 +161,24 @@ if(isset($_GET['es'])){
  <script>
    var i = 0;
    var j= 0;
+   var t= 0;
  $(document).ready(function(){
       $('#add').click(function(){
-           i++;
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" /></td></td><td><input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" /></td><td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" /></td>  <td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr>');
-      console.log(i);
+           t++;
+           $('#dynamic_field').append(
+               '<tr id="row'+t+'">'+
+               '<td><input type="form-control" name="pruebas[]" placeholder="Prueba'+t+'" class="form-control name_list" /></td>'+
+               '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
+               '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
+               '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
+      console.log(t);
       });
       
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
            $('#row'+button_id+'').remove();
-           i--;
-           console.log("i"+i);
-           console.log("j"+j);
+           t--;
+           console.log("T"+t);
       });
       $('#submit').click(function(){
            $.ajax({
@@ -188,63 +193,41 @@ if(isset($_GET['es'])){
            });
       });
 //Subtitulos
-      $('#addsub').click(function(){
-           i++;
-           j++;
+$('#addsub').click(function(){
+            i++;
+            j++;
            $('#dynamic_field2').append(
-           '<tr id="row2'+j+'">'+
-              '<td><input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" /></td>'+
-              '<td><button type="button" name="addsub" id="addsub" class="agregarsub">Agregar Subtitulo</button></td>'+
-              '<td><button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button></td></tr>'+
-           '<tr id="row3'+i+'">'+
-              '<td><input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" /></td>'+
-              '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" /></td>'+
-              '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" /></td>'+
-              '<td><button type="button" name="add" id="add" class="agregar2">Agregar</button></td></tr>');
-     console.log("i"+i);
-     console.log("j"+j);
+               '<div style="display: flex;margin-top: 10px;">'+
+                        '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" />'+
+                        '<button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button>'+
+                    '</div>'+
+               '<div id="row2'+j+'" style="display: flex;">'+
+                    '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
+                    '<button type="button" name="add" id="add" class="agregar2">Agregar</button></div>'+
+                    '<div id="row3'+j+'"></div><hr>');
+      console.log("i"+i);
+      console.log("j"+j);
       });
 
-$(document).on('click', '.agregar2', function(){
-           i++;
-           $('#dynamic_field2').append(
-             '<tr id="row3'+i+'">'+
-                '<td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>'+
-                '<td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>'+
-                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>'+
-                '<td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr>');
+      $(document).on('click', '.agregar2', function(){
+          i++;
+            $('#row3'+j+'').append(
+               '<div id="reng'+j+'"style="display: flex;">'+
+                    '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
+                    '<button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button></div>');
            console.log("i"+i);
            console.log("j"+j);
       });
-$(document).on('click', '.agregarsub', function(){
-           i++;
-           j++;
-           $('#dynamic_field2').append(
-             '<tr id="row2'+j+'">'+
-              '<td><input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+i+'" class="form-control name_list" /></td>'+
-              '<td><button type="button" name="addsub" id="addsub" class="agregarsub">Agregar Subtitulo</button></td>'+
-              '<td><button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button></td></tr>'+
-           '<tr id="row3'+i+'">'+
-              '<td><input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" /></td>'+
-              '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" /></td>'+
-              '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" /></td>'+
-              '<td><button type="button" name="add" id="add" class="agregar2">Agregar</button></td></tr>');
-           console.log("i"+i);
-           console.log("j"+j);
-      });
+
       $(document).on('click', '.btn_remove2', function(){
            var button_id = $(this).attr("id");
-           $('#row3'+button_id+'').remove();
-           console.log("i"+i);
-           console.log("j"+j);
-      });
- $(document).on('click', '.btn_remove2', function(){
-           var button_id = $(this).attr("id");
-           $('#row2'+button_id+'').remove();
-           console.log(button_id);
-           $('#row3'+button_id+'').remove();
-           console.log("i"+i);
-           console.log("j"+j);
+           $('#reng'+button_id+'').remove();
+           i--;
+           console.log("I"+t);
       });
  });
  
