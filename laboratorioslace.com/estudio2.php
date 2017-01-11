@@ -171,7 +171,7 @@ if(isset($_GET['es'])){
                '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
-      console.log(t);
+      console.log("T"+t);
       });
       
       $(document).on('click', '.btn_remove', function(){
@@ -197,28 +197,30 @@ $('#addsub').click(function(){
             i++;
             j++;
            $('#dynamic_field2').append(
+               '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
                         '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" />'+
-                        '<button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button>'+
+                        '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
                '<div id="row2'+j+'" style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
-                    '<button type="button" name="add" id="add" class="agregar2">Agregar</button></div>'+
-                    '<div id="row3'+j+'"></div><hr>');
+                    '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
+                    '<div id="row3'+j+'"></div><hr></div>');
       console.log("i"+i);
       console.log("j"+j);
       });
 
       $(document).on('click', '.agregar2', function(){
           i++;
-            $('#row3'+j+'').append(
-               '<div id="reng'+j+'"style="display: flex;">'+
+          var button_id = $(this).attr("id");
+            $('#row3'+button_id+'').append(
+               '<div id="reng'+i+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
-                    '<button type="button" name="remove" id="'+j+'" class="eliminar btn_remove2">X</button></div>');
+                    '<button type="button" name="remove" id="'+i+'" class="eliminar btn_remove2">X</button></div>');
            console.log("i"+i);
            console.log("j"+j);
       });
@@ -227,7 +229,13 @@ $('#addsub').click(function(){
            var button_id = $(this).attr("id");
            $('#reng'+button_id+'').remove();
            i--;
-           console.log("I"+t);
+           console.log("I"+i);
+      });
+      $(document).on('click', '.btn_removesub', function(){
+           var button_id = $(this).attr("id");
+           $('#sub'+button_id+'').remove();
+           j--;
+           console.log("J"+j);
       });
  });
  
