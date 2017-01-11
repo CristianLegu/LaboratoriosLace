@@ -24,10 +24,28 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       include("includes/error_nologin.php");
   }
   else{ 
+         $sql123 = "SELECT *
+                  FROM estudios" ;
+
+$conta2 = 1;
+         $query123  = mysqli_query($mysqli, $sql123);
+    while ($fila = mysqli_fetch_array($query123, MYSQLI_ASSOC)){
+        // $fila = mysqli_fetch_array($query123, MYSQLI_ASSOC);
+ $a= $fila["prueba"];
+
+// "id_fruta":"1","1":"Manzana","nombre_fruta":"Manzana";
+ $arrayPHP [0][$conta2]=array($fila["idpropio"],$fila["prueba"],$fila["unidades"],$fila["valorreferencia"],$fila["nombre_estudio"]);
+
+$conta2 =$conta2 +1;
+  }
     ?>
 				   <script language='javascript'>
 				  var i = 1;
+          var vi = 1;
+          sessionStorage.LocalToGlobalVar = i;
+          sessionStorage.LocalToGlobalVar = vi;
 			</script>
+
 <!doctype html>
  <html lang="en-US">
       <head>
@@ -99,7 +117,8 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       <div class="container">
         <div class="form-group">
           <form name="add_name" id="add_name" method="post" action="agrega_analisis.php " ALIGN=center autocomplete="off">
-      <div>
+      
+      <div class="col-3">
       <label >
         Elegir Medico
     <!--    <select id="idmedico"  name="idmedico" >
@@ -144,53 +163,66 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
         </select>
       </label>
       </div>
-      <div class="col-4">
+
+      <div class="col-3">
     	 <label>
       				Área <?php //echo $name;?>
       			  <input name="area" value="<?php if($fila1 != null) { echo $fila1 [1]; }?>" style="background-color:powderblue; "required>
     	 </label>
   		 </div>
-  <div>
+
+<!--<div id="dynamic_field1" class="col-2"> -->
+  
+
+<div style="text-align:center;" class="col-1" id="dynamic_field">
+
+</div>
+<!--</div>-->
+      
+
+
+<div class="col-2">
       <label >
         Elegir Estudio
     <!--    <select id="idmedico"  name="idmedico" >
 -->
 <form name="add_name" id="add_name" method="post" action="agrega_analisis.php " ALIGN=center autocomplete="off">
-        <select id="idestudio"  name="idestudio" >
+        <select id="car"  name="car" onchange="ChangeCarList()" >
           
           <?php
-            $mysqli = mysqli_connect($host, $user, $pwd, $db);
 
+            $mysqli = mysqli_connect($host, $user, $pwd, $db);
+  $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
             if($idpropio != 0){
               if(isset($_GET['idm'])){
                 $idmed = $_GET['idm'];
               }
-              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
-              $querymedicos2 = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
-
-              
-              while ($valoresestudios =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
-                echo '<option value="'.$valoresestudios['idmedicos'].'">'.$valoresestudios['nombre'].'</option>';
-              } 
+            
+            //  $querymedicos2 = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios"
+             
               while ($valoresestudios =  mysqli_fetch_array($querymedicos2, MYSQLI_ASSOC)) {
-                echo '<option value="'.$valoresestudios['idmedicos'].'">'.$valoresestudios['nombre'].'</option>';
+                ?>
+       <option value="<?php echo $valores['idpropio']?>"> <?php echo $valores['nombre_estudio'] ?> </option>
               } 
 
+<?php 
+            }
+          }
 
-              /*
-              while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
-                echo '<option value="'.$valores['idmedicos'].'">'.$valores['nombre'].'</option>';
-              } 
-              */ 
-            }else{
-              echo "<option  value=".$idmedico.">Seleccionar Estudio</option>";
+            else{
+
+           //   $idpropio = 1;
+
+              echo "<option  value=".$idpropio.">Seleccionar Estudio</option >";
               $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
               $nombreestudio = "";
               while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
-                if($nombreestudio != $valores['nombre_estudio']){
-                echo '<option value="'.$valores['idpropio'].'">'.$valores['nombre_estudio'].'</option>';
-                  $nombreestudio = $valores['nombre_estudio'];
-              }
+                if($nombreestudio != $valores['nombre_estudio']){ ?>
+             
+               <option value="<?php echo $valores['idpropio']?>"> <?php echo $valores['nombre_estudio'] ?> </option>
+              <?php     $nombreestudio = $valores['nombre_estudio'];
+             $idestu = $idestu + 1;
+        }
                   if($nombreestudio == null){
                  $nombreestudio = $valores['nombre_estudio'];
                 }
@@ -204,67 +236,35 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       </label>
       </div>
 
-          <div class="table-responsive">
-<?php 
- if($fila == null) { ?>
-          <table class="table table-bordered" id="dynamic_field">
-            <tr>
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>
-              <td><input  type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" /></td>
-              <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
-            </tr>
-          </table>
-<?php
-      }
-      else{ ?>
-         <table id="dynamic_field">
-  <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
-  ?>   <?php $renglon = "row".$i; ?>
-           <tr id="<?php echo $renglon; ?>">
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
-              <td><input  type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" value="<?php  echo $row ['observaciones'] ?> " /></td>
-                  <?php if ($cont == 1) { ?>
-              <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
-                  <?php } else { ?>
-              <td><button type="button" name="remove" id="<?php echo $i; ?>" class="eliminar btn_remove">X</button></td>
-                    <?php } ?>
-           </tr>
-           
-<script language='javascript'>
-   var i = i + 1;
-</script>
-  <?php $cont++; $i++;} ?>
-      </table>
-     	<?php	 }   $i ;   ?>
+
+
+     	<?php	  $i ;   ?>
        </div>
-  
+      
       <div class="col-submit button">
         <input name="idpropio" value="<?php if($fila1 != null) { echo $idpropio; } else {$idpropio = 0; echo $idpropio;}?>"  style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
             <button name="submit1"   class="guardar" >GUARDAR</button>
       </div>
   </form>
+
+
+ 
       </div>
     </div>
+
   </body>
  </html>
 
+
+
+
  <script>
+
  $(document).ready(function(){
+
       $('#add').click(function(){
-           i++;
-
-
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td></td><td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td> <td><input type="form-control" name="observaciones[]" placeholder="Observaciones" class="form-control name_list" /></td> <td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr>');
-      });
-      $(document).on('click', '.btn_remove', function(){
-           var button_id = $(this).attr("id");
-           $('#row'+button_id+'').remove();
-      });
+       
       $('#submit').click(function(){
            $.ajax({
                 url:"agrega_analisis.php",
@@ -279,3 +279,96 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       });
  });
  </script>
+
+<script type="text/javascript">
+
+
+
+  function ChangeCarList() {
+ sessionStorage.LocalToGlobalVar;
+ 
+       
+    var carList = document.getElementById("car").value;
+    var lugar = document.getElementsByName('car');
+   
+  // Obtener la referencia del elemento body
+  if(carList!=0){
+  
+ var arrayJS=<?php echo json_encode($arrayPHP);?>;
+    // Mostramos los valores del array
+   var a=1;
+   var cont=1;
+   var label = 1;
+   var primerelemento=1;
+   var encontro =0;
+   while(a==1){
+    var cadena = arrayJS[0][cont];
+    if(carList==cadena[0]){
+      a=2;
+    }else{
+      cont = cont +1; 
+    }
+   
+   }
+   a=1;
+   while(a==1){
+        i++;
+
+   var cadena = arrayJS[0][cont];
+
+      //document.write(cadena[0]);
+  if (cadena[0] == carList ){
+
+   // $('#dynamic_field1').append('<label>pepe</label>'); 
+if (primerelemento==1){
+
+
+   $('#dynamic_field').append('<label>'+cadena[4]+'</label><label align="left">'+cadena[4]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td ><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> </tr></table></div>');
+   primerelemento++;
+    }
+else{
+
+
+   $('#dynamic_field').append('<div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list" /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]"  class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> </tr></table></div>');
+    }
+
+     }
+    else{
+    
+   var x = document.getElementById("car");
+       x.remove(x.selectedIndex);
+vi++;
+ a=2;
+    }
+
+   
+    cont = cont +1;
+     
+     //   document.write("<br>"+arrayJS[0][1]);
+      
+        
+     
+   }
+
+  }
+    else{
+ 
+
+ 
+  // Crea las celdas
+  for (var i2 = 0; i2 < 2; i2++) {
+    // Crea las hileras de la tabla
+ //   var hilera = document.createElement("tr");
+ 
+
+ 
+    // agrega la hilera al final de la tabla (al final del elemento tblbody)
+   
+  }
+ 
+  
+}
+
+
+}
+</script>
