@@ -4,6 +4,13 @@ ul#menu {
  float:left;
 }
 
+#hov:hover{
+     background: rgba(148, 190, 42, 0.7);
+}
+
+#ex:hover{
+     background: rgba(45, 76, 130, 1);
+}
 ul#menu li {
  float: left;
  width: 250px;
@@ -29,7 +36,7 @@ ul#menu ul li{
  width:170%;
  height: 50%;
  margin:5% 0%;
- background: rgba(255, 255, 255, 0.4);
+ background: rgba(45, 76, 130, 0.8);
 }
 
 

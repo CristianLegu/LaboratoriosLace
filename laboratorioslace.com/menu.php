@@ -39,13 +39,13 @@
 
 				<span class="right">
 					<ul id="menu">
-						 <li>
+						 <li id="hov">
 							 <span class="right">
 							 <h5 style="margin-top: 2.1em; font-size: 12px;">Bienvenido, <?php echo $_SESSION['valueuser'] ?></h5>
 							 </span>
 	 							<img src="img/conf.png" width="20%" >
              <ul>
-               <li><a href="index.php" style="">Cerrar Sesion</a></li>
+               <li id="ex"><a href="index.php" >Cerrar Sesion</a></li>
              </ul>
                </li>
          </ul>

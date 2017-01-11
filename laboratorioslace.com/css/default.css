@@ -70,11 +70,10 @@ a:hover {
 /* Header Style */
 .codrops-top {
 	background: #fff;
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(45, 76, 130, 0.7);
 	text-transform: uppercase;
 	position: relative;
 	width: 100%;
-	font-size: 0.7em;
 	line-height: 0;
 }
 
