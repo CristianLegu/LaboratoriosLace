@@ -180,12 +180,12 @@ class PDF extends FPDF
         $pdf->AddPage();
         $pdf->AliasNbPages();
         $pdf->SetFillColor(232, 232, 232);
-        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 9);
         $pdf->SetFillColor(45, 76, 130);
         $pdf->SetTextColor(255, 255, 255);
 
-        $pdf->Ln();
-        $pdf->Ln(5);
+        //$pdf->Ln(120);
+        $pdf->Ln(30);
 
         $pdf->SetX(12);
         $pdf->Cell(100, 6, 'Prueba', 1, 0, 'C', 1);
@@ -197,13 +197,14 @@ class PDF extends FPDF
         $pdf->Cell(30, 6, 'Unidades', 1, 0, 'C', 1);
         
         $pdf->SetX(172);
-        $pdf->Cell(25, 6, 'Vl. Referencia', 1, 0, 'C', 1);
+        $pdf->Cell(25, 6, 'Valor de referencia', 1, 0, 'C', 1);
 
     // $pdf->SetX(155);
         //$pdf->Cell(40, 6, 'Comentarios', 1, 0, 'C', 1);
 
         
         $pdf->Ln();
+       
 
         $observaciones = "";
         while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
@@ -286,12 +287,12 @@ class PDF extends FPDF
         $pdf->AddPage();
         $pdf->AliasNbPages();
         $pdf->SetFillColor(232, 232, 232);
-        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 9);
         $pdf->SetFillColor(45, 76, 130);
         $pdf->SetTextColor(255, 255, 255);
 
-        $pdf->Ln();
-        $pdf->Ln(5);
+        
+        $pdf->Ln(50);
 
         $pdf->SetX(12);
         $pdf->Cell(100, 6, 'Prueba', 1, 0, 'C', 1);
@@ -303,7 +304,7 @@ class PDF extends FPDF
         $pdf->Cell(30, 6, 'Unidades', 1, 0, 'C', 1);
         
         $pdf->SetX(172);
-        $pdf->Cell(25, 6, 'Vl. Referencia', 1, 0, 'C', 1);
+        $pdf->Cell(25, 6, 'Valor de referencia', 1, 0, 'C', 1);
 
     // $pdf->SetX(155);
         //$pdf->Cell(40, 6, 'Comentarios', 1, 0, 'C', 1);
