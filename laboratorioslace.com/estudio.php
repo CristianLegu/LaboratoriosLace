@@ -217,13 +217,13 @@ $('#addsub').click(function(){
                         '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" />'+
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
-               '<div id="row2'+j+'" style="display: flex;">'+
+               '<div id="row'+j+'" style="display: flex;">'+
                   '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
-                    '<div id="row3'+j+'"></div><hr></div>');
+                    '<div id="rowx'+j+'"></div><hr></div>');
           arreglo.push(i);
           i=0;
       console.log("i"+i);
@@ -238,14 +238,14 @@ $('#addsub').click(function(){
          console.log(button_id);
           i = arreglo[button_id];
           i++;
-            $('#row3'+button_id+'').append(
-               '<div id="reng'+i+'"style="display: flex;">'+
+            $('#rowx'+button_id+'').append(
+               '<div id="reng'+button_id+'-'+i+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
                   
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
-                    '<button type="button" name="remove" id="'+i+'" class="eliminar btn_remove2">X</button></div>');
+                    '<button type="button" name="remove" id="'+button_id+'-'+i+'" class="eliminar btn_remove2">X</button></div>');
            
            arreglo.splice(button_id, 1, i);
            i=0;
@@ -256,12 +256,19 @@ $('#addsub').click(function(){
 
       $(document).on('click', '.btn_remove2', function(){
            var button_id = $(this).attr("id");
-           $('#reng'+button_id+'').remove();
-           i--;
+           var aux= button_id.substring(0, 1);//Arreglar
+           var aux2= button_id.substring(2, 3);//arreglar
+           console.log(aux+""+aux2);
+            i = arreglo[aux];
+            i--;
+           arreglo.splice(aux, 1, i);
+           $('#reng'+aux+'-'+aux2+'').remove();
            vi--;
            console.log("I"+i);
+           console.log("j"+j);
+           console.log(arreglo);
       });
-      $(document).on('click', '.btn_removesub', function(){
+      $(document).on('click', '.btn_removesub', function(){//arreglar
            var button_id = $(this).attr("id");
            $('#sub'+button_id+'').remove();
            j--;
