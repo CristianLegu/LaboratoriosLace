@@ -21,7 +21,7 @@ if ($idpropio == 0) {
        $fecha         =  date("Y") . date("m") . date("d") ;
        $area          = $_POST["area"];
     
-       $pacientes_idpacientes = $idpaciente;
+       $pacientes_idpacientes = $_POST["idpaciente"];
       $medicos_idmedicos = $_POST["idmedico"];
       $number        = count($_POST["pruebas"]);
 
@@ -44,20 +44,22 @@ if ($idpropio == 0) {
                 $mysqli = mysqli_connect($host, $user, $pwd, $db);
               if(mysqli_connect_errno()) {
                 }
-             // echo  $prueba          =  $_POST["pruebas"][$i];
-          //    echo $unidades        =  $_POST["unidades"][$i];
-              echo     $estudio     =  $_POST["estudios"][$i];
-            //  echo  $valorreferencia =  $_POST["valorreferencia"][$i];
-              //  $observaciones   =  $_POST["observaciones"][$i];
+            $prueba          =  $_POST["pruebas"][$i];
+            $resultados      =  $_POST["resultados"][$i];
+            $unidades        =  $_POST["unidades"][$i];
+            $estudio         =  $_POST["estudios"][$i];
+            $valorreferencia =  $_POST["valorreferencia"][$i];
 
-         //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-           //     $sql = "INSERT INTO analisis ( area, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-             //       VALUES( '$area', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
-               // if( mysqli_query($mysqli, $sql)){
-                //} else{
-                  //echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
-                ///}
-                //mysqli_close($mysqli);
+                $observaciones   =  "";
+
+               // $sql = "INSERT INTO analisis(idanalisis, area,  estudio, pruebas, resuldados, unidades, valorreferencia, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
+                $sql = "INSERT INTO analisis ( area, estudio, prueba, resultados, unidades, valorreferencia, observaciones,  fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
+                    VALUES( '$area', '$estudio', '$prueba', '$resultados', '$unidades','$valorreferencia', '$observaciones','$fecha',                '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+                if( mysqli_query($mysqli, $sql)){
+                } else{
+                  echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
+                }
+                mysqli_close($mysqli);
             }
         }
       }
