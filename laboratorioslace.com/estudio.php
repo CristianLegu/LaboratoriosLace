@@ -38,6 +38,7 @@ if(isset($_GET['es'])){
     $sql    = "SELECT * FROM estudios where idpropio = '$es' ";
         $query  = mysqli_query($mysqli, $sql);
         $fila = $mysqli->query($sql);
+
         $fila1 = mysqli_fetch_array($query);
     mysqli_close($mysqli);
 }
@@ -124,15 +125,20 @@ if(isset($_GET['es'])){
           </div>
 <?php
       }
-      else{ ?>
+      else{ $subt=""?>
          <table id="dynamic_field">
-           <tr>
-            <td><input type="form-sub" name="subtitulo[]" placeholder="Subtitulo" class="form-sub name_list" /></td>
+           
+  <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
+  ?>   <?php  $renglon = "row".$i; 
+  if($subt != $row ['subtitulo'] ){
+    $subt =$row ['subtitulo'] ;
+         ?>
+
+          <tr>
+            <td><input type="form-sub" name="subtitulo[]" placeholder="Subtitulo" class="form-sub name_list" value="<?php  echo $row ['subtitulo'] ?> "/></td>
             <td><button type="button" name="addsub" id="addsub" class="agregarsub">Agregar Subtitulo</button></td>
           </tr>
-  <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
-  ?>   <?php $renglon = "row".$i; ?>
-          
+          <?php } ?>
            <tr id="<?php echo $renglon; ?>">
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
