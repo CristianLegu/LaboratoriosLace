@@ -2,6 +2,7 @@
 
 	if(isset($_SESSION['enviado'])){
 		$linkpacientes   = "menu_pacientes.php?V=".urlencode(base64_encode('variable'));
+		$linkusuarios   = "menu_usuarios.php?V=".urlencode(base64_encode('variable'));
         $sesion = $_SESSION['enviado'];
 	}
      
@@ -31,8 +32,11 @@
 
 							<?php 	  if(  $sesion == 'vvv') { ?>
 								window.location.href = '<?php echo $linkpacientes; ?>';
+							<?php } 
+							
+							if(  $sesion == 'vvv2') {?>
+								window.location.href = '<?php echo $linkusuarios; ?>';
 							<?php } ?>
-								
 				}
 			);
 	</script>

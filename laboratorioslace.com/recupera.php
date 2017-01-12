@@ -194,7 +194,9 @@ $idmed  = 0;
                         include("includes/enviomail.php");
                       }
                       else{
-                        echo "Error con el servidor.";
+                        session_start();
+                        $_SESSION['enviado']= "vvv2";
+                        include("includes/errormail.php");
                       }
 
 
