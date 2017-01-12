@@ -175,7 +175,7 @@ if(isset($_GET['es'])){
                '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
                
                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
-               '<td><input  type="form-control" name="idsubtitulo[]" value="'+vi+'" class="form-control name_list" /></td>'+
+               '<td><input  type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none"  class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
       console.log("T"+t);
       });
