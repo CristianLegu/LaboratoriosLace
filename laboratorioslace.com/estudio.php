@@ -140,9 +140,10 @@ if(isset($_GET['es'])){
           </tr>
           <?php } ?>
            <tr id="<?php echo $renglon; ?>">
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
+              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" <?php if($row ['prueba'] != "") { ?>  value="<?php  echo $row ['prueba'] ?> " <?php   }  ?> /></td>
+              
+              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list"  <?php if($row ['unidades'] != "") { ?>  value="<?php  echo $row ['unidades'] ?> " <?php   }  ?> /></td> /></td>
+              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list"  <?php if($row ['valorreferencia'] != "") { ?>  value="<?php  echo $row ['valorreferencia'] ?> " <?php   }  ?> /></td>
              
                   <?php if ($cont == 1) { ?>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
