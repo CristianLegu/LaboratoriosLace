@@ -1433,14 +1433,11 @@ if ($idpropio == 0) {
       else{
          $idpropio = $fila['idpropio'] + 1;
       }
-     
-    if(isset($_POST['estudio']) && isset($_POST['unidades'])
-    &&  isset($_POST['pruebas']) && isset($_POST['valorreferencia'])
-    ){
+ 
       $estudio               = $_POST["estudio"];
      
       $number                = count($_POST["pruebas"]);
-
+$incrementa = 0;
       if($number > 0)
       {
           for($i=0; $i<$number; $i++)
@@ -1454,12 +1451,22 @@ if ($idpropio == 0) {
         $prueba          =  $_POST["pruebas"][$i];
         $unidades        =  $_POST["unidades"][$i];
         $valorreferencia =  $_POST["valorreferencia"][$i];
-        $subtitulo       =  $_POST["subtitulo"][$i];
+      //  echo $_POST["subtitulo"][$i];
+           // echo $incrementa;
+       echo $_POST["idsubtitulo"][$i] ;
+       echo $incrementa;
+       
+        if($_POST["idsubtitulo"][$i] ==  $incrementa){
+        	  $subtitulo       =  $_POST["subtitulo"][$incrementa];
+        	  $incrementa++;
+        }
+//echo $subtitulo;
+      
        
               $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
                    VALUES( '$estudio','$subtitulo', '$prueba', '$unidades','$valorreferencia', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
-					include("includes/alert.php");
+				//	include("includes/alert.php");
                 } else{
                   echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
                 }
@@ -1471,7 +1478,7 @@ if ($idpropio == 0) {
       {
         echo "Please Enter Name";
       }
-    }
+    
 }
 else {
 

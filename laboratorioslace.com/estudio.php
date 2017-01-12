@@ -20,6 +20,9 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
   
 				   <script language='javascript'>
 				  var i = 1;
+          var vi = 1;
+                 sessionStorage.LocalToGlobalVar = vi;
+
 			</script>
 <!doctype html>
  <html lang="en-US">
@@ -111,7 +114,7 @@ if(isset($_GET['es'])){
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>
-              
+              <td><input  type="form-control" name="idsubtitulo[]" value="0" style="display:none;" class="form-control name_list" /></td>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
             </tr>
           </table>
@@ -157,11 +160,12 @@ if(isset($_GET['es'])){
     </div>
   </body>
  </html>
-
+ 
  <script>
    var i = 0;
    var j= 0;
    var t= 0;
+   var vi=0;
  $(document).ready(function(){
       $('#add').click(function(){
            t++;
@@ -169,7 +173,9 @@ if(isset($_GET['es'])){
                '<tr id="row'+t+'">'+
                '<td><input type="form-control" name="pruebas[]" placeholder="Prueba'+t+'" class="form-control name_list" /></td>'+
                '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
+               
                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
+               '<td><input  type="form-control" name="idsubtitulo[]" value="'+vi+'" class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
       console.log("T"+t);
       });
@@ -196,6 +202,7 @@ if(isset($_GET['es'])){
 $('#addsub').click(function(){
             i++;
             j++;
+            vi++;
            $('#dynamic_field2').append(
                '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
@@ -203,6 +210,7 @@ $('#addsub').click(function(){
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
                '<div id="row2'+j+'" style="display: flex;">'+
+                  '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
@@ -218,6 +226,8 @@ $('#addsub').click(function(){
             $('#row3'+button_id+'').append(
                '<div id="reng'+i+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
+                  
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="remove" id="'+i+'" class="eliminar btn_remove2">X</button></div>');
@@ -229,12 +239,14 @@ $('#addsub').click(function(){
            var button_id = $(this).attr("id");
            $('#reng'+button_id+'').remove();
            i--;
+           vi--;
            console.log("I"+i);
       });
       $(document).on('click', '.btn_removesub', function(){
            var button_id = $(this).attr("id");
            $('#sub'+button_id+'').remove();
            j--;
+           vi--;
            console.log("J"+j);
       });
  });
