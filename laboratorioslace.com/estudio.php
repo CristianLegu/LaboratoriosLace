@@ -172,6 +172,7 @@ if(isset($_GET['es'])){
    var j= 0;
    var t= 0;
    var vi=0;
+   var arreglo = [""];
  $(document).ready(function(){
       $('#add').click(function(){
            t++;
@@ -209,6 +210,7 @@ $('#addsub').click(function(){
             i++;
             j++;
             vi++;
+            
            $('#dynamic_field2').append(
                '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
@@ -222,13 +224,20 @@ $('#addsub').click(function(){
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
                     '<div id="row3'+j+'"></div><hr></div>');
+          arreglo.push(i);
+          i=0;
       console.log("i"+i);
       console.log("j"+j);
+      console.log(arreglo);
+
       });
 
       $(document).on('click', '.agregar2', function(){
-          i++;
+    
           var button_id = $(this).attr("id");
+         console.log(button_id);
+          i = arreglo[button_id];
+          i++;
             $('#row3'+button_id+'').append(
                '<div id="reng'+i+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
@@ -237,8 +246,12 @@ $('#addsub').click(function(){
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="remove" id="'+i+'" class="eliminar btn_remove2">X</button></div>');
+           
+           arreglo.splice(button_id, 1, i);
+           i=0;
            console.log("i"+i);
            console.log("j"+j);
+           console.log(arreglo);
       });
 
       $(document).on('click', '.btn_remove2', function(){
