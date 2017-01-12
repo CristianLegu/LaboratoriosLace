@@ -1466,7 +1466,7 @@ $incrementa = 0;
               $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
                    VALUES( '$estudio','$subtitulo', '$prueba', '$unidades','$valorreferencia', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
-				//	include("includes/alert.php");
+				include("includes/alert.php");
                 } else{
                   echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
                 }
