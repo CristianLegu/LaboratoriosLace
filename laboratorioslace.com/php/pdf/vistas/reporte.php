@@ -21,6 +21,8 @@
 	$mes    = date("m");
     $anio   = date("Y");
 	$fechaAct  = $anio."-".$mes."-".$dia;
+	$estudio = "";
+	$subtitulo = "";
 	
 	
 
@@ -32,7 +34,7 @@
 
 
 
-    $sqlContar = "SELECT  a.prueba
+    $sqlContar = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
@@ -49,7 +51,7 @@
 
 		$con = mysqli_connect($host, $user, $pwd, $db);
 
-        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.observaciones
+        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
@@ -63,7 +65,7 @@
 
 
 		//$conname = mysqli_connect($host, $user, $pwd, $db);
-        $sqlname = "SELECT  m.nombre AS medico, p.nombre AS paciente, a.fecha AS fecha
+        $sqlname = "SELECT  m.nombre AS medico, p.nombre AS paciente, a.fecha AS fecha, a.estudio, a.subtitulo
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
@@ -102,11 +104,12 @@
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px;}
 
-
+#titulo tr td {font-size:11.5px; text-decoration: underline; font-weight: bold;}
+#subtitulo tr td {font-size:11.5px; align-text: center; font-weight: bold;}
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#atte {margin-top:80px;}
+#atte {margin-top:30px;}
 #paciente {margin-top:100px;}
-#paciente tr td {font-size: 11.5px;}
+#paciente tr td {font-size: 11px;}
 
 
 -->
@@ -147,6 +150,8 @@
 			$nombreMedico = $row['medico'];
 			$nombrePaciente = $row['paciente'];
 			$fecha = $row['fecha'];
+			$estudio = $row['estudio'];
+			$subtitulo = $row['subtitulo'];
 		}
 	?>
 
@@ -169,6 +174,20 @@
 		</tr>
 	</table>
 
+	<table id="titulo">
+		<tr>
+			<td>
+				<span> <?php echo $estudio;?></span>
+			</td>
+		</tr>
+	</table>
+	<table id="subtitulo">
+		<tr>
+			<td>
+				<span> <?php echo $subtitulo;?></span>
+			</td>
+		</tr>
+	</table>
 	
 	<table id="central">
 		<tr>
@@ -283,7 +302,7 @@
 	else{
 		$con = mysqli_connect($host, $user, $pwd, $db);
 
-        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.observaciones
+        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
@@ -297,7 +316,7 @@
 
 
 		//$conname = mysqli_connect($host, $user, $pwd, $db);
-        $sqlname = "SELECT  m.nombre AS medico, p.nombre AS paciente, a.fecha AS fecha
+        $sqlname = "SELECT  m.nombre AS medico, p.nombre AS paciente, a.fecha AS fecha, a.estudio, a.subtitulo
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes

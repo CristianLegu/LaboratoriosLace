@@ -144,7 +144,11 @@ else {
       //echo '<script type="text/javascript">
         //          window.open("reporte.php?id=", "_blank");
           //  </script>';
-          $var = "reporte.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
+
+          //visualizar
+          $var = "php/pdf/reporte.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
+
+          //correo
           $bar = "recupera.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
 
  ?>
