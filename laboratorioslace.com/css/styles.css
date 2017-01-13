@@ -508,7 +508,7 @@ input[type=form-control] {
     white-space: pre-line;
     display: block;
     margin: 5px;
-    width: 100%;
+    width: 100px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -522,12 +522,12 @@ input[type=form-control] {
     transition: width 0.4s ease-in-out;
 }
 }
-@media  (max-width: 500px) {
+@media  (max-width: 499px) {
 input[type=form-control] {
     white-space: pre-line;
     display: block;
     margin: 5px;
-    width: 100%;
+    width: 80px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;

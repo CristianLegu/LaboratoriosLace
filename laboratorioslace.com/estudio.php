@@ -47,7 +47,7 @@ if(isset($_GET['es'])){
     <?php    }
     else{ $fila = null;
          $fila1 = null;
-
+      $es = 0;
        }
   ?>
 
@@ -125,13 +125,20 @@ if(isset($_GET['es'])){
           </div>
 <?php
       }
-      else{ $subt=""?>
+      else{ $subt=""; 
+           $contrr = 0;
+           $contrr2 = 0;?>
          <table id="dynamic_field">
            
   <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
   ?>   <?php  $renglon = "row".$i; 
   if($subt != $row ['subtitulo'] ){
-    $subt =$row ['subtitulo'] ;
+    $contrr++;
+    if($contrr==2){
+      $contrr2 = 1;
+    }
+       $subt =$row ['subtitulo'] ;
+       
          ?>
 
           <tr>
@@ -140,9 +147,10 @@ if(isset($_GET['es'])){
           </tr>
           <?php } ?>
            <tr id="<?php echo $renglon; ?>">
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
+              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" <?php if($row ['prueba'] != "") { ?>  value="<?php  echo $row ['prueba'] ?> " <?php   }  ?> /></td>
+              
+              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list"  <?php if($row ['unidades'] != "") { ?>  value="<?php  echo $row ['unidades'] ?> " <?php   }  ?> /></td> /></td>
+              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list"  <?php if($row ['valorreferencia'] != "") { ?>  value="<?php  echo $row ['valorreferencia'] ?> " <?php   }  ?> /></td>
              
                   <?php if ($cont == 1) { ?>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
@@ -157,7 +165,7 @@ if(isset($_GET['es'])){
        </div>
   
       <div class="col-submit button">
-        <input name="idpropio" value="<?php if($fila1 != null) { echo $idpropio; } else {$idpropio = 0; echo $idpropio;}?>"  style='display:none;'>
+        <input name="idpropio" value="<?php  echo  $es;?>"   style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
             <button name="submit1"   class="guardar" >GUARDAR</button>
       </div>
@@ -217,13 +225,13 @@ $('#addsub').click(function(){
                         '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" />'+
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
-               '<div id="row2'+j+'" style="display: flex;">'+
+               '<div id="row'+j+'" style="display: flex;">'+
                   '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
-                    '<div id="row3'+j+'"></div><hr></div>');
+                    '<div id="rowx'+j+'"></div><hr></div>');
           arreglo.push(i);
           i=0;
       console.log("i"+i);
@@ -238,14 +246,14 @@ $('#addsub').click(function(){
          console.log(button_id);
           i = arreglo[button_id];
           i++;
-            $('#row3'+button_id+'').append(
-               '<div id="reng'+i+'"style="display: flex;">'+
+            $('#rowx'+button_id+'').append(
+               '<div id="reng'+button_id+'-'+i+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
                   
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
-                    '<button type="button" name="remove" id="'+i+'" class="eliminar btn_remove2">X</button></div>');
+                    '<button type="button" name="remove" id="'+button_id+'-'+i+'" class="eliminar btn_remove2">X</button></div>');
            
            arreglo.splice(button_id, 1, i);
            i=0;
@@ -256,12 +264,19 @@ $('#addsub').click(function(){
 
       $(document).on('click', '.btn_remove2', function(){
            var button_id = $(this).attr("id");
-           $('#reng'+button_id+'').remove();
-           i--;
+           var aux= button_id.substring(0, 1);//Arreglar
+           var aux2= button_id.substring(2, 3);//arreglar
+           console.log(aux+""+aux2);
+            i = arreglo[aux];
+            i--;
+           arreglo.splice(aux, 1, i);
+           $('#reng'+aux+'-'+aux2+'').remove();
            vi--;
            console.log("I"+i);
+           console.log("j"+j);
+           console.log(arreglo);
       });
-      $(document).on('click', '.btn_removesub', function(){
+      $(document).on('click', '.btn_removesub', function(){//arreglar
            var button_id = $(this).attr("id");
            $('#sub'+button_id+'').remove();
            j--;

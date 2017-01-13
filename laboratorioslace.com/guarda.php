@@ -1419,7 +1419,7 @@ $mysqli = mysqli_connect($host, $user, $pwd, $db);
 
 if(isset($_POST['idpropio']) && isset($_POST['idpaciente'])){
       $idpropio   = $_POST["idpropio"];
-
+//echo $idpropio;
 }
 
 if ($idpropio == 0) {
@@ -1453,8 +1453,8 @@ $incrementa = 0;
         $valorreferencia =  $_POST["valorreferencia"][$i];
       //  echo $_POST["subtitulo"][$i];
            // echo $incrementa;
-       echo $_POST["idsubtitulo"][$i] ;
-       echo $incrementa;
+        $_POST["idsubtitulo"][$i] ;
+        $incrementa;
        
         if($_POST["idsubtitulo"][$i] ==  $incrementa){
         	  $subtitulo       =  $_POST["subtitulo"][$incrementa];
@@ -1482,25 +1482,13 @@ $incrementa = 0;
 }
 else {
 
-  $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
+  $eliminar = "DELETE FROM estudios WHERE idpropio = $idpropio;";
 
   if ($mysqli->query($eliminar) === TRUE) {
-    if(isset($_POST['area']) && isset($_POST['departamento'])
-    &&  isset($_POST['estudio']) && isset($_POST['idmedico'])
-    &&  isset($_POST['pruebas'])
-    ){
-    $dia = count( date("j"));
-      
-      
-         $fecha         =  date("Y") . date("m") . date("d") ;
-      
-     
-      $area          = $_POST["area"];
-      $departamento  = $_POST["departamento"];
-      $estudio       = $_POST["estudio"];
-      $pacientes_idpacientes = $idpaciente;
-      $medicos_idmedicos = $_POST["idmedico"];
-      $number        = count($_POST["pruebas"]);
+   
+
+     $estudio               = $_POST["estudio"]; 
+     $number                = count($_POST["pruebas"]);
     if ($medicos_idmedicos != null || $medicos_idmedicos != "") {
         //echo "ID MEDICOS dentro de if ".$medicos_idmedicos;
       }
@@ -1518,23 +1506,29 @@ else {
 
               }
             
-              $prueba          =  $_POST["pruebas"][$i];
-              $unidades        =  $_POST["unidades"][$i];
-              $valorreferencia =  $_POST["valorreferencia"][$i];
-              $observaciones   =  $_POST["observaciones"][$i];
-               
-
+        $prueba          =  $_POST["pruebas"][$i];
+        $unidades        =  $_POST["unidades"][$i];
+        $valorreferencia =  $_POST["valorreferencia"][$i];
+      //  echo $_POST["subtitulo"][$i];
+           // echo $incrementa;
+        $_POST["idsubtitulo"][$i] ;
+        $incrementa;
+       
+        if($_POST["idsubtitulo"][$i] ==  $incrementa){
+        	  $subtitulo       =  $_POST["subtitulo"][$incrementa];
+        	  $incrementa++;
+        }
 
          //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-              $sql = "INSERT INTO analisis ( area, departamento, estudio, prueba, unidades, valorreferencia, observaciones, fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$departamento', '$estudio', '$prueba',  '$unidades','$valorreferencia','$observaciones', '$fecha', '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
-              if( mysqli_query($mysqli, $sql)){
-
-              } else{
-
-                echo "Error antes de cerrar 2 ".mysqli_error($mysqli);
+           
+              $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
+                   VALUES( '$estudio','$subtitulo', '$prueba', '$unidades','$valorreferencia', '$idpropio')";
+                if( mysqli_query($mysqli, $sql)){
+				include("includes/alert.php");
+                } else{
+                  echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
                 }
-              mysqli_close($mysqli);
+                mysqli_close($mysqli);
             }
         }
       }
@@ -1542,7 +1536,7 @@ else {
       {
         echo "Please Enter Name";
       }
-     }
+     
     }
 }
 
