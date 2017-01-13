@@ -9,7 +9,7 @@ if(!isset($_GET['V']) ){
   }*/
 
 
-/*
+
 class PDF extends FPDF
     {
         
@@ -99,7 +99,7 @@ class PDF extends FPDF
 
         }
 
-
+/*
         function AcceptPAgeBreak()
         {
              $this->AddPage();
@@ -113,9 +113,9 @@ class PDF extends FPDF
              $this->Cell(70, 6, 'Unidades', 1, 0, 'C', 1);
              $this->Ln();
         }
-
+*/
     }
-***/
+
 
 
 
@@ -161,7 +161,7 @@ class PDF extends FPDF
 
         $con = mysqli_connect($host, $user, $pwd, $db);
 
-        $sql = "SELECT  a.prueba, a.resultado, a.unidades, a.valorreferencia, a.comentario, a.observaciones
+        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.observaciones
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
@@ -180,7 +180,7 @@ class PDF extends FPDF
         $pdf->AddPage();
         $pdf->AliasNbPages();
         $pdf->SetFillColor(232, 232, 232);
-        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->SetFont('Arial', 'B', 8);
         $pdf->SetFillColor(45, 76, 130);
         $pdf->SetTextColor(255, 255, 255);
 
@@ -188,16 +188,16 @@ class PDF extends FPDF
         $pdf->Ln(30);
 
         $pdf->SetX(12);
-        $pdf->Cell(100, 6, 'Prueba', 1, 0, 'C', 1);
+        $pdf->Cell(95, 6, 'Prueba', 1, 0, 'C', 1);
         
-        $pdf->SetX(112);
-        $pdf->Cell(30, 6, 'Resultado', 1, 0, 'C', 1);
+        $pdf->SetX(107);
+        $pdf->Cell(30, 6, 'Resultados', 1, 0, 'C', 1);
         
-        $pdf->SetX(142);
+        $pdf->SetX(137);
         $pdf->Cell(30, 6, 'Unidades', 1, 0, 'C', 1);
         
-        $pdf->SetX(172);
-        $pdf->Cell(25, 6, 'Valor de referencia', 1, 0, 'C', 1);
+        $pdf->SetX(167);
+        $pdf->Cell(30, 6, 'Valor de referencia', 1, 0, 'C', 1);
 
     // $pdf->SetX(155);
         //$pdf->Cell(40, 6, 'Comentarios', 1, 0, 'C', 1);
@@ -213,16 +213,16 @@ class PDF extends FPDF
             $pdf->SetTextColor(0, 0, 0);
                     
             $pdf->SetX(12);
-            $pdf->Cell(100, 6, $row['prueba'], 1, 0, 'C');
+            $pdf->Cell(95, 6, $row['prueba'], 1, 0, 'C');
             
-            $pdf->SetX(112);
-            $pdf->Cell(30, 6, $row['resultado'], 1, 0, 'C');
+            $pdf->SetX(107);
+            $pdf->Cell(30, 6, $row['resultados'], 1, 0, 'C');
             
-            $pdf->SetX(142);
+            $pdf->SetX(137);
             $pdf->Cell(30, 6, $row['unidades'], 1, 0, 'C');
             
-            $pdf->SetX(172);
-            $pdf->Cell(25, 6, $row['valorreferencia'], 1, 1, 'C');
+            $pdf->SetX(167);
+            $pdf->Cell(30, 6, $row['valorreferencia'], 1, 1, 'C');
             
             //$pdf->SetX(155);
             //$pdf->MultiCell(40, 6, $row['observaciones'], 1, 'C', false);
@@ -268,7 +268,7 @@ class PDF extends FPDF
 
         $con = mysqli_connect($host, $user, $pwd, $db);
 
-        $sql = "SELECT  a.prueba, a.resultado, a.unidades, a.valorreferencia, a.comentario, a.observaciones
+        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.observaciones
                 FROM analisis AS a 
                 JOIN pacientes AS p 
                 ON a.pacientes_idpacientes = p.idpacientes
@@ -287,7 +287,7 @@ class PDF extends FPDF
         $pdf->AddPage();
         $pdf->AliasNbPages();
         $pdf->SetFillColor(232, 232, 232);
-        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->SetFont('Arial', 'B', 8);
         $pdf->SetFillColor(45, 76, 130);
         $pdf->SetTextColor(255, 255, 255);
 
@@ -295,16 +295,16 @@ class PDF extends FPDF
         $pdf->Ln(50);
 
         $pdf->SetX(12);
-        $pdf->Cell(100, 6, 'Prueba', 1, 0, 'C', 1);
+        $pdf->Cell(95, 6, 'Prueba', 1, 0, 'C', 1);
         
-        $pdf->SetX(112);
-        $pdf->Cell(30, 6, 'Resultado', 1, 0, 'C', 1);
+        $pdf->SetX(107);
+        $pdf->Cell(30, 6, 'Resultados', 1, 0, 'C', 1);
         
-        $pdf->SetX(142);
+        $pdf->SetX(137);
         $pdf->Cell(30, 6, 'Unidades', 1, 0, 'C', 1);
         
-        $pdf->SetX(172);
-        $pdf->Cell(25, 6, 'Valor de referencia', 1, 0, 'C', 1);
+        $pdf->SetX(167);
+        $pdf->Cell(30, 6, 'Valor de referencia', 1, 0, 'C', 1);
 
     // $pdf->SetX(155);
         //$pdf->Cell(40, 6, 'Comentarios', 1, 0, 'C', 1);
@@ -319,16 +319,16 @@ class PDF extends FPDF
             $pdf->SetTextColor(0, 0, 0);
                     
             $pdf->SetX(12);
-            $pdf->Cell(100, 6, $row['prueba'], 1, 0, 'C');
+            $pdf->Cell(95, 6, $row['prueba'], 1, 0, 'C');
             
-            $pdf->SetX(112);
-            $pdf->Cell(30, 6, $row['resultado'], 1, 0, 'C');
+            $pdf->SetX(107);
+            $pdf->Cell(30, 6, $row['resultados'], 1, 0, 'C');
             
-            $pdf->SetX(142);
+            $pdf->SetX(137);
             $pdf->Cell(30, 6, $row['unidades'], 1, 0, 'C');
             
-            $pdf->SetX(172);
-            $pdf->Cell(25, 6, $row['valorreferencia'], 1, 1, 'C');
+            $pdf->SetX(167);
+            $pdf->Cell(30, 6, $row['valorreferencia'], 1, 1, 'C');
             
             //$pdf->SetX(155);
             //$pdf->MultiCell(40, 6, $row['observaciones'], 1, 'C', false);

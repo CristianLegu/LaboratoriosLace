@@ -47,7 +47,7 @@ if(isset($_GET['es'])){
     <?php    }
     else{ $fila = null;
          $fila1 = null;
-
+      $es = 0;
        }
   ?>
 
@@ -125,13 +125,20 @@ if(isset($_GET['es'])){
           </div>
 <?php
       }
-      else{ $subt=""?>
+      else{ $subt="";
+           $contrr = 0;
+           $contrr2 = 0;?>
          <table id="dynamic_field">
 
   <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
   ?>   <?php  $renglon = "row".$i;
   if($subt != $row ['subtitulo'] ){
-    $subt =$row ['subtitulo'] ;
+    $contrr++;
+    if($contrr==2){
+      $contrr2 = 1;
+    }
+       $subt =$row ['subtitulo'] ;
+
          ?>
 
           <tr>
@@ -140,9 +147,15 @@ if(isset($_GET['es'])){
           </tr>
           <?php } ?>
            <tr id="<?php echo $renglon; ?>">
+
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
+
+              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" <?php if($row ['prueba'] != "") { ?>  value="<?php  echo $row ['prueba'] ?> " <?php   }  ?> /></td>
+
+              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list"  <?php if($row ['unidades'] != "") { ?>  value="<?php  echo $row ['unidades'] ?> " <?php   }  ?> /></td> /></td>
+              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list"  <?php if($row ['valorreferencia'] != "") { ?>  value="<?php  echo $row ['valorreferencia'] ?> " <?php   }  ?> /></td>
 
                   <?php if ($cont == 1) { ?>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
@@ -157,7 +170,7 @@ if(isset($_GET['es'])){
        </div>
 
       <div class="col-submit button">
-        <input name="idpropio" value="<?php if($fila1 != null) { echo $idpropio; } else {$idpropio = 0; echo $idpropio;}?>"  style='display:none;'>
+        <input name="idpropio" value="<?php  echo  $es;?>"   style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
             <button name="submit1"   class="guardar" >GUARDAR</button>
       </div>
