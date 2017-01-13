@@ -47,7 +47,7 @@ if(isset($_GET['es'])){
     <?php    }
     else{ $fila = null;
          $fila1 = null;
-
+      $es = 0;
        }
   ?>
 
@@ -125,13 +125,20 @@ if(isset($_GET['es'])){
           </div>
 <?php
       }
-      else{ $subt=""?>
+      else{ $subt=""; 
+           $contrr = 0;
+           $contrr2 = 0;?>
          <table id="dynamic_field">
            
   <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
   ?>   <?php  $renglon = "row".$i; 
   if($subt != $row ['subtitulo'] ){
-    $subt =$row ['subtitulo'] ;
+    $contrr++;
+    if($contrr==2){
+      $contrr2 = 1;
+    }
+       $subt =$row ['subtitulo'] ;
+       
          ?>
 
           <tr>
@@ -158,7 +165,7 @@ if(isset($_GET['es'])){
        </div>
   
       <div class="col-submit button">
-        <input name="idpropio" value="<?php if($fila1 != null) { echo $idpropio; } else {$idpropio = 0; echo $idpropio;}?>"  style='display:none;'>
+        <input name="idpropio" value="<?php  echo  $es;?>"   style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
             <button name="submit1"   class="guardar" >GUARDAR</button>
       </div>
