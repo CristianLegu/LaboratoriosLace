@@ -5,7 +5,7 @@ include("includes/conexion.php");
 $idpropio   = 0;
 $idpaciente = 0;
 
-
+$linkmenu  = "menu.php?V=".urlencode(base64_encode('variable')); 
 
 if ($idpropio == 0) {
       $sql    = "SELECT idpropio FROM analisis order by idpropio desc";
@@ -54,7 +54,8 @@ if ($idpropio == 0) {
 
                // $sql = "INSERT INTO analisis(idanalisis, area,  estudio, pruebas, resuldados, unidades, valorreferencia, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
                 $sql = "INSERT INTO analisis ( area, estudio, prueba, resultados, unidades, valorreferencia, observaciones,  fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)
-                    VALUES( '$area', '$estudio', '$prueba', '$resultados', '$unidades','$valorreferencia', '$observaciones','$fecha',                '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
+                    VALUES( '$area', '$estudio', '$prueba', '$resultados', '$unidades','$valorreferencia', '$observaciones','$fecha',
+                                    '$pacientes_idpacientes', '$medicos_idmedicos', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
                 } else{
                   echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
@@ -80,8 +81,8 @@ if ($idpropio == 0) {
       //echo '<script type="text/javascript">
         //          window.open("reporte.php?id=", "_blank");
           //  </script>';
-      //    $var = "reporte.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
-        //  $bar = "recupera.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
+          $var = "reporte.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
+          $bar = "recupera.php?idpr=".urlencode(base64_encode($idpropio))."&idpac=".urlencode(base64_encode($idpaciente))."&idm=".urlencode(base64_encode($medicos_idmedicos));
 
  ?>
  <!DOCTYPE html>
