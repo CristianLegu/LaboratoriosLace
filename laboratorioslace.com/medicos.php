@@ -84,7 +84,7 @@ if (!isset($_GET['V']) && !isset($_GET['m']) ){
   <ul>
     <li><p>
           <a href="<?php echo $linkmedico; ?>">
-	        <img src="img/logo2.png" id="logo">
+	        <img src="img/logo2.png" id="logo" title="Menu anterior">
         </a>
         </p>
 

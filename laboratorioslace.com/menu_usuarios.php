@@ -58,7 +58,7 @@
   <ul>
     <li><p>
           <a href="<?php echo $linkmenu; ?>">
-            <img src="img/logo2.png"  id="logo">
+            <img src="img/logo2.png"  id="logo" title="Menu anterior">
           </a>
         </p>
 
@@ -73,7 +73,7 @@
         </form>
       </p>
     <li>
-      <a href="<?php echo $linkusuario; ?>" class="add"><img src="img/adduser.png"></a>
+      <a href="<?php echo $linkusuario; ?>" class="add"><img src="img/adduser.png" title="Agregar usuario"></a>
     </li>
   </ul>
 </nav>

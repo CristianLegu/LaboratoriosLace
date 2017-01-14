@@ -59,7 +59,7 @@
   <ul>
     <li><p>
           <a href="<?php echo $linkmenu ; ?>">
-            <img src="img/logo2.png"  id="logo">
+            <img src="img/logo2.png"  id="logo" title="Menu anterior">
           </a>
         </p>
 
@@ -74,7 +74,7 @@
         </form>
       </p>
     <li>
-      <a href="<?php echo $linkvacio ?>" class="add"><img src="img/addprod.png" alt="Agregar Productos"></a>
+      <a href="<?php echo $linkvacio ?>" class="add"><img src="img/addprod.png" title="Agregar Productos"></a>
     </li>
   </ul>
 </nav>

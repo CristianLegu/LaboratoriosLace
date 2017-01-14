@@ -98,7 +98,7 @@ $id = $_GET['p'];
     <li><p>
           <a href="<?php  echo  $linkpaciente;
                     ?>">
-            <img src="img/logo2.png"  id="logo">
+            <img src="img/logo2.png"  id="logo" title="Menu anterior">
           </a>
         </p>
 
@@ -113,7 +113,8 @@ $id = $_GET['p'];
         </form>
       </p>
     <li>
-      <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add"><img src="img/addpac.png"></a>
+      <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
+      <img src="img/addanalisis.png" title="Agregar analisis"></a>
     </li>
   </ul>
 </nav>

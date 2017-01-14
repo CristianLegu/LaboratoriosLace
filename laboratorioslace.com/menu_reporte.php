@@ -37,7 +37,7 @@ $linkmenu  = "menu.php?V=".urlencode(base64_encode('variable'));
   <body>
     <div class="container">
         <header>
-				  <span><a href="<?php echo $linkmenu; ?>"><img src="img/logo2.png" class="imag"></a></span>
+				  <span><a href="<?php echo $linkmenu; ?>"><img src="img/logo2.png" class="imag" title="Menu anterior"></a></span>
 			  </header>
       <div class="main clearfix">
           <nav id="menu" class="nav" style="">

@@ -62,7 +62,7 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
   <ul>
     <li><p>
           <a href="<?php echo $linkmenu; ?>">
-            <img src="img/logo2.png"  id="logo">
+            <img src="img/logo2.png"  id="logo" title="Menu anterior">
           </a>
         </p>
 
@@ -77,7 +77,7 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
         </form>
       </p>
     <li>
-      <a href="<?php echo $linkmedico; ?>" class="add"><img src="img/addmed.png"></a>
+      <a href="<?php echo $linkmedico; ?>" class="add"><img src="img/addmed.png" title="Agregar medico"></a>
     </li>
   </ul>
 </nav>

@@ -125,7 +125,7 @@
 
           <a href="<?php echo $linkmenu; ?>">
 
-            <img src="img/logo2.png"  id="logo">
+            <img src="img/logo2.png"  id="logo" title="Menu anterior">
 
           </a>
 
@@ -155,8 +155,8 @@
 
     <li>
 
-      <a href="<?php echo $linkpaciente; ?>" class="add2"><img src="img/addpac.png"></a>
-      <a href="<?php echo $linkestudio; ?>" class="add2" style="margin-left: 40px;"><img src="img/estudio.png"></a>
+      <a href="<?php echo $linkpaciente; ?>" class="add2"><img src="img/addpac.png" title="Agregar paciente"></a>
+      <a href="<?php echo $linkestudio; ?>" class="add2" style="margin-left: 40px;"><img src="img/estudio.png" title="Menu estudios"></a>
 
     </li>
 
