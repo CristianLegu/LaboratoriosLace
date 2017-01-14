@@ -80,9 +80,6 @@ $conta2 =$conta2 +1;
        }
   }?>
 
-
-
-
            <link rel="shortcut icon" href="img/icon.png">
            <meta charset="utf-8">
            <!-- Pantalla de carga-->
@@ -152,12 +149,6 @@ $conta2 =$conta2 +1;
                 echo '<option value="'.$valores['idmedicos'].'">'.$valores['nombre'].'</option>';
               } 
 
-
-              /*
-              while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
-                echo '<option value="'.$valores['idmedicos'].'">'.$valores['nombre'].'</option>';
-              } 
-              */ 
             }else{
               echo "<option  value=".$idmedico.">Seleccionar Médico</option>";
               $querymedicos = $mysqli -> query ("SELECT idmedicos, nombre FROM medicos");
@@ -249,33 +240,18 @@ else{  ?>
 
   <?php } ?></label>
 </div>
-<!--</div>-->
- <!--<div id="dynamic_field1" class="col-2"> -->
-     <div class="col-2" align="center">
-    <label >
-       Comentarios 
-    </label>
-           <textarea rows="6" cols="50" name="comentario" value="<?php if($comentario != null) { echo $comentario; }?>"  style="background-color:powderblue; "></textarea>
-   </div>     
 
-
-<div class="col-2">
+ <div class="col-2">
       <label >
         Elegir Estudio
-    <!--    <select id="idmedico"  name="idmedico" >
--->
 <form name="add_name" id="add_name" method="post" action="agrega_analisis.php " ALIGN=center autocomplete="off">
-        <select id="car"  name="car" onchange="ChangeCarList()" >
-          
+        <select id="car"  name="car" onchange="ChangeCarList()">
+          <option  value="a">Seleccionar Estudio</option >
           <?php
-
+          //$a = "a";
             $mysqli = mysqli_connect($host, $user, $pwd, $db);
   $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
-            
-
-           //   $idpropio = 1;
-
-              echo "<option  value=".$idpropio.">Seleccionar Estudio</option >";
+              //echo "<option  value=".'a'.">Seleccionar Estudio</option >";
               $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
               $nombreestudio = "";
               while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
@@ -296,9 +272,13 @@ else{  ?>
           ?>
         </select>
       </label>
-      </div>
-
-
+  </div>
+     <div class="col-2" align="center">
+    <label >
+       Comentarios 
+    </label>
+           <textarea rows="6" cols="50" name="comentario" value="<?php if($comentario != null) { echo $comentario; }?>"  style="background-color:powderblue; "></textarea>
+   </div>     
 
      	<?php	  $i ;   ?>
        </div>
@@ -317,8 +297,6 @@ else{  ?>
 
   </body>
  </html>
-
-
 
 
  <script>
@@ -352,17 +330,12 @@ else{  ?>
            for(var wz = 0; wz<arreglo1; wz++){
               $('#row'+button_id).remove();
            }
-        
-         
-
            i--;
           
       });
 
-
-  function ChangeCarList() {
+ function ChangeCarList() {
  sessionStorage.LocalToGlobalVar;
- 
        
     var carList = document.getElementById("car").value;
     var lugar = document.getElementsByName('car');
@@ -373,7 +346,6 @@ else{  ?>
   
  var arrayJS=<?php echo json_encode($arrayPHP);?>;
     // Mostramos los valores del array
-
    var a=1;
    var cont=1;
    var subtitulo= 1;
@@ -400,7 +372,7 @@ else{  ?>
 
    // $('#dynamic_field1').append('<label>pepe</label>'); 
 if (primerelemento==1){
-
+  
    var subti = cadena[5];
    if(i<=2){
    $('#dynamic_field').append('<label id="row'+i+'">'+cadena[4]+'</label><label align="left" id="row'+i+'">'+cadena[5]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td "><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> <td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr></table></div>');
@@ -439,15 +411,10 @@ vi++;
     cont = cont +1;
      
      //   document.write("<br>"+arrayJS[0][1]);
-      
-        
-     
    }
-
+ 
   }
     else{
- 
-
  
   // Crea las celdas
   for (var i2 = 0; i2 < 2; i2++) {
@@ -458,11 +425,9 @@ vi++;
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
    
-  }
- 
-  
+  } 
 }
-
  
 }
+      
 </script>

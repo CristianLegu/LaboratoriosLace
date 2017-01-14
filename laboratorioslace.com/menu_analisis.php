@@ -131,18 +131,7 @@ $id = $_GET['p'];
 
   $con = mysqli_connect($host, $user, $pwd, $db);
   $paginationCtrls = '';
-/*
-  $p = $_SESSION['var_p'];
-  
-  echo $p;
-  if(isset($_GET['p'])){
-    //echo "tiene parametro ".$_GET['p'];
-  }
-  else{
-    echo "no tiene parametro P";
-    header('Location: menu_analisis.php?p='.$p);
-  }
-*/
+
   $idpacientes = "";
   if(isset($_GET['p'])){
     $idpacientes = $_GET['p'];
@@ -251,7 +240,7 @@ $id = $_GET['p'];
                $editar = "analisis.php?p=".urlencode(base64_encode($idpac))."&pro=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                //$ver = "reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                $ver = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
-              
+              $_SESSION['ver2'] = $ver;
  ?>
         <tr>
         <?php if($idpropio !=  $fila['idpropio'] ) { ?>
@@ -259,9 +248,7 @@ $id = $_GET['p'];
           <td><?php echo $fila['fecha']; ?></td>
           <td><?php echo $fila1['nombre']; ?> </td>
           <td>
-              <a class="text" href= "<?php  echo $enviar; 
-                                           
-                                            
+              <a class="text" href= "<?php  echo $enviar;                                           
                                       ?> " >
                 <strong>Enviar Correo electr&oacutenico</strong>
               </a>
@@ -272,10 +259,8 @@ $id = $_GET['p'];
                 <strong>Editar</strong>
               </a>
               |
-              <a class="text" target="_blank" href= "<?php  echo $ver;
-                                           
-                                                     ?> " >
-                <strong>Visualizar</strong>
+              <a class="text" target="_blank" href= "<?php  echo 'membrete.php'?> " >
+                <strong>Imprimir</strong>
               </a>
           </td>
         </tr>

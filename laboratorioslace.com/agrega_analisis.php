@@ -83,8 +83,6 @@ else {
 
   if ($mysqli->query($eliminar) === TRUE) {
    
-
-   
        $fecha                 =  date("Y") . date("m") . date("d") ;
        $area                  = $_POST["area"];
        $pacientes_idpacientes = $_POST["idpaciente"];
@@ -108,7 +106,7 @@ else {
 
               }
             
-           $prueba          =  $_POST["pruebas"][$i];
+            $prueba          =  $_POST["pruebas"][$i];
             $resultados      =  $_POST["resultados"][$i];
             $unidades        =  $_POST["unidades"][$i];
             $estudio         =  $_POST["estudios"][$i];
@@ -134,10 +132,6 @@ else {
      
     }
 }
-
-
-
-
  //session_start();
  //$_SESSION['idpropio'] = $idpropio;
  //include('reporte.php');

@@ -1,4 +1,5 @@
 <?php
+	//include('../../includes/alert_memb.php');
 	//ob_start guardará en un búfer lo que esté
 	//en la ruta del include.
 	ob_start();
