@@ -122,7 +122,7 @@ $id = $_GET['p'];
 
       <table class="sortable" id="sorter">
         <tr>
-          <th>Estudio</th>
+          <th>Area</th>
           <th>Fecha</th>
           <th>M&eacute;dico</th>
           <th>An&aacute;lisis</th>
@@ -172,7 +172,7 @@ $id = $_GET['p'];
 
       $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-      $sql = "SELECT  estudio,
+      $sql = "SELECT  area,
                       fecha,
                       medicos_idmedicos,
                       idpropio
@@ -245,7 +245,7 @@ $id = $_GET['p'];
  ?>
         <tr>
         <?php if($idpropio !=  $fila['idpropio'] ) { ?>
-          <td><?php echo $fila['estudio']; ?></td>
+          <td><?php echo $fila['area']; ?></td>
           <td><?php echo $fila['fecha']; ?></td>
           <td><?php echo $fila1['nombre']; ?> </td>
           <td>

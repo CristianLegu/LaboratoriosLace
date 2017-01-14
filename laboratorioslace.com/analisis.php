@@ -107,7 +107,7 @@ $conta2 =$conta2 +1;
   <ul>
     <li><p>
           <a href="<?php echo $_SERVER['HTTP_REFERER'];?>">
-	        <img src="img/logo2.png" id="logo">
+	        <img src="img/logo2.png" id="logo" title="Menu anterior">
         </a>
         </p>
 
