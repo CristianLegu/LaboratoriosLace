@@ -21,8 +21,20 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 				   <script language='javascript'>
 				  var i = 1;
           var vi = 1;
-                 sessionStorage.LocalToGlobalVar = vi;
+          var primer_renglon = 0;
+          var n_subtitulo = 0;
+          var n_renglones = 0;
+          var primer_subtitulo = 0;
 
+          var matriz = new Array();
+          var matriz2 = new Array();
+                 sessionStorage.LocalToGlobalVar = vi;
+                 sessionStorage.LocalToGlobalVar = matriz;
+                 sessionStorage.LocalToGlobalVar = matriz2;
+                 sessionStorage.LocalToGlobalVar = primer_renglon;
+                 sessionStorage.LocalToGlobalVar = n_subtitulo;
+                 sessionStorage.LocalToGlobalVar = n_renglones;
+                 sessionStorage.LocalToGlobalVar = primer_subtitulo;
 			</script>
 <!doctype html>
  <html lang="en-US">
@@ -81,7 +93,7 @@ if(isset($_GET['es'])){
   <ul>
     <li><p>
           <a href="<?php echo $_SERVER['HTTP_REFERER'];?>">
-	        <img src="img/logo2.png" id="logo" title="Menu anterior">
+	        <img src="img/logo2.png" id="logo">
         </a>
         </p>
 
@@ -188,6 +200,9 @@ if(isset($_GET['es'])){
    var arreglo = [""];
  $(document).ready(function(){
       $('#add').click(function(){
+           primer_renglon++;
+
+           
            t++;
            $('#dynamic_field').append(
                '<tr id="row'+t+'">'+
@@ -195,9 +210,12 @@ if(isset($_GET['es'])){
                '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
 
                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
-               '<td><input  type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none"  class="form-control name_list" /></td>'+
+               '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'"  class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
+           matriz[[primer_subtitulo,primer_renglon]] = t;
+           
       console.log("T"+t);
+         console.log("matriz" + matriz[[primer_subtitulo,primer_renglon]]);
       });
 
       $(document).on('click', '.btn_remove', function(){
@@ -223,7 +241,10 @@ $('#addsub').click(function(){
             i++;
             j++;
             vi++;
-
+ n_subtitulo++;
+ var control=1;
+  matriz[[n_subtitulo,n_renglones]] = j;
+  alert(n_subtitulo);
            $('#dynamic_field2').append(
                '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
@@ -231,59 +252,98 @@ $('#addsub').click(function(){
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
                '<div id="row'+j+'" style="display: flex;">'+
-                  '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
+                  '<input type="form-control" name="idsubtitulo[]" value="'+n_subtitulo+'"  class="form-control name_list" />'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
                     '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
                     '<div id="rowx'+j+'"></div><hr></div>');
+          
+           matriz2[n_subtitulo]= control;
+           console.log(matriz2[n_subtitulo]);
           arreglo.push(i);
           i=0;
-      console.log("i"+i);
+    //  console.log("i"+i);
       console.log("j"+j);
-      console.log(arreglo);
+    //  console.log(arreglo);
 
       });
 
       $(document).on('click', '.agregar2', function(){
 
           var button_id = $(this).attr("id");
-         console.log(button_id);
+        
+       //  console.log(button_id);
+       
           i = arreglo[button_id];
-          i++;
+         // i++;
+         var zas = "";
+         var lleva =1;
+         var encontro =0;
+         //alert (zas);
+         var ass = 0;
+        
+         while(zas!== undefined){
+         zas = matriz[[button_id,lleva]];
+        
+        // alert(zas);
+         if(zas!=undefined){
+            encontro = zas;
+         }
+         lleva++;
+         }
+         if(encontro===undefined){
+          encontro=0;
+         }
+        // alert(encontro);
+          var control = encontro+1;
+        matriz[[button_id,lleva-1]]=control; 
+        alert(button_id);
+        lleva = lleva-1;
+          //console.log(matriz[[control,1]]);
             $('#rowx'+button_id+'').append(
-               '<div id="reng'+button_id+'-'+i+'"style="display: flex;">'+
+               '<div id="reg'+button_id+''+lleva+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="idsubtitulo[]" value="'+vi+'" style="display:none;" class="form-control name_list" />'+
+                    '<input type="form-control" name="idsubtitulo[]" value="'+button_id+'" class="form-control name_list" />'+
 
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
-                    '<button type="button" name="remove" id="'+button_id+'-'+i+'" class="eliminar btn_remove2">X</button></div>');
-
+                    '<button type="button" name="remove" id="'+button_id+','+lleva+'" class="eliminar btn_remove2">X</button></div>');
+            
            arreglo.splice(button_id, 1, i);
            i=0;
-           console.log("i"+i);
-           console.log("j"+j);
-           console.log(arreglo);
+          // console.log("i"+i);
+          // console.log("j"+j);
+          // console.log(arreglo);
       });
 
       $(document).on('click', '.btn_remove2', function(){
            var button_id = $(this).attr("id");
-           $('#reng'+button_id+'').remove();
-           vi--;
-           console.log("I"+i);
-           console.log("j"+j);
-           console.log(arreglo);
+           var patron=",";
+           var res=button_id.replace(patron,'');
+           alert(res);
+
+          //alert( matriz[[button_id]]);
+          alert(button_id);
+           $('#reg'+res+'').remove();
+           //vi--;
+           //console.log("I"+i);
+           //console.log("j"+j);
+           //console.log(arreglo);
+          // alert(button_id);
       });
       $(document).on('click', '.btn_removesub', function(){//arreglar
            var button_id = $(this).attr("id");
-           var aux=button_id.split("-", 1);
+       // alert(button_id);
+       
+
+           //var aux=button_id.split("-", 1);
            $('#sub'+button_id+'').remove();
            //j--;
-           vi--;
-           arreglo.splice(aux, 1, "");
-           console.log("J"+aux);
-           console.log("J"+arreglo);
+           //vi--;
+           //arreglo.splice(aux, 1, "");
+           //console.log("J"+aux);
+           //console.log("J"+arreglo);
       });
  });
 

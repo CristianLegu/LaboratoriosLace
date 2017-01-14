@@ -1435,9 +1435,11 @@ if ($idpropio == 0) {
       }
  
       $estudio               = $_POST["estudio"];
-     
+      $subtitulo     = "";
+      $incrementa = 0;
+      $contador_subtitulo = count($_POST["idsubtitulo"])-1;
       $number                = count($_POST["pruebas"]);
-$incrementa = 0;
+      $idsubtitulo =-1;
       if($number > 0)
       {
           for($i=0; $i<$number; $i++)
@@ -1451,16 +1453,41 @@ $incrementa = 0;
         $prueba          =  $_POST["pruebas"][$i];
         $unidades        =  $_POST["unidades"][$i];
         $valorreferencia =  $_POST["valorreferencia"][$i];
-      //  echo $_POST["subtitulo"][$i];
-           // echo $incrementa;
-        $_POST["idsubtitulo"][$i] ;
-        $incrementa;
-       
-        if($_POST["idsubtitulo"][$i] ==  $incrementa){
-        	  $subtitulo       =  $_POST["subtitulo"][$incrementa];
-        	  $incrementa++;
+        //echo $incrementa;
+   // $_POST["idsubtitulo"][$i];
+   // $idsubtitulo;
+        if($idsubtitulo!=$_POST["idsubtitulo"][$i]){
+          $idsubtitulo=$_POST["idsubtitulo"][$i];
+          $subtitulo=$_POST['subtitulo'][$incrementa];
+          $incrementa++;
         }
-//echo $subtitulo;
+    //$subtitulo =$_POST['subtitulo'][0];
+        
+             //    $subtitulo
+           // echo $incrementa;
+      //  }
+        //"subtitulo: ";
+        // $_POST["idsubtitulo"][$i] ;
+                //$incrementa;
+      // $vacio = 0;
+     //   if($_POST["idsubtitulo"][$i] ==  $incrementa){
+       // $control_subtitulo;
+     //  echo $incrementa;
+  //     if($incrementa<$control_subtitulo){
+    //    $subtitulo       =  $_POST["subtitulo"][$incrementa];
+      //  while ($vacio==0){
+        //	if(empty($subtitulo)){
+         // echo  $incrementa++;
+         //  $subtitulo       =  $_POST["subtitulo"][$incrementa];
+        	//}
+        	//else{
+        //		$vacio = 1;
+        //	}
+        //}
+    //}
+        	//  $incrementa++;
+       // }
+//$subtitulo;
       
        
               $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
@@ -1468,7 +1495,7 @@ $incrementa = 0;
                 if( mysqli_query($mysqli, $sql)){
 				include("includes/alert.php");
                 } else{
-                  echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
+                 echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
                 }
                 mysqli_close($mysqli);
             }
