@@ -110,6 +110,7 @@
 #atte {margin-top:30px;}
 #paciente {margin-top:100px;}
 #paciente tr td {font-size: 11px;}
+#nobreak { page-break-inside: avoid;}
 
 
 -->
@@ -295,6 +296,12 @@
 			</tr>
         </table>
     </page_footer>
+	<table id="nobreak">
+		<tr>
+			<td>
+			</td>
+		</tr>
+	</table>
 
 </page>
 <?php 
@@ -302,14 +309,17 @@
 	else{
 		$con = mysqli_connect($host, $user, $pwd, $db);
 
-        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario
+		$estudio = "";
+		$subtitulo = "";
+
+        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
                     JOIN medicos m
                     ON a.medicos_idmedicos = m.idmedicos
                     WHERE a.idpropio = '$idpr'
-                    ORDER BY a.idpropio;";
+                    ORDER BY a.subtitulo;";
 
         
         $query = $con -> query($sql);
@@ -327,6 +337,17 @@
 
         
         $queryname = $con -> query($sqlname);
+
+		$sqlTitles = "SELECT  a.estudio, a.subtitulo
+						FROM analisis AS a 
+						JOIN pacientes AS p 
+						ON a.pacientes_idpacientes = p.idpacientes
+						JOIN medicos m
+						ON a.medicos_idmedicos = m.idmedicos
+						WHERE a.idpropio = '$idpr'
+						group by a.estudio
+						ORDER BY a.idpropio;";
+		$queryTitles = $con -> query($sqlTitles);
 
 ?>
 <!-- IMPORTANTE: El contenido de la etiqueta style debe estar entre comentarios de HTML -->
@@ -350,7 +371,10 @@
 #footer .fila td span {font-size: 10px; color: #000;}
 
 #central {width:100%; margin: 20px 0 0 -40px;}
-#central tr td {text-align: left; width:100%; font-size:12px}
+#central tr td {text-align: left; width:100%; font-size:12px; height:0px;}
+
+#central #datos .fila {font-weight: bold; text-decoration: underline;}
+
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
 #atte {margin-top:80px;}
@@ -418,6 +442,7 @@
 		</tr>
 	</table>
 
+
 	
 	<table id="central">
 		<tr>
@@ -441,17 +466,30 @@
 			</td>
 		</tr>
 				<?php
+					
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
-								
+					
 								$observaciones = $row['comentario'];
-							
+								
+								
 				?>
 						<tr>
-							<td >
+							<td>
+								<?php
+							
+									if($estudio != $row['estudio']){
+											$estudio = $row['estudio'];
+											echo "<b><u>".$estudio."</u></b>"."<br>";
+										}	
+							
+									if($subtitulo != $row['subtitulo']){
+										$subtitulo = $row['subtitulo'];
+										echo "<div align='center'><b>".$row['subtitulo']."</b></div>";
+									}
+								?>
 								<table id="datos">
 									<tr>
-									
 										<td style="width:300px; font-size:10px;">
 											<?php 	
 													$pru = $row['prueba'];
@@ -485,7 +523,7 @@
 							</td>
 						</tr>
 				<?php
-							}
+							} 
 				?>
 				<table id="line">
 					<tr>

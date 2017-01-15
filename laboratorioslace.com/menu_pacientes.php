@@ -23,7 +23,8 @@
 
 
   $linkpaciente = "pacientes.php?V=".urlencode(base64_encode('variable'));
-  $linkestudio = "menu_estudios.php?V=".urlencode(base64_encode('variable'));
+  //$linkestudio = "menu_estudios.php?V=".urlencode(base64_encode('variable'));
+  $linkestudio = "view.php";
 
   $linkmenu  = "menu.php?V=".urlencode(base64_encode('variable')); 
 
@@ -188,7 +189,9 @@
 
   include("includes/conexion.php");
   $con = "";
+
   $con = mysqli_connect($host, $user, $pwd, $db);
+
   $contar = "SHOW TABLES LIKE 'contador'";
   $contador_show = mysqli_query($con, $contar);
   $num = mysqli_num_rows($contador_show);
@@ -197,11 +200,17 @@
   if($num != 0){
     $drop_view = " DROP VIEW contador";
     mysqli_query($con, $drop_view);
-  
-  }else{
-  
   }
 
+  
+  $contarStudio = "SHOW TABLES LIKE 'view_studio'";
+  $contador_studio = mysqli_query($con, $contarStudio);
+  $numStudio = mysqli_num_rows($contador_studio);
+  if($numStudio != 0){
+   
+    $drop_view_studio = " DROP VIEW view_studio";
+    mysqli_query($con, $drop_view_studio);
+  }
 
   $paginationCtrls = '';
 
