@@ -184,7 +184,7 @@ if(isset($_GET['es'])){
       <div class="col-submit button">
         <input name="idpropio" value="<?php  echo  $es;?>"   style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
-            <button name="submit1"   class="guardar" >GUARDAR</button>
+            <button name="submit"   class="guardar" >GUARDAR</button>
       </div>
   </form>
       </div>
