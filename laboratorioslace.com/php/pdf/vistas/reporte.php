@@ -6,6 +6,7 @@
     $idpr   = 0;
     $idpac  = 0;
     $idmed  = 0;
+	$membrete = false;
     $queryhead = "";
     $nombrePaciente = "";
     $nombreMedico   = "";
@@ -26,10 +27,12 @@
 	
 	
 
-    if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm'])){
+    if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) && isset($_GET['memb'])){
         $idpr   = $_GET['idpr'];
         $idpac  = $_GET['idpac'];
         $idmed  = $_GET['idm'];        
+		$membrete = $_GET['memb'];
+		echo $idpr." ".$idpac." ".$idmed." ".$membrete;
     }
 
 
@@ -119,6 +122,11 @@
 <!-- page define la hoja con los márgenes señalados -->
 <page backtop="10mm" backbottom="10mm" backleft="10mm" backright="20mm">
     <!-- Define el header de la hoja -->
+	<?php
+		if($membrete){
+			echo "tiene true y membrete";
+		}
+	?>
     <!--page_header> 
 		<table id="encabezado">
             <tr class="fila">
@@ -160,7 +168,7 @@
 	<table id="paciente">
 		<tr>
 			<td>
-				<span>Examen practicado a: <?php echo $nombrePaciente;?></span>
+				<span>Examen practicado a: <?php echo $nombrePaciente.$membrete;?></span>
 			</td>
 		</tr>
 		<tr>

@@ -4,8 +4,8 @@
 		include("includes/error_nologin.php");
 	}
 	$ver=$_SESSION['ver2'];
-	$membrete= $ver.'&memb=true';
-	$nomemb = $ver.'&memb=false';
+	$membrete= $ver.'&memb='.urlencode(base64_encode('true'));
+	$nomemb = $ver.'&memb='.urlencode(base64_encode('false'));
 	
 ?>
 <html>
