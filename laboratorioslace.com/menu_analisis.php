@@ -240,8 +240,13 @@ $id = $_GET['p'];
                $enviar = "recupera.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                $editar = "analisis.php?p=".urlencode(base64_encode($idpac))."&pro=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                //$ver = "reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
-               $ver = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
-              $_SESSION['ver2'] = $ver;
+
+              
+               //$ver = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
+                //$ver = "php/pdf/reporte.php?idpac=".$idpac."&idpr=".$idprop."&idm=".$idm;
+                $ver = "idpac=".$idpac."&idpr=".$idprop."&idm=".$idm;
+                
+               
  ?>
         <tr>
         <?php if($idpropio !=  $fila['idpropio'] ) { ?>
@@ -260,7 +265,7 @@ $id = $_GET['p'];
                 <strong>Editar</strong>
               </a>
               |
-              <a class="text" target="_blank" href= "<?php  echo 'membrete.php'?> " >
+              <a class="text" target="_blank" href= "<?php  echo 'membrete.php?'.$ver;?> " >
                 <strong>Imprimir</strong>
               </a>
           </td>

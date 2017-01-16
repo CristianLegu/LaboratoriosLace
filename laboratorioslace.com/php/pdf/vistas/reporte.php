@@ -1,12 +1,12 @@
 <?php
-
+	session_start();
 	include('../../includes/conexion.php');
 	foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 
     $idpr   = 0;
     $idpac  = 0;
     $idmed  = 0;
-	$membrete = false;
+	$membrete = "";
     $queryhead = "";
     $nombrePaciente = "";
     $nombreMedico   = "";
@@ -27,12 +27,15 @@
 	
 	
 
-    if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) && isset($_GET['memb'])){
+    if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) ){
         $idpr   = $_GET['idpr'];
         $idpac  = $_GET['idpac'];
         $idmed  = $_GET['idm'];        
-		$membrete = $_GET['memb'];
-		echo $idpr." ".$idpac." ".$idmed." ".$membrete;
+		if(isset($_GET['memb'])){
+			$membrete = $_GET['memb'];
+		}
+		
+		
     }
 
 
@@ -123,11 +126,9 @@
 <page backtop="10mm" backbottom="10mm" backleft="10mm" backright="20mm">
     <!-- Define el header de la hoja -->
 	<?php
-		if($membrete){
-			echo "tiene true y membrete";
-		}
-	?>
-    <!--page_header> 
+		if($membrete == 'true'){
+		?>
+    <page_header> 
 		<table id="encabezado">
             <tr class="fila">
                 <td id="col_1" >
@@ -149,7 +150,10 @@
             </tr>
         </table>
 
-    </page_header-->
+    </page_header>
+	<?php
+		}
+	?>
         
 
     
@@ -168,7 +172,7 @@
 	<table id="paciente">
 		<tr>
 			<td>
-				<span>Examen practicado a: <?php echo $nombrePaciente.$membrete;?></span>
+				<span>Examen practicado a: <?php echo $nombrePaciente;?></span>
 			</td>
 		</tr>
 		<tr>

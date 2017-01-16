@@ -1,11 +1,19 @@
 <?php
-	session_start();
-	if($_SESSION['ver2'] == null){
-		include("includes/error_nologin.php");
-	}
-	$ver=$_SESSION['ver2'];
-	$membrete= $ver.'&memb='.urlencode(base64_encode('true'));
-	$nomemb = $ver.'&memb='.urlencode(base64_encode('false'));
+	//session_start();
+	//if($_SESSION['ver3'] == null){
+	//	include("includes/error_nologin.php");
+	//}
+	//$ver=$_SESSION['ver3'];
+	if(isset($_GET['idpac']) && isset($_GET['idpr']) && isset($_GET['idm'])){
+        $idpac  = $_GET['idpac'];
+        $idprop = $_GET['idpr'];
+        $idm = $_GET['idm'];
+     
+    }
+	$membrete = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm))."&memb=".urlencode(base64_encode('true'));
+	//$membrete= '&memb='.urlencode(base64_encode('true'));
+	$nomemb = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm))."&memb=".urlencode(base64_encode('false'));
+	//$nomemb = '&memb='.urlencode(base64_encode('false'));
 	
 ?>
 <html>
