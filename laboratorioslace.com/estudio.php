@@ -244,7 +244,7 @@ $('#addsub').click(function(){
  n_subtitulo++;
  var control=1;
   matriz[[n_subtitulo,n_renglones]] = j;
-  alert(n_subtitulo);
+ // alert(n_subtitulo);
            $('#dynamic_field2').append(
                '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
@@ -298,7 +298,7 @@ $('#addsub').click(function(){
         // alert(encontro);
           var control = encontro+1;
         matriz[[button_id,lleva-1]]=control; 
-        alert(button_id);
+       // alert(button_id);
         lleva = lleva-1;
           //console.log(matriz[[control,1]]);
             $('#rowx'+button_id+'').append(
@@ -321,7 +321,7 @@ $('#addsub').click(function(){
            var button_id = $(this).attr("id");
            var patron=",";
            var res=button_id.replace(patron,'');
-           alert(res);
+         //  alert(res);
 
           //alert( matriz[[button_id]]);
           alert(button_id);
