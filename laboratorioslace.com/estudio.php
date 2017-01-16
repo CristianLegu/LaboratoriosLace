@@ -210,7 +210,7 @@ if(isset($_GET['es'])){
                '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
 
                '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
-               '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'"  class="form-control name_list" /></td>'+
+               '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'" style="display:none"   class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
            matriz[[primer_subtitulo,primer_renglon]] = t;
            
@@ -252,7 +252,7 @@ $('#addsub').click(function(){
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
                '<div id="row'+j+'" style="display: flex;">'+
-                  '<input type="form-control" name="idsubtitulo[]" value="'+n_subtitulo+'"  class="form-control name_list" />'+
+                  '<input type="form-control" name="idsubtitulo[]" value="'+n_subtitulo+'" style="display:none"   class="form-control name_list" />'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
@@ -304,7 +304,7 @@ $('#addsub').click(function(){
             $('#rowx'+button_id+'').append(
                '<div id="reg'+button_id+''+lleva+'"style="display: flex;">'+
                     '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="idsubtitulo[]" value="'+button_id+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="idsubtitulo[]" value="'+button_id+'" style="display:none"   class="form-control name_list" />'+
 
                     '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
                     '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
