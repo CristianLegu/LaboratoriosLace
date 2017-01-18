@@ -232,6 +232,7 @@
 				?>
 						<tr>
 							<td >
+							<nobreak>
 								<table id="datos">
 									<tr>
 									
@@ -265,6 +266,7 @@
 										</td>						
 									</tr>
 								</table>
+							</nobreak>
 							</td>
 						</tr>
 				<?php
@@ -361,6 +363,8 @@
 						ORDER BY a.idpropio;";
 		$queryTitles = $con -> query($sqlTitles);
 
+		$array = [];
+
 ?>
 <!-- IMPORTANTE: El contenido de la etiqueta style debe estar entre comentarios de HTML -->
 <style>
@@ -389,18 +393,32 @@
 
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#atte {margin-top:80px;}
-#paciente {margin-top:100px;}
+#atte {font-size:10px;}
+#paciente {margin-top:-15px;}
 #paciente tr td {font-size: 11.5px;}
+
+#encabezado2 {padding:20px 0; border-top: 0px solid #0B08AB; border-bottom: 0px solid #0B08AB; width:100%;}
+#encabezado2 .fila2 #col_12 {width: 10%}
+#encabezado2 .fila2 #col_22 {padding: 0px 0px 0px 100px; width: 88%; }
+/*#encabezado .fila #col_3 {width: 30%}*/
+#encabezado2 .fila2 td img {width:120%; margin: 0 0 10px 0;}
+#encabezado2 .fila2 #col_2 #span12{font-size: 18px; padding: 100px 0 0 0px;}
+#encabezado2 .fila2 #col_2 #span22{margin:10px 0 0 50px;font-size: 10px; color: #000000; }
+#encabezado2 .fila2 #col_2 #span32{margin:8px 0 0 45px;font-size: 10px; color: #000000; }
+#encabezado2 .fila2 #col_2 #span42{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
+#encabezado2 .fila2 #col_2 #span52{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
 
 -->
 </style>
 
 <!-- page define la hoja con los márgenes señalados -->
-<page backtop="10mm" backbottom="10mm" backleft="10mm" backright="20mm">
+<page backtop="40mm" backbottom="10mm" backleft="10mm" backright="20mm">
     <!-- Define el header de la hoja -->
-    <!--page_header> 
+	<?php
+		if($membrete == 'true'){
+		?>
+    <page_header> 
 		<table id="encabezado">
             <tr class="fila">
                 <td id="col_1" >
@@ -421,8 +439,59 @@
 				</td>
             </tr>
         </table>
+    </page_header>
+	<?php
+		}
+		else{
+	?>
+	<page_header> 
+		<table id="encabezado2">
+            <tr class="fila2">
+                <td id="col_12" >
+					<span id="span22">
+						<!--img src="../../img/logo2.png"/-->
+					</span>
+				</td>
+                <td id="col_22">
+					<span id="span12"></span>
+					<br>
+					<span id="span22"></span>
+					<br>
+					<span id="span32"></span>
+					<br>
+					<span id="span42"></span>
+					<br>
+					<span id="span52"></span>
+				</td>
+            </tr>
+        </table>
+    </page_header>
+	<?php
+		}
+	?>
 
-    </page_header-->
+    <!-- Fin del cuerpo de la hoja -->
+
+	<page_footer> <!-- Define el footer de la hoja -->
+		<table id="footer">
+			<tr id="atte">
+				<td>
+					Atentamente
+				</td>
+			</tr>
+			<tr id="atte">
+				<td>
+					Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+				</td>
+			</tr>
+            <tr class="fila">
+				<td>
+					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
+				</td>
+			</tr>
+        </table>
+    </page_footer>
+
         
 
     
@@ -478,12 +547,41 @@
 			</td>
 		</tr>
 				<?php
-					
+					$x=40;
+					$y=40;
+					$a = 26;
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
-					
-								$observaciones = $row['comentario'];
 								
+								$x++;
+								//$observaciones = $row['comentario'];
+								
+								
+								if($x>=66){
+									while ($y <= 49) {
+										$y++;
+										if($y == 42){
+										echo "<table id='line'>
+													<tr>
+														<td></td>
+													</tr>
+												</table>
+												<table>
+													<tr>
+														<td style='font-size:10px;'>
+															Observaciones: $observaciones
+														</td>
+													</tr>
+												</table>";
+										}else{
+											echo "<br>";
+										}
+									}
+									$x = 40;
+									
+									
+								}else{
+																
 								
 				?>
 						<tr>
@@ -535,48 +633,15 @@
 							</td>
 						</tr>
 				<?php
+							}
+							
 							} 
-				?>
-				<table id="line">
-					<tr>
-						<td></td>
-					</tr>
-				</table>
-				<table>
-					<tr>
-						<td style="font-size:10px;">
-							Observaciones: <?php echo $observaciones;?>
-						</td>
-					</tr>
-				</table>
-				<table id="atte">
-					<tr>
-						<td>
-							Atentamente
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Q. F. B. Fabiola Espinosa Bribiesca ________________________________
-						</td>
-					</tr>
-				</table>
-				
-				
+				?>		
 	</table>
-    <!-- Fin del cuerpo de la hoja -->
 
-	<page_footer> <!-- Define el footer de la hoja -->
-		<table id="footer">
-            <tr class="fila">
-				<td>
-					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
-				</td>
-			</tr>
-        </table>
-    </page_footer>
 
 </page>
+
 
 
 

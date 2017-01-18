@@ -252,7 +252,7 @@ else{  ?>
             $mysqli = mysqli_connect($host, $user, $pwd, $db);
   $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
               //echo "<option  value=".'a'.">Seleccionar Estudio</option >";
-              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios");
+              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios GROUP BY idpropio");
               $nombreestudio = "";
               while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
                 if($nombreestudio != $valores['nombre_estudio']){ ?>
