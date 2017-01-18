@@ -79,7 +79,7 @@ if ($idpropio == 0) {
 }
 else {
   $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
-      $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
+     // $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
 
   if ($mysqli->query($eliminar) === TRUE) {
    

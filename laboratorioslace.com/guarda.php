@@ -1414,8 +1414,8 @@ case 'ESTUDIO':
 
 $mysqli = mysqli_connect($host, $user, $pwd, $db);
 
-			$idpropio   = 0;
-      
+	$idpropio           =  $_POST["idpropio"];
+      echo $idpropio;
 
 if(isset($_POST['idpropio']) && isset($_POST['idpaciente'])){
       $idpropio   = $_POST["idpropio"];
@@ -1453,41 +1453,13 @@ if ($idpropio == 0) {
         $prueba          =  $_POST["pruebas"][$i];
         $unidades        =  $_POST["unidades"][$i];
         $valorreferencia =  $_POST["valorreferencia"][$i];
-        //echo $incrementa;
-   // $_POST["idsubtitulo"][$i];
-   // $idsubtitulo;
+
         if($idsubtitulo!=$_POST["idsubtitulo"][$i]){
           $idsubtitulo=$_POST["idsubtitulo"][$i];
           $subtitulo=$_POST['subtitulo'][$incrementa];
           $incrementa++;
         }
-    //$subtitulo =$_POST['subtitulo'][0];
-        
-             //    $subtitulo
-           // echo $incrementa;
-      //  }
-        //"subtitulo: ";
-        // $_POST["idsubtitulo"][$i] ;
-                //$incrementa;
-      // $vacio = 0;
-     //   if($_POST["idsubtitulo"][$i] ==  $incrementa){
-       // $control_subtitulo;
-     //  echo $incrementa;
-  //     if($incrementa<$control_subtitulo){
-    //    $subtitulo       =  $_POST["subtitulo"][$incrementa];
-      //  while ($vacio==0){
-        //	if(empty($subtitulo)){
-         // echo  $incrementa++;
-         //  $subtitulo       =  $_POST["subtitulo"][$incrementa];
-        	//}
-        	//else{
-        //		$vacio = 1;
-        //	}
-        //}
-    //}
-        	//  $incrementa++;
-       // }
-//$subtitulo;
+
       
        
               $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
@@ -1513,47 +1485,40 @@ else {
 
   if ($mysqli->query($eliminar) === TRUE) {
    
-
-     $estudio               = $_POST["estudio"]; 
-     $number                = count($_POST["pruebas"]);
-    if ($medicos_idmedicos != null || $medicos_idmedicos != "") {
-        //echo "ID MEDICOS dentro de if ".$medicos_idmedicos;
-      }
-      else{
-        include('includes/alert_medico.php');
-      }
+      $estudio               = $_POST["estudio"];
+      $subtitulo     = "";
+      $incrementa = 0;
+      $contador_subtitulo = count($_POST["idsubtitulo"])-1;
+      $number                = count($_POST["pruebas"]);
+      $idsubtitulo =-1;
       if($number > 0)
       {
-        for($i=0; $i<$number; $i++)
-        {
-           if(trim($_POST["pruebas"][$i] != ''))
-           {
-              $mysqli = mysqli_connect($host, $user, $pwd, $db);
-              if (mysqli_connect_errno()) {
-
-              }
-            
+          for($i=0; $i<$number; $i++)
+          {
+             if(trim($_POST["pruebas"][$i] != ''))
+             {
+                $mysqli = mysqli_connect($host, $user, $pwd, $db);
+              if(mysqli_connect_errno()) {
+                }
+              
         $prueba          =  $_POST["pruebas"][$i];
         $unidades        =  $_POST["unidades"][$i];
         $valorreferencia =  $_POST["valorreferencia"][$i];
-      //  echo $_POST["subtitulo"][$i];
-           // echo $incrementa;
-        $_POST["idsubtitulo"][$i] ;
-        $incrementa;
-       
-        if($_POST["idsubtitulo"][$i] ==  $incrementa){
-        	  $subtitulo       =  $_POST["subtitulo"][$incrementa];
-        	  $incrementa++;
+        echo $_POST["idsubtitulo"][$i];
+        if($idsubtitulo!=$_POST["idsubtitulo"][$i]){
+          $idsubtitulo=$_POST["idsubtitulo"][$i];
+          $subtitulo=$_POST['subtitulo'][$incrementa];
+          $incrementa++;
         }
 
-         //       $sql = "INSERT INTO analisis(idanalisis, area, departamento, estudio, pruebas, observaciones, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
-           
+      
+       
               $sql = "INSERT INTO estudios ( nombre_estudio, subtitulo,prueba, unidades, valorreferencia, idpropio)
                    VALUES( '$estudio','$subtitulo', '$prueba', '$unidades','$valorreferencia', '$idpropio')";
                 if( mysqli_query($mysqli, $sql)){
 				include("includes/alert.php");
                 } else{
-                  echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
+                 echo "Error antes de cerrar 1 ".mysqli_error($mysqli);
                 }
                 mysqli_close($mysqli);
             }
@@ -1563,8 +1528,7 @@ else {
       {
         echo "Please Enter Name";
       }
-     
-    }
+}
 }
 
 

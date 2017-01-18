@@ -25,16 +25,28 @@ foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
           var n_subtitulo = 0;
           var n_renglones = 0;
           var primer_subtitulo = 0;
-
+          var button_id_alterno=0;
+          var editar=0;
+          var j= 0;
+          var t= 0;
+          var vi=0;
+          var arreglo = [""];
           var matriz = new Array();
           var matriz2 = new Array();
+          var extra = 1;
                  sessionStorage.LocalToGlobalVar = vi;
                  sessionStorage.LocalToGlobalVar = matriz;
                  sessionStorage.LocalToGlobalVar = matriz2;
+                 sessionStorage.LocalToGlobalVar = editar;
                  sessionStorage.LocalToGlobalVar = primer_renglon;
                  sessionStorage.LocalToGlobalVar = n_subtitulo;
                  sessionStorage.LocalToGlobalVar = n_renglones;
                  sessionStorage.LocalToGlobalVar = primer_subtitulo;
+                 sessionStorage.LocalToGlobalVar = j;
+                 sessionStorage.LocalToGlobalVar = t;
+                 sessionStorage.LocalToGlobalVar = button_id_alterno;
+                 sessionStorage.LocalToGlobalVar = extra;
+
 			</script>
 <!doctype html>
  <html lang="en-US">
@@ -50,9 +62,9 @@ if(isset($_GET['es'])){
     $sql    = "SELECT * FROM estudios where idpropio = '$es' ";
         $query  = mysqli_query($mysqli, $sql);
         $fila = $mysqli->query($sql);
-
         $fila1 = mysqli_fetch_array($query);
     mysqli_close($mysqli);
+
 }
           ?>
 
@@ -115,9 +127,10 @@ if(isset($_GET['es'])){
             </label>
   				</div>
 
-          <div class="table-responsive">
+          
 
 <?php  if($fila == null) { ?>
+<div class="table-responsive">
           <table class="table table-bordered" id="dynamic_field">
           <tr>
             <td><input type="form-control" name="subtitulo[]" placeholder="Subtitulo" class="form-control name_list" /></td>
@@ -127,60 +140,140 @@ if(isset($_GET['es'])){
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>
-              <td><input  type="form-control" name="idsubtitulo[]" value="0" style="display:none;" class="form-control name_list" /></td>
+              <td><input  type="form-control" name="idsubtitulo[]" value="0"  class="form-control name_list" /></td>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
             </tr>
           </table>
           <hr>
+              </div>
           <div id="dynamic_field2">
 
           </div>
 <?php
-      }
-      else{ $subt="";
-           $contrr = 0;
-           $contrr2 = 0;?>
-         <table id="dynamic_field">
+      } 
+      else{ ?> <script type="text/javascript">editar++;</script>
+       <?php   $primera_vez = 0;  $subt1="";  $subt="";  $contadorprimeravez = 0; $ii=1; $segunda_vez =0; $idsubtitulo1=1;  
+      $elementovector=1; $contadorrowx=0; $guardaultimoid=0; 
+        while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
+    if ($subt1 != $row['subtitulo']){
+      $subt1 =$row['subtitulo'];
+      $primera_vez ++;
+     }
+        if($primera_vez<=1){?>
+                <?php if($contadorprimeravez == 0){ ?>
 
-  <?php  while (  $row = mysqli_fetch_array($fila, MYSQLI_ASSOC)) {
-  ?>   <?php  $renglon = "row".$i;
-  if($subt != $row ['subtitulo'] ){
-    $contrr++;
-    if($contrr==2){
-      $contrr2 = 1;
-    }
-       $subt =$row ['subtitulo'] ;
 
-         ?>
-
+                    <div class="table-responsive">
+                <table class="table table-bordered" id="dynamic_field">
           <tr>
-            <td><input type="form-sub" name="subtitulo[]" placeholder="Subtitulo" class="form-sub name_list" value="<?php  echo $row ['subtitulo'] ?> "/></td>
-            <td><button type="button" name="addsub" id="addsub" class="agregarsub">Agregar Subtitulo</button></td>
+            <td><input type="form-control" name="subtitulo[]" value="<?php echo $row['subtitulo']; ?>" class="form-control name_list" /></td>
+           <td><button type="button" name="addsub" id="addsub" class="agregar">Agregar Subtitulo</button></td>
           </tr>
-          <?php } ?>
-           <tr id="<?php echo $renglon; ?>">
-
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" value="<?php  echo $row ['prueba'] ?> " /></td>
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" value="<?php  echo $row ['unidades'] ?> " /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" value="<?php  echo $row ['valorreferencia'] ?> " /></td>
-
-              <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" <?php if($row ['prueba'] != "") { ?>  value="<?php  echo $row ['prueba'] ?> " <?php   }  ?> /></td>
-
-              <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list"  <?php if($row ['unidades'] != "") { ?>  value="<?php  echo $row ['unidades'] ?> " <?php   }  ?> /></td> /></td>
-              <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list"  <?php if($row ['valorreferencia'] != "") { ?>  value="<?php  echo $row ['valorreferencia'] ?> " <?php   }  ?> /></td>
-
-                  <?php if ($cont == 1) { ?>
+          <tr>
+              <td><input type="form-control" name="pruebas[]" value="<?php if($row['prueba']!="") {echo $row['prueba']; }?>"  class="form-control name_list" /></td>
+              <td><input type="form-control" name="unidades[]" value="<?php if($row['unidades']!="") { echo $row['unidades']; } ?>" class="form-control name_list" /></td>
+              <td><input  type="form-control" name="valorreferencia[]" value="<?php if($row['valorreferencia']!="") { echo $row['valorreferencia'];} ?>"  class="form-control name_list" /></td>
+              <td><input  type="form-control" name="idsubtitulo[]" value="0" style="display:none;"  class="form-control name_list" /></td>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
-                  <?php } else { ?>
-              <td><button type="button" name="remove" id="<?php echo $i; ?>" class="eliminar btn_remove">X</button></td>
-                    <?php } ?>
+            </tr>
+
+          <?php $contadorprimeravez++; } else{ ?>
+          <tr id="row<?php echo $ii; ?>">
+              <td><input type="form-control" name="pruebas[]" value="<?php if($row['prueba']!="") {echo $row['prueba']; }?>"  class="form-control name_list" /></td>
+              <td><input type="form-control" name="unidades[]" value="<?php if($row['unidades']!="") { echo $row['unidades']; } ?>" class="form-control name_list" /></td>
+              <td><input  type="form-control" name="valorreferencia[]" value="<?php if($row['valorreferencia']!="") { echo $row['valorreferencia'];} ?>"   placeholder="Valor de referencia"  class="form-control name_list" /></td>
+              <td><input  type="form-control" name="idsubtitulo[]" value="0" style="display:none;" class="form-control name_list" /></td>
+               <td><button type="button" name="remove" id="<?php echo $ii; $ii++;?>" class="eliminar btn_remove">X</button></td>
            </tr>
+          
+           <script type="text/javascript">
+          primer_renglon++;  t++; 
+           matriz[[primer_subtitulo,primer_renglon]] = t; //alert(matriz[[primer_subtitulo,primer_renglon]]); </script>
+            <?php } ?>
+          
+       <?php } else{  if ($segunda_vez == 0){ ?>
+       </table>
+      
+      </div>
+      <div id="dynamic_field3">
+      <?php   $segunda_vez++;
+          }
+       
+       if($subt != $row['subtitulo']){ ?>
+           <div id="rowx<?php echo $idsubtitulo1-1;  ?>">
+         
+         </div><hr>
+     
+         </div>
+      <?php  $contadorrowx=0;
+        $guardaultimoid=$idsubtitulo1;
+       $subt =$row['subtitulo'];
+        $ii =1; $idsubtitulo1++; ?> 
 
-  <?php $cont++; $i++;} ?>
-      </table>
-     	<?php	 }   $i ;   ?>
-       </div>
+          <div id="sub<?php echo $idsubtitulo1-1;  ?>">
+  <div style="display: flex;margin-top: 10px;">
+  <input type="form-control" name="subtitulo[]" value="<?php echo $row['subtitulo']; ?>" placeholder="Subtitulo" class="form-control name_list" />
+  <button type="button" name="remove" id="<?php echo $idsubtitulo1-1; ?>" class="eliminar btn_removesub">X</button>
+  </div>
+    <div id="row<?php echo $ii; ?>" style="display: flex;">
+   
+   <input type="form-control" name="pruebas[]" value="<?php if($row['prueba']!="") {echo $row['prueba']; }?>"  placeholder="Prueba" class="form-control name_list" />
+  <input type="form-control" name="unidades[]" value="<?php if($row['unidades']!="") {echo $row['unidades']; }?>"  placeholder="Unidades" class="form-control name_list" />
+   <input type="form-control" name="valorreferencia[]" value="<?php if($row['valorreferencia']!="") {echo $row['valorreferencia']; }?>"  placeholder="Valor de referencia" class="form-control name_list" />
+   <input type="form-control" name="idsubtitulo[]" value="<?php echo $idsubtitulo1-1; ?>"  style="display:none;"  class="form-control name_list" />
+    <button type="button" name="add" id="<?php echo $idsubtitulo1-1; ?>" class="agregar2">Agregar</button> </div>
+   
+   
+  <script type="text/javascript">
 
+  j++;
+  matriz[[n_subtitulo,n_renglones]] = j;
+  //alert(n_subtitulo);
+  //alert(n_renglones);
+  //alert(j);
+   //alert(matriz[[n_subtitulo,n_renglones]]);
+  button_id_alterno++;
+  lleva=1;
+ </script>  
+   <?php     }
+   else{ $variable = ($idsubtitulo1-1).$ii; $variable2 = ($idsubtitulo1-1).",".$ii; $ii++; ?>
+  
+ <div id="reg<?php echo $variable; ?>" style="display: flex;">
+ <input type="form-control" name="pruebas[]" value="<?php if($row['prueba']!="") {echo $row['prueba']; }?>" class="form-control name_list" />
+
+ <input type="form-control" name="unidades[]" value="<?php if($row['unidades']!="") {echo $row['unidades']; }?>" placeholder="Unidades" class="form-control name_list" />
+ <input type="form-control" name="valorreferencia[]" value="<?php if($row['valorreferencia']!="") {echo $row['valorreferencia']; }?>" placeholder="Valor de referencia" class="form-control name_list" />
+ <input type="form-control" name="idsubtitulo[]" value="<?php echo $idsubtitulo1-1; ?>" style="display:none;"
+   class="form-control name_list" />
+ <button type="button" name="remove" id="<?php echo $variable2; ?>" class="eliminar btn_remove2">X</button> </div>
+ 
+<?php $contadorrowx++; ?>
+ <script type="text/javascript"> 
+
+     //  alert(lleva-1);
+        //  alert("buton"+button_id_alterno);
+          //alert("lleva"+lleva);
+        matriz[[button_id_alterno-1,lleva]]=lleva; 
+        lleva++; </script>
+  <?php  }
+
+       ?>
+         
+       <?php } } if($contadorrowx!=0){?>
+<div id="rowx<?php echo $idsubtitulo1-1;  ?>">
+         
+         </div><hr></div>
+      <?php  }
+      else{?>
+ <div id="rowx<?php echo $idsubtitulo1-1;  ?>">
+         
+         </div><hr>
+      <?php }
+        ?>  <div id="dynamic_field2"></div> <?php 
+        }
+       ?>
+
+     
       <div class="col-submit button">
         <input name="idpropio" value="<?php  echo  $es;?>"   style='display:none;'>
         <input name="idpaciente" value = "<?php echo $idpac; ?>" style="display:none;">
@@ -194,25 +287,23 @@ if(isset($_GET['es'])){
 
  <script>
    var i = 0;
-   var j= 0;
-   var t= 0;
-   var vi=0;
-   var arreglo = [""];
+
  $(document).ready(function(){
       $('#add').click(function(){
            primer_renglon++;
-
+       
            
            t++;
            $('#dynamic_field').append(
                '<tr id="row'+t+'">'+
-               '<td><input type="form-control" name="pruebas[]" placeholder="Prueba'+t+'" class="form-control name_list" /></td>'+
-               '<td><input type="form-control" name="unidades[]" placeholder="Unidades'+t+'" class="form-control name_list" /></td>'+
+               '<td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>'+
+               '<td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>'+
 
-               '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+t+'" class="form-control name_list" /></td>'+
-               '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'" style="display:none"   class="form-control name_list" /></td>'+
+               '<td><input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>'+
+               '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'"  style="display:none;"  class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
            matriz[[primer_subtitulo,primer_renglon]] = t;
+           alert( matriz[[primer_subtitulo,primer_renglon]]);
            
       console.log("T"+t);
          console.log("matriz" + matriz[[primer_subtitulo,primer_renglon]]);
@@ -220,8 +311,9 @@ if(isset($_GET['es'])){
 
       $(document).on('click', '.btn_remove', function(){
            var button_id = $(this).attr("id");
+      //     alert(button_id);
            $('#row'+button_id+'').remove();
-           t--;
+          // t--;
            console.log("T"+t);
       });
       $('#submit').click(function(){
@@ -238,24 +330,47 @@ if(isset($_GET['es'])){
       });
 //Subtitulos
 $('#addsub').click(function(){
+  if(editar==0){
             i++;
             j++;
             vi++;
+
  n_subtitulo++;
  var control=1;
   matriz[[n_subtitulo,n_renglones]] = j;
  // alert(n_subtitulo);
+  //alert(n_renglones);
+  //alert(j);
+   //alert(matriz[[n_subtitulo,n_renglones]]);
+ }
+ 
+  else{
+   i++;
+            j++;
+            vi++;
+
+ n_subtitulo=j;
+ var control=1;
+  matriz[[n_subtitulo,n_renglones]] = j;
+ // alert(n_subtitulo);
+  //alert(n_renglones);
+  //alert(j);
+ //  alert(matriz[[n_subtitulo,n_renglones]]);
+  }
+ 
+ // alert(n_subtitulo);
            $('#dynamic_field2').append(
                '<div id="sub'+j+'">'+
                '<div style="display: flex;margin-top: 10px;">'+
-                        '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo'+j+'" class="form-control name_list" />'+
+                        '<input type="form-control" name="subtitulo[]" placeholder="Subtitulo" class="form-control name_list" />'+
                         '<button type="button" name="remove" id="'+j+'" class="eliminar btn_removesub">X</button>'+
                     '</div>'+
                '<div id="row'+j+'" style="display: flex;">'+
-                  '<input type="form-control" name="idsubtitulo[]" value="'+n_subtitulo+'" style="display:none"   class="form-control name_list" />'+
-                    '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
+                  
+                    '<input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" />'+
+                    '<input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" />'+
+                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" />'+
+                    '<input type="form-control" name="idsubtitulo[]" value="'+n_subtitulo+'" style="display:none;"  class="form-control name_list" />'+
                     '<button type="button" name="add" id="'+j+'" class="agregar2">Agregar</button></div>'+
                     '<div id="rowx'+j+'"></div><hr></div>');
           
@@ -272,9 +387,9 @@ $('#addsub').click(function(){
       $(document).on('click', '.agregar2', function(){
 
           var button_id = $(this).attr("id");
-        
+        alert(button_id);
        //  console.log(button_id);
-       
+       //alert(button_id);
           i = arreglo[button_id];
          // i++;
          var zas = "";
@@ -286,7 +401,7 @@ $('#addsub').click(function(){
          while(zas!== undefined){
          zas = matriz[[button_id,lleva]];
         
-        // alert(zas);
+       //  alert(zas);
          if(zas!=undefined){
             encontro = zas;
          }
@@ -295,7 +410,7 @@ $('#addsub').click(function(){
          if(encontro===undefined){
           encontro=0;
          }
-        // alert(encontro);
+       //  alert(button_id);
           var control = encontro+1;
         matriz[[button_id,lleva-1]]=control; 
        // alert(button_id);
@@ -303,11 +418,12 @@ $('#addsub').click(function(){
           //console.log(matriz[[control,1]]);
             $('#rowx'+button_id+'').append(
                '<div id="reg'+button_id+''+lleva+'"style="display: flex;">'+
-                    '<input type="form-control" name="pruebas[]" placeholder="Prueba'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="idsubtitulo[]" value="'+button_id+'" style="display:none"   class="form-control name_list" />'+
+                    '<input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" />'+
+                    
 
-                    '<input type="form-control" name="unidades[]" placeholder="Unidades'+i+'" class="form-control name_list" />'+
-                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia'+i+'" class="form-control name_list" />'+
+                    '<input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" />'+
+                    '<input type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" />'+
+                    '<input type="form-control" name="idsubtitulo[]" value="'+button_id+'" style="display:none;"  class="form-control name_list" />'+
                     '<button type="button" name="remove" id="'+button_id+','+lleva+'" class="eliminar btn_remove2">X</button></div>');
             
            arreglo.splice(button_id, 1, i);
@@ -324,7 +440,7 @@ $('#addsub').click(function(){
          //  alert(res);
 
           //alert( matriz[[button_id]]);
-          alert(button_id);
+        //  alert(button_id);
            $('#reg'+res+'').remove();
            //vi--;
            //console.log("I"+i);
