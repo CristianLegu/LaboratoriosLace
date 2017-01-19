@@ -231,10 +231,10 @@ $conta2 =$conta2 +1;
 
  $idpropioaux = $llevaid;
  ?>
-</td><td><button type="button" name="remove" id="<?php echo  $idpropioaux;  ?>" class="eliminar btn_remove">X</button></td></tr></table></div>
+</td><td><button type="button" style="display:none" name="remove" id="<?php echo  $idpropioaux;  ?>" class="eliminar btn_remove">X</button></td></tr></table></div> 
 <?php }
 else{  ?>
-  </td><td><button type="button" name="remove" style="display:none" id="<?php echo $idpropioaux;  ?>" class="eliminar btn_remove">X</button></td></tr></table></div>
+ </td><td><button type="button" name="remove" style="display:none" id="<?php echo $idpropioaux;  ?>" class="eliminar btn_remove">X</button></td></tr></table></div> 
 <?php  } ?>
   <?php  
   $icontador++;?>
