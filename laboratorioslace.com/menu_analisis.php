@@ -267,6 +267,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
               </a>
           </td>
           <td><input type="checkbox" name="c[]" value="<?php echo $idprop;?>"></td>
+          <input type="hidden" name="idpaciente" value="<?php echo $idpac;?>">
         </tr>
          <?php $idpropio = $fila['idpropio'];  } ?>
          
@@ -276,8 +277,8 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 ?>
       </table>
         
-          <input title="Imprimir" type="image" src="img/addanalisis.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-20%; margin-right:20%;">
-        
+          <input name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:20%;">
+          <input name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:7%;">
       </form>
 
     <div id="pagination_controls">
