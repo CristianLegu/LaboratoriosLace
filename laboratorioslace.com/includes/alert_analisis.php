@@ -1,13 +1,16 @@
 <?php
 	include("includes/conexion.php");
-   $_SESSION['idpaciente'] = null;
+	session_start();
+  // $_SESSION['idpaciente'] = null;
+   $variable = $_SESSION['p'];
+
 ?>
 <html>
 	<header>
 		<script src="js/sweetalert.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	</header>
-
+<?php $linkanalisis    = "menu_analisis.php?p=".urlencode( $variable); ?>
 	<script type="text/javascript">
 
 			swal({
@@ -17,7 +20,7 @@
   			}, function(){
 
 
-								window.location.href = 'menu_pacientes.php';
+								window.location.href = '<?php echo $linkanalisis; ?>';
 
 
 

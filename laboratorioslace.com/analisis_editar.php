@@ -248,46 +248,10 @@ else{  ?>
 
   <?php } ?></label>
 </div>
-<?php if ($fila == null){?>
- <div class="col-2">
-      <label >
-        Elegir Estudio
-<form name="add_name" id="add_name" method="post" action="agrega_analisis.php " ALIGN=center autocomplete="off">
-        <select id="car"  name="car" onchange="ChangeCarList()">
-          <option  value="a">Seleccionar Estudio</option >
-          <?php
-          //$a = "a";
-            $mysqli = mysqli_connect($host, $user, $pwd, $db);
-  $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios WHERE idestudio = '$idmed'");
-              //echo "<option  value=".'a'.">Seleccionar Estudio</option >";
-              $querymedicos = $mysqli -> query ("SELECT idpropio, nombre_estudio FROM estudios GROUP BY idpropio");
-              $nombreestudio = "";
-              while ($valores =  mysqli_fetch_array($querymedicos, MYSQLI_ASSOC)) {
-                if($nombreestudio != $valores['nombre_estudio']){ ?>
-             
-               <option value="<?php echo $valores['idpropio']?>"> <?php echo $valores['nombre_estudio'] ?> </option>
-              <?php     $nombreestudio = $valores['nombre_estudio'];
-             $idestu = $idestu + 1;
-        }
-                  if($nombreestudio == null){
-                 $nombreestudio = $valores['nombre_estudio'];
-                }
 
-              }
-           
-            mysqli_close($mysqli);
-            
-          ?>
-        </select>
-      </label>
-  </div>
-  <?php } ?>
-     <div class="col-2" align="center">
-    <label >
-       Comentarios 
-    </label>
-           <textarea rows="6" cols="50" name="comentario" value="<?php if($comentario != null) { echo $comentario; }?>"  style="background-color:powderblue; "></textarea>
-   </div>     
+ 
+
+        
 
      	<?php	  $i ;   ?>
        </div>

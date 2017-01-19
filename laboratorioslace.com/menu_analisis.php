@@ -17,12 +17,16 @@
 
      }
   $id = "";
+  if($_GET['p']==null){
+  $_GET['p']=$_SESSION['p'];
+}
   if(isset($_GET['p'])){
     $id = $_GET['p'];
   }
   else{
     include('includes/alert_getp.php');
   }
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -64,7 +68,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
   }
 
   else{
-$id = $_GET['p'];
+echo $id = $_GET['p'];
        
 
         $sql = "SELECT nombre
