@@ -68,7 +68,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
   }
 
   else{
-echo $id = $_GET['p'];
+//echo $id = $_GET['p'];
        
 
         $sql = "SELECT nombre
@@ -121,10 +121,7 @@ echo $id = $_GET['p'];
       <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
       <img src="img/addanalisis.png" title="Agregar analisis"></a>
     </li>
-    <li>
-     
-      
-    </li>
+   
   </ul>
 </nav>
 <form action="membrete.php" method="GET">
@@ -278,7 +275,9 @@ echo $id = $_GET['p'];
 }
 ?>
       </table>
-      <input type="submit" >
+        
+          <input title="Imprimir" type="image" src="img/addanalisis.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-20%; margin-right:20%;">
+        
       </form>
 
     <div id="pagination_controls">

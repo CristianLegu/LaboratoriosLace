@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include('../../includes/conexion.php');
-	foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
+	//foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 
     $idpr   = 0;
     $idpac  = 0;
@@ -24,33 +24,34 @@
 	$fechaAct  = $anio."-".$mes."-".$dia;
 	$estudio = "";
 	$subtitulo = "";
+	$filacontar =0;
 	
-	
-
-    if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) ){
-        $idpr   = $_GET['idpr'];
-        $idpac  = $_GET['idpac'];
-        $idmed  = $_GET['idm'];        
+$array = [];
+    
 		if(isset($_GET['memb'])){
 			$membrete = $_GET['memb'];
 		}
-		
-		
-    }
-
-
-
-    $sqlContar = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
+		if(isset($_GET['array'])){
+			$array_restored_from_db = unserialize($_GET['array']);
+			
+		    foreach( $array_restored_from_db as $c){
+				  $sqlContar = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
                     FROM analisis AS a 
                     JOIN pacientes AS p 
                     ON a.pacientes_idpacientes = p.idpacientes
                     JOIN medicos m
                     ON a.medicos_idmedicos = m.idmedicos
-                    WHERE a.idpropio = '$idpr'
+                    WHERE a.idpropio = '$c'
                     ORDER BY a.idpropio";
-    $conContar = mysqli_connect($host, $user, $pwd, $db);
-    $resultContar = mysqli_query($conContar, $sqlContar);
-    $filacontar = mysqli_num_rows($resultContar);
+    			$conContar = mysqli_connect($host, $user, $pwd, $db);
+    			$resultContar = mysqli_query($conContar, $sqlContar);
+    			$filacontar = mysqli_num_rows($resultContar) + $filacontar;
+				
+			}
+		} 
+
+		
+  
 	
 
 	if($filacontar <= 6){
@@ -484,7 +485,21 @@
     
     <!-- Define el cuerpo de la hoja -->
 	<?php
-		while ($row = mysqli_fetch_array($queryname, MYSQLI_ASSOC)) {
+		foreach( $array_restored_from_db as $c){
+
+			$sql = "SELECT  p.nombre AS paciente, m.nombre AS medico, a.fecha as fecha
+						FROM analisis AS a 
+						JOIN pacientes AS p 
+						ON a.pacientes_idpacientes = p.idpacientes
+						JOIN medicos m
+						ON a.medicos_idmedicos = m.idmedicos
+						WHERE a.idpropio = '$c'
+						ORDER BY a.estudio;";
+
+					
+				$query = $con -> query($sql);
+			}
+		while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 			$nombreMedico = $row['medico'];
 			$nombrePaciente = $row['paciente'];
 			$fecha = $row['fecha'];
@@ -534,7 +549,7 @@
 			</td>
 		</tr>
 				<?php
-					foreach( $_GET['c'] as $check){
+					foreach( $array_restored_from_db as $c){
 
 						$sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
 									FROM analisis AS a 
@@ -542,22 +557,17 @@
 									ON a.pacientes_idpacientes = p.idpacientes
 									JOIN medicos m
 									ON a.medicos_idmedicos = m.idmedicos
-									WHERE a.idpropio = '$check'
-									ORDER BY a.estudio;";
-
-						
+									WHERE a.idpropio = '$c'
+									ORDER BY a.estudio;";	
 						$query = $con -> query($sql);
 					}
+
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
+								$observaciones = $row['comentario'];
 								
 
 ?>
-
-
-									
-
-
 <?php									
 									
 							
@@ -616,8 +626,22 @@
 							
 							
 							} 
-				?>		
+				?>
+
+				<table id="line">
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td style="font-size:10px;">
+							Observaciones: <?php echo $observaciones;?>
+						</td>
+					</tr>
+	</table>		
 	</table>
+	
 
 
 </page>

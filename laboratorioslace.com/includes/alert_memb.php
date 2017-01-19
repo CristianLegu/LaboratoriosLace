@@ -17,8 +17,8 @@
 	//$nomemb = "prueba_analisis.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm))."&memb=".urlencode(base64_encode('false'))."&array=".serialize($array);
 	
 
-	$conmembrete = "php/pdf/reporte.php?array=".serialize($array)."&memb=".urlencode(base64_encode('true'));
-	$nomemb = "php/pdf/reporte.php?array=".serialize($array)."&memb=".urlencode(base64_encode('false'));
+	$conmembrete = "php/pdf/reporte.php?array=".serialize($array)."&memb=true";
+	$nomemb = "php/pdf/reporte.php?array=".serialize($array)."&memb=false";
 ?>
 <html>
 	<header>
