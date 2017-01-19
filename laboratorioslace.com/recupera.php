@@ -7,14 +7,12 @@ $con = mysqli_connect($host, $user, $pwd, $db);
 $url = "";
 $idpr   = 0;
 $idpac  = 0;
-$idmed  = 0;
+$array = [];
 
-  if( isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) ){
-        $idpr   = $_GET['idpr'];
+  if( isset($_GET['idpac']) && isset($_GET['array']) ){
         $idpac  = $_GET['idpac'];
-        $idmed  = $_GET['idm'];
-
-        $url = 'www.laboratorioslace.com/php/pdf/reportemail.php?idpac='.urlencode(base64_encode($idpac)).'&idpr='.urlencode(base64_encode($idpr)).'&idm='.urlencode(base64_encode($idmed));
+        $array = $_GET['array'];
+        $url = 'www.laboratorioslace.com/php/pdf/reporte.php?array='.serialize($array).'&memb=true';
         
         if( mysqli_connect_errno() ){
           echo "Falló la conexión: ".mysqli_connect_error();
