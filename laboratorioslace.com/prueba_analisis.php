@@ -55,26 +55,68 @@
             $filaConsulta = mysqli_num_rows($resultConsulta);
             array_push($array, $filaConsulta);
             
-            /*
+            
+      /*
             if(($filaConsulta >=6 && $filaConsulta <= 26) && $titulo == 'EXAMEN GENERAL DE ORINA'){
-                //echo 'Pagina para'.$titulo.' '.$filaConsulta;
+                echo 'Pagina para'.$titulo.' '.$filaConsulta;
             }
             else{
-                
+                echo "$titulo".$filaConsulta;
             }
-            */
+      */
             
             
         }
     }
-
+    //print_r($array);
     $length = count($array);
     
+    $lleva = 0;
+    $auxarray = [];
+    
+    $other = [];
+    $contestudio = 0;
+ $contador_other =0;
+    $cont = 0;
+
+    $contadorIn = 0;
     for ($i=0; $i < $length; $i++) { 
-        echo " elemento".$array[$i];
-        //$aux = $array[$i] + $array[$i+1];
+        $lleva = $array[$i] + $lleva;
         
+        if($lleva <= 26){
+            $auxarray[$cont] = $lleva;
+            $contestudio++;
+            $contador_other++;
+            $contadorIn++;
+        }else{
+
+            if($contadorIn == 0){
+                
+                $lleva = $lleva - $array[$i] ;
+                $auxarray[$cont] = $lleva;
+                 array_push($other, $contestudio);  
+                 $contador_other=0;
+            }
+            $contadorIn = 0;
+            $lleva = $array[$i];
+            if($contador_other!=0){
+                array_push($other, $contestudio);   
+            }
+            
+            $cont++;
+        
+            $contestudio = 1;
+            
+        }
+
     }
+    if($contestudio >= 1){
+        array_push($other, $contestudio);   
+    }
+    
+    print_r($auxarray);
+    print_r($other);
+          
    
 
     

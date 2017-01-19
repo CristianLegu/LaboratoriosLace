@@ -1,15 +1,20 @@
 <?php
-    $idpac="";
-    $idprop="";
-    $idm = "";
+   
     
-    if(isset($_GET['idpac']) && isset($_GET['idpr']) && isset($_GET['idm'])){
-        $idpac  = $_GET['idpac'];
-        $idprop = $_GET['idpr'];
-        $idm = $_GET['idm'];
-        include('includes/alert_memb.php');
-    }
     
+    if(isset($_GET['c'])){
 
+
+        $array = $_GET['c'];
+
+	    foreach( $_GET['c'] as $color){
+	        //array_push($array, $color);
+        }
+     //   print_r($array);
+
+        include('includes/alert_memb.php');
+    }   
+
+    
     
 ?>

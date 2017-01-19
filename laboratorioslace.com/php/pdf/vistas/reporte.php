@@ -322,22 +322,9 @@
 	}
 	else{
 		$con = mysqli_connect($host, $user, $pwd, $db);
-
 		$estudio = "";
 		$subtitulo = "";
-
-        $sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
-                    FROM analisis AS a 
-                    JOIN pacientes AS p 
-                    ON a.pacientes_idpacientes = p.idpacientes
-                    JOIN medicos m
-                    ON a.medicos_idmedicos = m.idmedicos
-                    WHERE a.idpropio = '$idpr'
-                    ORDER BY a.subtitulo;";
-
-        
-        $query = $con -> query($sql);
-
+		
 
 		//$conname = mysqli_connect($host, $user, $pwd, $db);
         $sqlname = "SELECT  m.nombre AS medico, p.nombre AS paciente, a.fecha AS fecha, a.estudio, a.subtitulo
@@ -547,40 +534,33 @@
 			</td>
 		</tr>
 				<?php
-					$x=40;
-					$y=40;
-					$a = 26;
+					foreach( $_GET['c'] as $check){
+
+						$sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
+									FROM analisis AS a 
+									JOIN pacientes AS p 
+									ON a.pacientes_idpacientes = p.idpacientes
+									JOIN medicos m
+									ON a.medicos_idmedicos = m.idmedicos
+									WHERE a.idpropio = '$check'
+									ORDER BY a.estudio;";
+
+						
+						$query = $con -> query($sql);
+					}
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
 								
-								$x++;
-								//$observaciones = $row['comentario'];
-								
-								
-								if($x>=66){
-									while ($y <= 49) {
-										$y++;
-										if($y == 42){
-										echo "<table id='line'>
-													<tr>
-														<td></td>
-													</tr>
-												</table>
-												<table>
-													<tr>
-														<td style='font-size:10px;'>
-															Observaciones: $observaciones
-														</td>
-													</tr>
-												</table>";
-										}else{
-											echo "<br>";
-										}
-									}
-									$x = 40;
+
+?>
+
+
 									
+
+
+<?php									
 									
-								}else{
+							
 																
 								
 				?>
@@ -633,7 +613,7 @@
 							</td>
 						</tr>
 				<?php
-							}
+							
 							
 							} 
 				?>		

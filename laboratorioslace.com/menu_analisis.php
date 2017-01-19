@@ -97,6 +97,7 @@ echo $id = $_GET['p'];
           </div>
         </div>
   <!-- Pantalla de carga-->
+
 <nav id="hola">
   <ul>
     <li><p>
@@ -120,16 +121,21 @@ echo $id = $_GET['p'];
       <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
       <img src="img/addanalisis.png" title="Agregar analisis"></a>
     </li>
+    <li>
+     
+      
+    </li>
   </ul>
 </nav>
-
+<form action="membrete.php" method="GET">
 
       <table class="sortable" id="sorter">
         <tr>
-          <th>Area</th>
-          <th>Fecha</th>
-          <th>M&eacute;dico</th>
-          <th>An&aacute;lisis</th>
+          <th>Estudio</th>
+          <th class="nosort">Fecha</th>
+          <th class="nosort">M&eacute;dico</th>
+          <th class="nosort">An&aacute;lisis</th>
+          <th>Imprimir | Enviar</th>
         </tr>
 
 <?php
@@ -176,13 +182,14 @@ echo $id = $_GET['p'];
 
       $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-      $sql = "SELECT  area,
+      $sql = "SELECT  estudio,
                       fecha,
                       medicos_idmedicos,
                       idpropio
               FROM contador
-              ORDER BY idanalisis
+              GROUP BY idpropio
               ASC $limit";
+
       $query = mysqli_query($con, $sql);
 
 
@@ -254,32 +261,25 @@ echo $id = $_GET['p'];
  ?>
         <tr>
         <?php if($idpropio !=  $fila['idpropio'] ) { ?>
-          <td><?php echo $fila['area']; ?></td>
+          <td><?php echo $fila['estudio']; ?></td>
           <td><?php echo $fila['fecha']; ?></td>
           <td><?php echo $fila1['nombre']; ?> </td>
           <td>
-              <a class="text" href= "<?php  echo $enviar;                                           
-                                      ?> " >
-                <strong>Enviar Correo electr&oacutenico</strong>
-              </a>
-              |
-              <a class="text" href= "<?php  echo $editar;
-                                           
-                                       ?> " >
+              <a class="text" href= "<?php  echo $editar;?> " >
                 <strong>Editar</strong>
               </a>
-              |
-              <a class="text" target="_blank" href= "<?php  echo 'membrete.php?'.$ver;?> " >
-                <strong>Imprimir</strong>
-              </a>
           </td>
+          <td><input type="checkbox" name="c[]" value="<?php echo $idprop;?>"></td>
         </tr>
          <?php $idpropio = $fila['idpropio'];  } ?>
+         
 <?php }
   mysqli_close($con);
 }
 ?>
       </table>
+      <input type="submit" >
+      </form>
 
     <div id="pagination_controls">
       <?php echo $paginationCtrls; ?>
