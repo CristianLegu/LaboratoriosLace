@@ -418,7 +418,8 @@
 
           <td><a class="text" href= "<?php echo $ver?>"><strong>Ver</strong></a> </td>
 
-          <td><a class="text" href= "<?php echo $agregar?>"><strong>Agregar</strong></a><strong class="text"> | </strong>
+          <td>
+            <!--a class="text" href= "<?php //echo $agregar?>"><strong>Agregar</strong></a><strong class="text"> | </strong-->
 
             <a class="text" href= "<?php  echo $vera;?>"><strong>Ver</strong></a> </td>
 
