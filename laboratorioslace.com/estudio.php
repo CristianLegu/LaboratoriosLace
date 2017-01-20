@@ -387,7 +387,7 @@ $('#addsub').click(function(){
       $(document).on('click', '.agregar2', function(){
 
           var button_id = $(this).attr("id");
-        alert(button_id);
+      //  alert(button_id);
        //  console.log(button_id);
        //alert(button_id);
           i = arreglo[button_id];
