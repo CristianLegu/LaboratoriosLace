@@ -520,6 +520,7 @@ $array = [];
     
     <!-- Define el cuerpo de la hoja -->
 	<?php
+	
 		foreach( $array_restored_from_db as $c){
 
 			$sql = "SELECT  p.nombre AS paciente, m.nombre AS medico, a.fecha as fecha
@@ -534,6 +535,7 @@ $array = [];
 					
 				$query = $con -> query($sql);
 			}
+			
 		while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 			$nombreMedico = $row['medico'];
 			$nombrePaciente = $row['paciente'];
@@ -595,7 +597,7 @@ $array = [];
 									WHERE a.idpropio = '$c'
 									ORDER BY a.estudio;";	
 						$query = $con -> query($sql);
-					}
+					
 
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
@@ -661,6 +663,7 @@ $array = [];
 							
 							
 							} 
+					}
 				?>
 
 				<table id="line">
