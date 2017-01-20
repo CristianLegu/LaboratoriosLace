@@ -160,6 +160,28 @@ $array = [];
     
     <!-- Define el cuerpo de la hoja -->
 	<?php
+		foreach( $array_restored_from_db as $c){
+
+			$sql = "SELECT p.nombre AS paciente, m.nombre AS medico, a.fecha as fecha, a.estudio, a.subtitulo
+						FROM analisis AS a 
+						JOIN pacientes AS p 
+						ON a.pacientes_idpacientes = p.idpacientes
+						JOIN medicos m
+						ON a.medicos_idmedicos = m.idmedicos
+						WHERE a.idpropio = '$c'
+						ORDER BY a.estudio;";
+
+					
+				$query = $con -> query($sql);
+			}
+		while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+			$nombreMedico = $row['medico'];
+			$nombrePaciente = $row['paciente'];
+			$fecha = $row['fecha'];
+			$estudio = $row['estudio'];
+			$subtitulo = $row['subtitulo'];
+		}
+		/*
 		while ($row = mysqli_fetch_array($queryname, MYSQLI_ASSOC)) {
 			$nombreMedico = $row['medico'];
 			$nombrePaciente = $row['paciente'];
@@ -167,6 +189,7 @@ $array = [];
 			$estudio = $row['estudio'];
 			$subtitulo = $row['subtitulo'];
 		}
+		*/
 	?>
 
 
@@ -225,6 +248,18 @@ $array = [];
 			</td>
 		</tr>
 				<?php
+					foreach( $array_restored_from_db as $c){
+
+						$sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
+									FROM analisis AS a 
+									JOIN pacientes AS p 
+									ON a.pacientes_idpacientes = p.idpacientes
+									JOIN medicos m
+									ON a.medicos_idmedicos = m.idmedicos
+									WHERE a.idpropio = '$c'
+									ORDER BY a.estudio;";	
+						$query = $con -> query($sql);
+					}
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
 								
