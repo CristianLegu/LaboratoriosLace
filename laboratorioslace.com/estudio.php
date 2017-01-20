@@ -140,7 +140,7 @@ if(isset($_GET['es'])){
               <td><input type="form-control" name="pruebas[]" placeholder="Prueba" class="form-control name_list" /></td>
               <td><input type="form-control" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td>
               <td><input  type="form-control" name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td>
-              <td><input  type="form-control" name="idsubtitulo[]" value="0"  class="form-control name_list" /></td>
+              <td><input  type="form-control" name="idsubtitulo[]" value="0" style="display:none;"  class="form-control name_list" /></td>
               <td><button type="button" name="add" id="add" class="agregar">Agregar</button></td>
             </tr>
           </table>
@@ -303,7 +303,7 @@ if(isset($_GET['es'])){
                '<td><input  type="form-control" name="idsubtitulo[]" value="'+0+'"  style="display:none;"  class="form-control name_list" /></td>'+
                '<td><button type="button" name="remove" id="'+t+'" class="eliminar btn_remove">X</button></td></tr>');
            matriz[[primer_subtitulo,primer_renglon]] = t;
-           alert( matriz[[primer_subtitulo,primer_renglon]]);
+         //  alert( matriz[[primer_subtitulo,primer_renglon]]);
            
       console.log("T"+t);
          console.log("matriz" + matriz[[primer_subtitulo,primer_renglon]]);
