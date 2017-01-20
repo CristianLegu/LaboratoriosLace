@@ -1,6 +1,6 @@
 <?php
 
-foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
+//foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 include("includes/conexion.php");
 $con = mysqli_connect($host, $user, $pwd, $db);
 
