@@ -83,12 +83,20 @@ if ($idpropio == 0) {
     
 }
 else {
+    $sql1    = "SELECT fecha
+
+                    FROM analisis
+
+                    WHERE idpropio = '$idpropio'";
+      $query1  = mysqli_query($mysqli, $sql1);
+      $fila1   = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+      $fecha = $fila1['fecha'];
   $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
      // $eliminar = "DELETE FROM analisis WHERE idpropio = $idpropio;";
 
   if ($mysqli->query($eliminar) === TRUE) {
    
-       $fecha         =  date("Y") . date("m") . date("d") ;
+      // $fecha         =  date("Y") . date("m") . date("d") ;
        $area          = $_POST["area"];
        $pacientes_idpacientes = $_POST["idpaciente"];
        $medicos_idmedicos = $_POST["idmedico"];
