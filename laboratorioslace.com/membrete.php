@@ -13,7 +13,7 @@
             include('includes/alert_memb.php');
         }
 	    if(isset($_GET['email'])){
-            header("Location: recupera.php?array=".serialize($array)."&idpac=".$idpac);
+            header("Location: recupera.php?idpac=".$idpac."&array=".serialize($array));
            
         } 
 

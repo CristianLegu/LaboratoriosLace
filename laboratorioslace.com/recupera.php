@@ -11,9 +11,11 @@ $array = [];
 
   if( isset($_GET['idpac']) && isset($_GET['array']) ){
         $idpac  = $_GET['idpac'];
-        $array = $_GET['array'];
-        $url = 'www.laboratorioslace.com/php/pdf/reporte.php?array='.serialize($array).'&memb=true';
-        
+        $array = serialize($_GET['array']);
+        $res1 = substr($array, 6);
+        $res2 = substr($res1, 0, -2);
+
+        $url = '<www.laboratorioslace.com/php/pdf/reporte.php?array='.$res2.'&memb=true>';
         if( mysqli_connect_errno() ){
           echo "Falló la conexión: ".mysqli_connect_error();
         }else{
@@ -37,6 +39,7 @@ $array = [];
               $contenidomail= '
                               <html>
                               <head>
+                              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
                               <style type="text/css">
                               img{
                                 width: 100%;  
@@ -53,7 +56,7 @@ $array = [];
                               </body>
                               </html>
                               ';
-                              $msj = "Apreciable ".$nombrePac.", en el siguiente enlace usted podrá visualizar los resultados del análisis realizado. ".$url;
+                              $msj = "Apreciable ".$nombrePac.", copie el siguiente link, donde usted podr&aacute; visualizar los resultados del an&aacute;lisis realizado. ".$url;
                               $fondo = '
                                       <html>
                                       <head>
@@ -75,7 +78,7 @@ $array = [];
                                       <br><br><br><br>
                                       <div id="encabezado">
                                         <p align="justify">
-                                        <em><strong>AVISO IMPORTANTE:</strong> Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o la entidad a la que expresamente se le ha enviado, el cual contiene información confidencial. Si no es el destinatario legítimo del mismo, por favor repórtelo inmediatamente a la cuenta del remitente y elimínelo. Cualquier revisión, almacenamiento, retransmisión, difusión o cualquier otro uso de este correo, por personas o entidades distintas a las del destinatario legítimo, queda expresamente prohibida. Este correo electrónico no pretende ni debe ser considerado como constitutivo de ninguna relación legal, contractual o de otra índole similar.
+                                        <em><strong>AVISO IMPORTANTE:</strong> Este correo electr&oacute;nico y/o el material adjunto es para uso exclusivo de la persona o la entidad a la que expresamente se le ha enviado, el cual contiene informaci&oacute;n confidencial. Si no es el destinatario leg&iacute;timo del mismo, por favor rep&oacute;rtelo inmediatamente a la cuenta del remitente y elim&iacute;nelo. Cualquier revisi&oacute;n, almacenamiento, retransmisi&oacute;n, difusi&oacute;n o cualquier otro uso de este correo, por personas o entidades distintas a las del destinatario leg&iacute;timo, queda expresamente prohibida. Este correo electr&oacute;nico no pretende ni debe ser considerado como constitutivo de ninguna relaci&oacute;n legal, contractual o de otra &iacute;ndole similar.
                                         </em>
                                         </p>
                                       </div>
@@ -86,7 +89,6 @@ $array = [];
                                       </html>
                                       ';
                       $enviado = mail ($email, $asunto, $contenidomail.$msj.$fondo, $headers);
-
                       if($enviado){
                         session_start();
                         $_SESSION['enviado']= "report";
@@ -110,9 +112,8 @@ $array = [];
 
 
     if(isset($_GET['u'])){
-
+foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
       $id = $_GET['u'];
-
 
             if (mysqli_connect_errno()) {
               echo "Falló la conexión: ".mysqli_connect_error();
@@ -142,6 +143,7 @@ $array = [];
               $contenidomail= '
                               <html>
                               <head>
+                              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
                               <style type="text/css">
                               img{
                                 width: 70%;  
@@ -186,6 +188,7 @@ $array = [];
                                       </html>
                                       ';
                       $enviado =mail ($email, $asunto,$contenidomail.$msj.$fondo,$headers);
+                      echo $enviado;
                       if($enviado){
                         session_start();
                         $_SESSION['enviado']= "si";

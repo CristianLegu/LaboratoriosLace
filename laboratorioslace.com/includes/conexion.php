@@ -2,8 +2,8 @@
 
 $host = "localhost";
 $user = "lace";
-$pwd = "root";
-$db = "lace";
+$pwd = "root123";
+$db = "bdlace";
 
 
 

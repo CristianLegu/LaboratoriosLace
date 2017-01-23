@@ -17,10 +17,7 @@
 	//$nomemb = "prueba_analisis.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm))."&memb=".urlencode(base64_encode('false'))."&array=".serialize($array);
 	if(isset($_GET['print'])){
 		$conmembrete = "php/pdf/reporte.php?array=".serialize($array)."&memb=true";
-		//$conmembrete = "prueba_analisis.php?array=".serialize($array);
-
 		$nomemb = "php/pdf/reporte.php?array=".serialize($array)."&memb=false";
-		//$nomemb = "prueba_analisis.php?array=".serialize($array)."&memb=false";
 	}
 	/*
 	if(isset($_GET['email'])){

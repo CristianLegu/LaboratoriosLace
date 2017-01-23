@@ -5,3 +5,4 @@ Stack trace:
 #2 /home/hopped/public_html/laboratorioslace.com/reporte_prod_fin.php(265): FPDF->Output()
 #3 {main}
   thrown in /home/hopped/public_html/laboratorioslace.com/fpdf181/fpdf.php on line 271
+[20-Jan-2017 19:44:20 UTC] PHP Fatal error:  Call to undefined function length() in /home/hopped/public_html/laboratorioslace.com/recupera.php on line 16

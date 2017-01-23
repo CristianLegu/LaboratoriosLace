@@ -33,8 +33,10 @@
 
 							<?php 	  if(  $sesion == 'si') { ?>
 								window.location.href = '<?php echo $linkusuarios; ?>';
+								//window.close();
 							<?php } else{ ?>
-								window.location.href = '<?php echo $linkpacientes; ?>';
+								/*window.location.href = '<?php //echo $linkpacientes; ?>';*/
+								window.close();
 							<?php } ?>
 				}
 			);

@@ -6,68 +6,9 @@
 
     $titulo = "";
    	include('includes/conexion.php');
-	//foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
-	$filacontar = 0;
+	foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
+	
 
-	if(isset($_GET['memb'])){
-			$membrete = $_GET['memb'];
-		}
-		if(isset($_GET['array'])){
-			$array_restored_from_db = unserialize($_GET['array']);
-			
-		    foreach( $array_restored_from_db as $c){
-				  $sqlContar = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
-                    FROM analisis AS a 
-                    JOIN pacientes AS p 
-                    ON a.pacientes_idpacientes = p.idpacientes
-                    JOIN medicos m
-                    ON a.medicos_idmedicos = m.idmedicos
-                    WHERE a.idpropio = '$c'
-                    ORDER BY a.idpropio";
-    			$conContar = mysqli_connect($host, $user, $pwd, $db);
-    			$resultContar = mysqli_query($conContar, $sqlContar);
-    			$filacontar = mysqli_num_rows($resultContar) + $filacontar;
-				
-			}
-		}
-        $con = mysqli_connect($host, $user, $pwd, $db);
-        foreach( $array_restored_from_db as $c){
-
-						$sql = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
-									FROM analisis AS a 
-									JOIN pacientes AS p 
-									ON a.pacientes_idpacientes = p.idpacientes
-									JOIN medicos m
-									ON a.medicos_idmedicos = m.idmedicos
-									WHERE a.idpropio = '$c'
-									ORDER BY a.estudio;";	
-						$query = $con -> query($sql);
-
-                        
-                        while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
-        					{
-								
-								echo $row['estudio'];
-
-                            }
-					}
-					
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
     if(isset($_GET['idpr']) && isset($_GET['idpac']) && isset($_GET['idm']) ){
         $idpr   = $_GET['idpr'];
         $idpac  = $_GET['idpac'];
@@ -122,13 +63,12 @@
             else{
                 echo "$titulo".$filaConsulta;
             }
-      
+      */
             
             
         }
     }
-    
-    print_r($array);
+    //print_r($array);
     $length = count($array);
     
     $lleva = 0;
@@ -178,7 +118,7 @@
     print_r($other);
           
    
-*/
+
     
 
 
