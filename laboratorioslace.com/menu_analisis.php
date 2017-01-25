@@ -279,8 +279,8 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 ?>
       </table>
           <input type="hidden" name="array" id="array">
-          <input name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:20%;">
-          <input name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:7%;">
+          <input id="print" name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:20%;">
+          <input id="email" name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:7%;">
       </form>
 
     <div id="pagination_controls">
@@ -290,16 +290,26 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 
 <script type="text/javascript">
     xarray= [];
+    document.getElementById("print").style.display = 'none';
+    document.getElementById("email").style.display = 'none';
       function changcheck(el){
+        
         if(el.checked){
-          //alert(el.value+" : checked");
           xarray.push(el.value);
+            if(xarray.length > 0){
+           document.getElementById("print").style.display = 'block';
+           document.getElementById("email").style.display = 'block';
+          }
           document.getElementById("array").value = xarray;
           console.log(xarray);
         }else{
           //alert(el.value+" : un-checked");
           var pos = xarray.indexOf(el.value);
           xarray.splice(pos,1);
+           if(xarray.length == 0){
+           document.getElementById("print").style.display = 'none';
+           document.getElementById("email").style.display = 'none';
+          }
           document.getElementById("array").value = xarray;
           console.log(xarray);
         }
