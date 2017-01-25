@@ -26,14 +26,13 @@
 	$subtitulo = "";
 	$filacontar =0;
 	
-$array = [];
     
 		if(isset($_GET['memb'])){
 			$membrete = $_GET['memb'];
 		}
 		if(isset($_GET['array'])){
 			$array_restored_from_db = unserialize($_GET['array']);
-			
+			//print_r($array_restored_from_db);
 		    foreach( $array_restored_from_db as $c){
 				  $sqlContar = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
                     FROM analisis AS a 

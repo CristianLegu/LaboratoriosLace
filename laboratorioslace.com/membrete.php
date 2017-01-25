@@ -2,8 +2,9 @@
    
     $idpac = 0;
     
-    if(isset($_GET['c'])){
-        $array = $_GET['c'];
+    if(isset($_GET['array']) && (!empty($_GET['array']))){
+        $ar1   = $_GET['array'];
+        $array = explode(",", $ar1);
     }  
         if(isset($_GET['idpaciente'])){
             $idpac = $_GET['idpaciente'];
@@ -13,7 +14,7 @@
             include('includes/alert_memb.php');
         }
 	    if(isset($_GET['email'])){
-            header("Location: recupera.php?idpac=".$idpac."&array=".serialize($array));
+            header("Location: recupera.php?idpac=".$idpac."&array=".$array);
            
         } 
 

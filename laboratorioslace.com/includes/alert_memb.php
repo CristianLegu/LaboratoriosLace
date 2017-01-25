@@ -1,11 +1,9 @@
 <?php
-	//session_start();
-	//if($_SESSION['ver3'] == null){
-	//	include("includes/error_nologin.php");
-	//}
-	//$ver=$_SESSION['ver3'];
-	if(isset($_GET['c'])){
-        $array = $_GET['c'];
+
+	if(isset($_GET['array'])){
+       $ar1   = $_GET['array'];
+        $array = explode(",", $ar1);
+        //print_r($arrayc);
        // print_r($array);    
     } 
 

@@ -53,6 +53,7 @@
       function detectarCarga(){
         document.getElementById("cargando").style.visibility="hidden";
       }
+    
   </script>
   <!-- Pantalla de carga-->
 </head>
@@ -124,12 +125,12 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
    
   </ul>
 </nav>
-<form action="membrete.php" method="GET">
+<form action="membrete.php" method="GET" id="f1">
 
       <table class="sortable" id="sorter">
         <tr>
           <th>Estudio</th>
-          <th class="nosort">Fecha</th>
+          <th >Fecha</th>
           <th class="nosort">M&eacute;dico</th>
           <th class="nosort">An&aacute;lisis</th>
           <th>Imprimir | Enviar</th>
@@ -266,8 +267,9 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
                 <strong>Editar</strong>
               </a>
           </td>
-          <td><input type="checkbox" name="c[]" value="<?php echo $idprop;?>"></td>
+          <td><input onchange= "changcheck(this)" type="checkbox" name="c[]" value="<?php echo $idprop;?>"></td>
           <input type="hidden" name="idpaciente" value="<?php echo $idpac;?>">
+          
         </tr>
          <?php $idpropio = $fila['idpropio'];  } ?>
          
@@ -276,7 +278,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 }
 ?>
       </table>
-        
+          <input type="hidden" name="array" id="array">
           <input name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:20%;">
           <input name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:7%;">
       </form>
@@ -286,13 +288,30 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
     </div>
 
 
-
+<script type="text/javascript">
+    xarray= [];
+      function changcheck(el){
+        if(el.checked){
+          //alert(el.value+" : checked");
+          xarray.push(el.value);
+          document.getElementById("array").value = xarray;
+          console.log(xarray);
+        }else{
+          //alert(el.value+" : un-checked");
+          var pos = xarray.indexOf(el.value);
+          xarray.splice(pos,1);
+          document.getElementById("array").value = xarray;
+          console.log(xarray);
+        }
+      }
+</script>
 <script type="text/javascript">
 var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
 elems.forEach(function(html) {
   var switchery = new Switchery(html);
 });
+
 </script>
 
 <script type="text/javascript">
