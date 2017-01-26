@@ -32,6 +32,7 @@ if ($idpropio == 0) {
        $number        = count($_POST["pruebas"]);
        $estudio_aux = "";
        $cont =$idpropio;
+       $contador=0;
       if ($medicos_idmedicos != null || $medicos_idmedicos != "") {
         //echo "ID MEDICOS dentro de if ".$medicos_idmedicos;
       }
@@ -56,13 +57,22 @@ if ($idpropio == 0) {
             $estudio         =  $_POST["estudios"][$i];
             $valorreferencia =  $_POST["valorreferencia"][$i];
             $subtitulo       =  $_POST["subtitulo"][$i];
-            $comentario      =  $_POST["comentario"];
+           
 
             if($estudio_aux!=$estudio){
             	$estudio_aux = $estudio;
-         $idpropio = $cont;
-         $cont++;
+              if(empty($_POST["comentario"][$contador])){
+               $comentario="";
+             
+              }
+              else{
+              $comentario  =  $_POST["comentario"][$contador];
+                $contador++;
+            }
+             $idpropio = $cont;
+             $cont++;
             }  
+            echo $comentario;
                // $sql = "INSERT INTO analisis(idanalisis, area,  estudio, pruebas, resuldados, unidades, valorreferencia, pacientes_idpacientes, medicos_idmedicos ) VALUES('".mysqli_real_escape_string($connect, $_POST["name"][$i])."')";
 
                 $sql = "INSERT INTO analisis ( area, estudio, subtitulo, prueba, resultados, unidades, valorreferencia, comentario,  fecha, pacientes_idpacientes, medicos_idmedicos, idpropio)

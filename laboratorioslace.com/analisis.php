@@ -46,6 +46,7 @@ $conta2 = 1;
 
 $conta2 =$conta2 +1;
   }
+ $arrayPHP [0][$conta2]=array(0);
     ?>
 				   <script language='javascript'>
 				  var i = 1;
@@ -281,15 +282,16 @@ else{  ?>
         </select>
       </label>
   </div>
-  <?php } ?>
+  <?php } if($fila!= null){?>
+
      <div class="col-2" align="center">
     <label >
        Comentarios 
     </label>
-           <textarea rows="6" cols="50" name="comentario" value="<?php if($comentario != null) { echo $comentario; }?>"  style="background-color:powderblue; "></textarea>
+           <textarea rows="6" cols="50" name="comentario" style="background-color:powderblue; "><?php if($comentario != null) { echo $comentario; }?> </textarea>
    </div>     
 
-     	<?php	  $i ;   ?>
+     	<?php	}  $i ;   ?>
        </div>
       
       <div class="col-submit button">
@@ -360,6 +362,7 @@ else{  ?>
    var subtitulo= 1;
    var primerelemento=1;
    var encontro =0;
+   var si=0;
      i++;
    while(a==1){
     var cadena = arrayJS[0][cont];
@@ -371,10 +374,13 @@ else{  ?>
    
    }
    a=1;
+console.log(cont);
    while(a==1){
       
 
    var cadena = arrayJS[0][cont];
+
+
 
       //document.write(cadena[0]);
   if (cadena[0] == carList ){
@@ -385,9 +391,13 @@ if (primerelemento==1){
    var subti = cadena[5];
    if(i<=2){
    $('#dynamic_field').append('<label id="row'+i+'">'+cadena[4]+'</label><label align="left" id="row'+i+'">'+cadena[5]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td "><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> <td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr></table></div>');
+   si++;
+
  }
  else{
   $('#dynamic_field').append('<hr><label id="row'+i+'">'+cadena[4]+'</label><label align="left" id="row'+i+'">'+cadena[5]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td "><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> <td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr></table></div>');
+  si++;
+
  }
    primerelemento++;
    arreglo.push(i);
@@ -401,42 +411,43 @@ else{
   subti = cadena[5];
   arreglo.push(i);
   arreglo.push(i);
+    si++;
+
   }
 else{
    $('#dynamic_field').append('<div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list" /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]"  class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><button  style="display:none"  type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td> </tr></table></div>');
    arreglo.push(i);
-    }
-}
-     }
-    else{
-     
-  // var x = document.getElementById("car");
-    //   x.remove(x.selectedIndex);
-vi++;
- a=2;
+
+  si++;
+
     }
 
-   
+}
+      
+     }
+
+    else{
+  $('#dynamic_field').append('<div align="center"><textarea placeholder="Comentarios"rows="6" cols="50" name="comentario[]"  style="background-color:powderblue;"></textarea></div>');
+  // var x = document.getElementById("car");
+    //   x.remove(x.selectedIndex);
+    
+
+vi++;
+ a=2;
+// console.log(a);
+    }
+
+  
+
     cont = cont +1;
      
      //   document.write("<br>"+arrayJS[0][1]);
    }
- 
-  }
-    else{
- 
-  // Crea las celdas
-  for (var i2 = 0; i2 < 2; i2++) {
-    // Crea las hileras de la tabla
- //   var hilera = document.createElement("tr");
- 
 
- 
-    // agrega la hilera al final de la tabla (al final del elemento tblbody)
-   
-  } 
+  }
+  
+//console.log(si);
+
 }
- 
-}
-      
+
 </script>

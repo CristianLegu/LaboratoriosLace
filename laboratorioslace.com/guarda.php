@@ -1415,7 +1415,7 @@ case 'ESTUDIO':
 $mysqli = mysqli_connect($host, $user, $pwd, $db);
 
 	$idpropio           =  $_POST["idpropio"];
-      echo $idpropio;
+    $idpropio;
 
 if(isset($_POST['idpropio']) && isset($_POST['idpaciente'])){
       $idpropio   = $_POST["idpropio"];
@@ -1504,7 +1504,7 @@ else {
         $prueba          =  $_POST["pruebas"][$i];
         $unidades        =  $_POST["unidades"][$i];
         $valorreferencia =  $_POST["valorreferencia"][$i];
-        echo $_POST["idsubtitulo"][$i];
+        $_POST["idsubtitulo"][$i];
         if($idsubtitulo!=$_POST["idsubtitulo"][$i]){
           $idsubtitulo=$_POST["idsubtitulo"][$i];
           $subtitulo=$_POST['subtitulo'][$incrementa];
