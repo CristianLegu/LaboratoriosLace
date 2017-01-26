@@ -48,10 +48,7 @@
 				
 			}
 		} 
-
-		
-  
-	
+			
 
 	if($filacontar <= 6){
 
@@ -564,26 +561,6 @@
 
 	
 	<table id="central">
-		<tr>
-			<td >
-				<table id="datos">
-					<tr class="fila">
-						<td style="width:300px">
-							Prueba
-						</td>
-						<td style="width:90px">
-							Resultados
-						</td>
-						<td style="width:100px">
-							Unidades
-						</td>
-						<td style="width:120px">
-							Valor de Referencia
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
 				<?php
 					foreach( $array_restored_from_db as $c){
 
@@ -601,19 +578,11 @@
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
 								$observaciones = $row['comentario'];
-								
-
-?>
-<?php									
-									
-							
-																
-								
 				?>
+
 						<tr>
 							<td>
 								<?php
-							
 									if($estudio != $row['estudio']){
 											$estudio = $row['estudio'];
 											echo "<b><u>".$estudio."</u></b>"."<br>";
@@ -621,9 +590,26 @@
 							
 									if($subtitulo != $row['subtitulo']){
 										$subtitulo = $row['subtitulo'];
-										echo "<div align='center'><b>".$row['subtitulo']."</b></div>";
-									}
-								?>
+										echo "<div align='center'><b>".$row['subtitulo']."</b></div>"; ?>
+
+												<table id="datos">
+													<tr class="fila">
+														<td style="width:300px">
+															Prueba
+														</td>
+														<td style="width:90px">
+															Resultados
+														</td>
+														<td style="width:100px">
+															Unidades
+														</td>
+														<td style="width:120px">
+															Valor de Referencia
+														</td>
+													</tr>
+												</table>
+											
+									<?php } ?>
 								<table id="datos">
 									<tr>
 										<td style="width:300px; font-size:10px;">
@@ -659,8 +645,6 @@
 							</td>
 						</tr>
 				<?php
-							
-							
 							} 
 					}
 				?>
@@ -676,7 +660,7 @@
 							Observaciones: <?php echo $observaciones;?>
 						</td>
 					</tr>
-	</table>		
+				</table>		
 	</table>
 	
 
