@@ -99,7 +99,7 @@
     }
 /*Verifica si el campo busca esta vacio*/
     if(empty($_GET['busca'])){
-      $sql = "SELECT count(nombre_estudio) FROM view_studio;";
+      $sql = "SELECT count(nombre_estudio) FROM view_studio WHERE nombre_estudio != 'ESPERMATOBIOSCOPIA';";
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
       $rows = $row[0];
@@ -129,6 +129,7 @@
                       nombre_estudio,
                       idpropio
               FROM view_studio
+              WHERE nombre_estudio != 'ESPERMATOBIOSCOPIA'
               GROUP BY idpropio
               ASC $limit";
       $query = mysqli_query($con, $sql);
@@ -171,7 +172,8 @@
                       nombre_estudio,
                       idpropio
                     FROM view_studio
-                    WHERE nombre_estudio LIKE '$search'
+                    WHERE nombre_estudio LIKE '$search' AND
+                    nombre_estudio != 'ESPERMATOBIOSCOPIA'
                     GROUP BY idpropio";
           $query = mysqli_query($con, $sql);
     }
