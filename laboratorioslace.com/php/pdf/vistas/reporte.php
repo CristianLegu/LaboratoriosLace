@@ -1041,7 +1041,7 @@
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
 
-#footer {padding:15px 0 0 0; border-top: 2px solid #10C86F; }
+#footer {padding:1px 0 0 0; border-top: 2px solid #10C86F; }
 #footer .fila td {text-align:left; width:100%; padding:10px 0; }
 #footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
@@ -1052,7 +1052,7 @@
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
 #line2 {margin-top:0px ; border-top: 1px solid #000; width:108%;}
-#footer #atte1 td .attext{width:20%; margin: 0 0 0 440px;}
+#footer #atte1 td .attext{width:20%; margin: 0 0 0 520px; padding: 0 0 40px 0;}
 #footer #atte2 td .name{width:44%; margin: 0 0 0 440px;}
 #footer #atte1 td {font-size:10px; width:20%;}
 #footer #atte2 td {font-size:10px;}
