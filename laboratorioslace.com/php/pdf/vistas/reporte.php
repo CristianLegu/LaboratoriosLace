@@ -112,9 +112,9 @@
 #encabezado .fila #col_2 #span4{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
-#footer {padding:10px 0; border-top: 2px solid #10C86F; width:100%;}
-#footer .fila td {text-align:right; width:100%; padding:30px 0;}
-#footer .fila td span {font-size: 10px; color: #000; padding:50px 0;}
+#footer {padding:25px 0 0 0; border-top: 2px solid #10C86F; }
+#footer .fila td {text-align:left; width:100%; padding:10px 0; }
+#footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px; height:0px;}
@@ -123,7 +123,10 @@
 
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#atte {font-size:10px;}
+#footer #atte1 td .attext{width:20%; margin: 0 0 0 440px;}
+#footer #atte2 td .name{width:44%; margin: 0 0 0 440px;}
+#footer #atte1 td {font-size:10px; width:20%;}
+#footer #atte2 td {font-size:10px;}
 #paciente {margin-top:-15px;}
 #paciente tr td {font-size: 11.5px;}
 
@@ -338,14 +341,18 @@
 
 	<page_footer> <!-- Define el footer de la hoja -->
 		<table id="footer">
-			<tr id="atte">
+			<tr id="atte1">
 				<td>
-					Atentamente
+					<div class="attext">
+						Atentamente
+					</div>
 				</td>
 			</tr>
-			<tr id="atte">
+			<tr id="atte2">
 				<td>
-					Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+					<div class="name">
+						Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+					</div>
 				</td>
 			</tr>
             <tr class="fila">
@@ -1033,18 +1040,22 @@
 #encabezado .fila #col_2 #span4{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
-#footer {padding:10px 0; border-top: 2px solid #10C86F; width:100%;}
-#footer .fila td {text-align:right; width:100%; padding:30px 0;}
-#footer .fila td span {font-size: 10px; color: #000; padding:50px 0;}
+
+#footer {padding:15px 0 0 0; border-top: 2px solid #10C86F; }
+#footer .fila td {text-align:left; width:100%; padding:10px 0; }
+#footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px; height:0px;}
 
-#central #datos .fila {font-weight: bold; text-decoration: underline;}
-
+#central #datos .fila {font-weight: bold;}
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#atte {font-size:10px;}
+#line2 {margin-top:0px ; border-top: 1px solid #000; width:108%;}
+#footer #atte1 td .attext{width:20%; margin: 0 0 0 440px;}
+#footer #atte2 td .name{width:44%; margin: 0 0 0 440px;}
+#footer #atte1 td {font-size:10px; width:20%;}
+#footer #atte2 td {font-size:10px;}
 #paciente {margin-top:-15px;}
 #paciente tr td {font-size: 11.5px;}
 
@@ -1125,14 +1136,18 @@
 
 	<page_footer> <!-- Define el footer de la hoja -->
 		<table id="footer">
-			<tr id="atte">
+			<tr id="atte1">
 				<td>
-					Atentamente
+					<div class="attext">
+						Atentamente
+					</div>
 				</td>
 			</tr>
-			<tr id="atte">
+			<tr id="atte2">
 				<td>
-					Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+					<div class="name">
+						Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+					</div>
 				</td>
 			</tr>
             <tr class="fila">
@@ -1175,12 +1190,12 @@
 	<table id="paciente">
 		<tr>
 			<td>
-				<span>Examen practicado a: <?php echo $nombrePaciente;?></span>
+				<span>Examen practicado a: <?php echo "<u>".$nombrePaciente."</u>";?></span>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<span>Practicado por el médico: <?php echo $nombreMedico;?></span>
+				<span>Practicado por el médico: <?php echo "<u>".$nombreMedico."</u>";?></span>
 			</td>
 		</tr>
 		<tr>
@@ -1217,13 +1232,13 @@
 								<?php
 									if($estudio != $row['estudio']){
 											$estudio = $row['estudio'];
-											echo "<b><u>".$estudio."</u></b>"."<br>";
+											echo "<br><b><u>".$estudio."</u></b>"."<br>";
 										}	
 							
 									if($subtitulo != $row['subtitulo']){
 										$subtitulo = $row['subtitulo'];
 										echo "<div align='center'><b>".$row['subtitulo']."</b></div>"; ?>
-
+										
 												<table id="datos">
 													<tr class="fila">
 														<td style="width:300px">
@@ -1240,32 +1255,37 @@
 														</td>
 													</tr>
 												</table>
+												<table id="line2">
+													<tr>
+														<td></td>
+													</tr>
+												</table>
 											
 									<?php } ?>
 								<table id="datos">
 									<tr>
-										<td style="width:300px; font-size:10px;">
+										<td style="width:300px; font-size:11px;">
 											<?php 	
 													$pru = $row['prueba'];
 													//$prueba = wordwrap($pru, 10, "\n");
 													echo $pru;		
 											?>
 										</td>
-										<td style="width:90px; font-size:10px;">
+										<td style="width:90px; font-size:11px;">
 											<?php
 													$res = $row['resultados'];
 												 	//$resultados = wordwrap($res, 10, "\n");
 													echo $res;		
 											?>
 										</td>
-										<td style="width:100px; font-size:10px;">
+										<td style="width:100px; font-size:11px;">
 											<?php 	
 													$uni = $row['unidades'];
 													//$unidades = wordwrap($uni, 10, "\n") ;
 													echo $uni;
 											?>
 										</td>
-										<td style="width:120px; font-size:10px;">
+										<td style="width:120px; font-size:11px;">
 											<?php 	
 													$val = $row['valorreferencia'];
 													//$valorref = wordwrap($val, 3, true);
