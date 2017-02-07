@@ -350,7 +350,7 @@ margin-top: 3%;
 **********************************************************/
 
 
-@media (min-width: 1401px) { 
+@media (min-width: 3000px) { 
 
 input[type=form-control] {
     white-space: pre-line;
