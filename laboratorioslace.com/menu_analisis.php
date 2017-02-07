@@ -2,7 +2,7 @@
       header('Content-Type: text/html; charset=iso-8859-1');
       echo htmlspecialchars("", ENT_QUOTES, 'utf-8');
       include("includes/conexion.php");
-     
+
 
       $con = mysqli_connect($host, $user, $pwd, $db);
 
@@ -53,24 +53,24 @@
       function detectarCarga(){
         document.getElementById("cargando").style.visibility="hidden";
       }
-    
+
   </script>
   <!-- Pantalla de carga-->
 </head>
 
 <body>
-<?php 
+<?php
  $linkpaciente = "menu_pacientes.php?V=".urlencode(base64_encode('variable'));
 
 
 //foreach($_GET as $loc=>$item) $_GET[$loc] = urldecode(base64_decode($item));
 if(!isset($_GET['p']) && !isset($_GET['busca']) ){
-   include("includes/error_nologin.php"); 
+   include("includes/error_nologin.php");
   }
 
   else{
 //echo $id = $_GET['p'];
-       
+
 
         $sql = "SELECT nombre
                   FROM pacientes
@@ -122,7 +122,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
       <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
       <img src="img/addanalisis.png" title="Agregar analisis"></a>
     </li>
-   
+
   </ul>
 </nav>
 <form action="membrete.php" method="GET" id="f1">
@@ -153,7 +153,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
         }
   if(empty($_GET['busca'])){
 
-      $sql = "SELECT count(idanalisis) 
+      $sql = "SELECT count(idanalisis)
               FROM contador ";
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
@@ -203,7 +203,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
       if($last != 1){
           if($pagenum > 1){
             $previous = $pagenum - 1;
-            
+
             $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'&p='.$idpacientes.'">Anterior</a> &nbsp; &nbsp; ';
 
             for($i = $pagenum-4; $i < $pagenum; $i++){
@@ -216,7 +216,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
           $paginationCtrls .= ''.$pagenum.' &nbsp; ';
 
           for($i = $pagenum+1; $i <= $last; $i++){
-            
+
 		        $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'&p='.$idpacientes.'">'.$i.'</a> &nbsp; ';
 		        if($i >= $pagenum+4){
 			          break;
@@ -225,7 +225,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 
           if ($pagenum != $last) {
                 $next = $pagenum + 1;
-            
+
                 $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'&p='.$idpacientes.'">Siguiente</a> ';
           }
       }
@@ -250,12 +250,12 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
                $editar = "analisis.php?p=".urlencode(base64_encode($idpac))."&pro=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                //$ver = "reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
 
-              
+
                //$ver = "php/pdf/reporte.php?idpac=".urlencode(base64_encode($idpac))."&idpr=".urlencode(base64_encode($idprop))."&idm=".urlencode(base64_encode($idm));
                 //$ver = "php/pdf/reporte.php?idpac=".$idpac."&idpr=".$idprop."&idm=".$idm;
                 $ver = "idpac=".$idpac."&idpr=".$idprop."&idm=".$idm;
-                
-               
+
+
  ?>
         <tr>
         <?php if($idpropio !=  $fila['idpropio'] ) { ?>
@@ -269,10 +269,10 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
           </td>
           <td><input onchange= "changcheck(this)" type="checkbox" name="c[]" value="<?php echo $idprop;?>"></td>
           <input type="hidden" name="idpaciente" value="<?php echo $idpac;?>">
-          
+
         </tr>
          <?php $idpropio = $fila['idpropio'];  } ?>
-         
+
 <?php }
   mysqli_close($con);
 }
@@ -280,7 +280,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
       </table>
           <input type="hidden" name="array" id="array">
           <input id="print" name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:20%;">
-          <input id="email" name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:7%;">
+          <input id="email" name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank" style="float:right; margin-top:-19.1%; margin-right:24%;">
       </form>
 
     <div id="pagination_controls">
@@ -293,7 +293,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
     document.getElementById("print").style.display = 'none';
     document.getElementById("email").style.display = 'none';
       function changcheck(el){
-        
+
         if(el.checked){
           xarray.push(el.value);
             if(xarray.length > 0){
