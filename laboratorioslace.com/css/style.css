@@ -7371,6 +7371,15 @@ body footer.padding {
   padding: 1em 0;
   color: #ffffff;
 }
+
+@media (min-width: 3000px) {
+  /* body{ color: red;} */
+  [class*="span"] {
+  float: left;
+  min-height: 11px;
+  margin-left: 201px;
+}
+}
 /* Escritorio */
 @media (min-width: 1200px) {
   /* body{ color: red;} */

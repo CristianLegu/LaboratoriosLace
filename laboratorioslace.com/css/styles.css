@@ -348,13 +348,15 @@ margin-top: 3%;
 /**********************************************************
 /*  ****************FIN PARA DATEBIRTH*
 **********************************************************/
+
+
 @media (min-width: 1401px) { 
 
 input[type=form-control] {
     white-space: pre-line;
     display: block;
     margin: 5px;
-    width: 250px;
+    width: 500px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -367,6 +369,19 @@ input[type=form-control] {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 
+}
+button {
+ 
+  height: 35px;
+  border: none;
+  border-radius: 4px;
+  margin: 0 0 15px 0;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  overflow: hidden;
+  outline: none;
 }
 }
 @media (min-width: 1160px) and (max-width: 1400px) { 
