@@ -831,12 +831,12 @@
 	<table id="paciente">
 		<tr>
 			<td>
-				<span>Examen practicado a: <?php echo $nombrePaciente;?></span>
+				<span>Examen practicado a: <?php echo "<u>".$nombrePaciente."</u>";?></span>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<span>Practicado por el médico: <?php echo $nombreMedico;?></span>
+				<span>Practicado por el médico: <?php echo "<u>".$nombreMedico."</u>";?></span>
 			</td>
 		</tr>
 		<tr>
