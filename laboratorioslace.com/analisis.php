@@ -54,11 +54,13 @@ $conta2 =$conta2 +1;
           var t = 1;
           var containterno = 0;
           var arreglo = [];
+          var comentario = 0;
           sessionStorage.LocalToGlobalVar = i;
           sessionStorage.LocalToGlobalVar = vi;
           sessionStorage.LocalToGlobalVar = t;
           sessionStorage.LocalToGlobalVar = containterno;
            sessionStorage.LocalToGlobalVar = arreglo;
+           sessionStorage.LocalToGlobalVar = comentario;
 			</script>
 
 <!doctype html>
@@ -338,10 +340,12 @@ else{  ?>
           // alert(button_id);
            var arreglo1 = arreglo.length;
           // alert(arreglo1);
-           for(var wz = 0; wz<arreglo1; wz++){
+           for(var wz = -2; wz<arreglo1; wz++){
               $('#row'+button_id).remove();
            }
+
            i--;
+
           
       });
 
@@ -395,7 +399,7 @@ if (primerelemento==1){
 
  }
  else{
-  $('#dynamic_field').append('<hr><label id="row'+i+'">'+cadena[4]+'</label><label align="left" id="row'+i+'">'+cadena[5]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td "><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> <td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr></table></div>');
+  $('#dynamic_field').append('<hr id="row'+i+'" ><label id="row'+i+'">'+cadena[4]+'</label><label align="left" id="row'+i+'">'+cadena[5]+'</label><div> <table class="table table-bordered"><caption>Título de la tabla</caption><tr id="row'+i+'"><td "><input readonly="readonly" type="form-control"name="pruebas[]" value="'+cadena[1]+'"      class="form-control name_list"  /></td><td><input type="form-control" placeholder="Resultados" name="resultados[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[2]+'" name="unidades[]" placeholder="Unidades" class="form-control name_list" /></td><td><input type="form-control" readonly="readonly" value="'+cadena[3]+'"name="valorreferencia[]" placeholder="Valor de referencia" class="form-control name_list" /></td><td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[4]+'"name="estudios[]" class="form-control name_list" /></td> <td  style=" width: ;"><input type="form-control"  style="display:none"  value="'+cadena[5]+'"name="subtitulo[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="eliminar btn_remove">X</button></td></tr></table></div>');
   si++;
 
  }
@@ -427,7 +431,8 @@ else{
      }
 
     else{
-  $('#dynamic_field').append('<div align="center"><textarea placeholder="Comentarios"rows="6" cols="50" name="comentario[]"  style="background-color:powderblue;"></textarea></div>');
+    	
+  $('#dynamic_field').append('<div align="center"><textarea placeholder="Comentarios"rows="6" cols="50" name="comentario[]"  style="background-color:powderblue; name="remove" id="row'+i+'"></textarea></div>');
   // var x = document.getElementById("car");
     //   x.remove(x.selectedIndex);
     
