@@ -285,7 +285,7 @@ nav ul li{
 /** responsive design **/
 /* Escritorio (rojo)*/
 
-@media (min-width: 3001px) {
+@media (min-width: 2000px) and (max-width: 3000px) {
   #print{
         float:right;
           margin-top: 90px;
@@ -355,13 +355,6 @@ float: left;
 input[type=text]:focus {
     width: 50%;
 }
-img{
-
-}
-h3{
-  margin-right: -1700px;
-  margin-top: 100px;
-}
 #print{
       float:right;
       margin-top: 29px;
@@ -375,8 +368,7 @@ h3{
 
 #yolo{
       float:right;
-      margin-right: -1000px;
-      margin-top:120px;
+      margin-top:-335px;
     }
 
 }
