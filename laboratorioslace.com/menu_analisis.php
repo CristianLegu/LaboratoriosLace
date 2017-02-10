@@ -119,7 +119,13 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
         </form>
       </p>
     <li>
-
+       <div id="yolo" name = "yolo">
+          <input type="hidden" name="array" id="array">
+          <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
+          <img src="img/addanalisis.png" title="Agregar analisis"></a>
+          <input id="print" name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank">
+          <input id="email" name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank">
+       </div>
     </li>
 
   </ul>
@@ -277,13 +283,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
 }
 ?>
       </table>
-       <div id="yolo" name = "yolo">
-          <input type="hidden" name="array" id="array">
-          <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
-          <img src="img/addanalisis.png" title="Agregar analisis"></a>
-          <input id="print" name = "print" value="printV" title="Imprimir" type="image" src="img/printer.png" alt="Submit" formtarget="_blank">
-          <input id="email" name="email" value="emailV" title="Enviar correo" type="image" src="img/email.png" alt="Submit" formtarget="_blank">
-       </div>
+
       </form>
 
     <div id="pagination_controls">
