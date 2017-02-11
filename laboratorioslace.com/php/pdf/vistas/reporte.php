@@ -740,7 +740,7 @@
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
 #footer {padding-top:5px 0; border-top: 2px solid #10C86F; width:100%;}
-#footer .fila td {text-align:right; width:100%;}
+#footer .fila td {text-align:left; width:100%;}
 #footer .fila td span {font-size: 10px; color: #000;}
 
 #central {width:100%; margin: 20px 0 0 -40px;}
@@ -750,6 +750,8 @@
 #subtitulo tr td {font-size:11.5px; align-text: center; font-weight: bold;}
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
 #atte {margin-top:30px;}
+#atte tr td .divatte {margin: 0 0 0 320px}
+#atte tr td .divqfb {margin: 0 0 0 320px}
 #paciente {margin-top:100px;}
 #paciente tr td {font-size: 11px;}
 #nobreak { page-break-inside: avoid;}
@@ -866,16 +868,16 @@
 			<td >
 				<table id="datos">
 					<tr class="fila">
-						<td style="width:300px">
+						<td style="width:300px; font-size:12.2px">
 							Prueba
 						</td>
-						<td style="width:90px">
+						<td style="width:90px; font-size:12.px">
 							Resultados
 						</td>
-						<td style="width:100px">
+						<td style="width:100px; font-size:12.2px">
 							Unidades
 						</td>
-						<td style="width:120px">
+						<td style="width:120px; font-size:12.2px">
 							Valor de Referencia
 						</td>
 					</tr>
@@ -907,28 +909,28 @@
 								<table id="datos">
 									<tr>
 									
-										<td style="width:300px; font-size:10px;">
+										<td style="width:300px; font-size:12px; padding: 0 0 0 0">
 											<?php 	
 													$pru = $row['prueba'];
 													//$prueba = wordwrap($pru, 10, "\n");
 													echo $pru;		
 											?>
 										</td>
-										<td style="width:90px; font-size:10px;">
+										<td style="width:90px; font-size:12px; padding: 0 0 0 0">
 											<?php
 													$res = $row['resultados'];
 												 	//$resultados = wordwrap($res, 10, "\n");
 													echo $res;		
 											?>
 										</td>
-										<td style="width:100px; font-size:10px;">
+										<td style="width:100px; font-size:12px; padding: 0 0 0 0">
 											<?php 	
 													$uni = $row['unidades'];
 													//$unidades = wordwrap($uni, 10, "\n") ;
 													echo $uni;
 											?>
 										</td>
-										<td style="width:120px; font-size:10px;">
+										<td style="width:120px; font-size:12px; padding: 0 0 0 0">
 											<?php 	
 													$val = $row['valorreferencia'];
 													//$valorref = wordwrap($val, 3, true);
@@ -958,12 +960,16 @@
 				<table id="atte">
 					<tr>
 						<td>
-							Atentamente
+							<div class="divatte">
+								Atentamente
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+							<div class="divqfb">
+								Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+							</div>
 						</td>
 					</tr>
 				</table>
@@ -1264,28 +1270,28 @@
 									<?php } ?>
 								<table id="datos">
 									<tr>
-										<td style="width:300px; font-size:11px;">
+										<td style="width:300px; font-size:12px; padding: 0 0 0 0">
 											<?php 	
 													$pru = $row['prueba'];
 													//$prueba = wordwrap($pru, 10, "\n");
 													echo $pru;		
 											?>
 										</td>
-										<td style="width:90px; font-size:11px;">
+										<td style="width:90px; font-size:12px; padding: 0 0 0 15px">
 											<?php
 													$res = $row['resultados'];
 												 	//$resultados = wordwrap($res, 10, "\n");
 													echo $res;		
 											?>
 										</td>
-										<td style="width:100px; font-size:11px;">
+										<td style="width:100px; font-size:12px; padding: 0 0 0 -20px">
 											<?php 	
 													$uni = $row['unidades'];
 													//$unidades = wordwrap($uni, 10, "\n") ;
 													echo $uni;
 											?>
 										</td>
-										<td style="width:120px; font-size:11px;">
+										<td style="width:120px; font-size:12px; padding: 0 0 0 20px">
 											<?php 	
 													$val = $row['valorreferencia'];
 													//$valorref = wordwrap($val, 3, true);

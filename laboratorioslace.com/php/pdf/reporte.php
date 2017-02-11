@@ -23,7 +23,7 @@
         //$html2pdf = new HTML2PDF('P', array($width_in_mm,$height_in_mm), 'en', true, 'UTF-8', array(0, 0, 0, 0));
         try
         {
-            $html2pdf = new HTML2PDF('L', array(210, 148.5), 'es', true, 'UTF-8', 3); //Configura la hoja
+            $html2pdf = new HTML2PDF('L', 'A5', 'es', true, 'UTF-8', 3); //Configura la hoja
             $html2pdf->pdf->SetDisplayMode('fullpage'); //Ver otros parámetros para SetDisplaMode
             $html2pdf->writeHTML($content); //Se escribe el contenido 
             $html2pdf->Output('Reporte.pdf'); //Nombre default del PDF
