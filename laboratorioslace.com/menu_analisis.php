@@ -119,7 +119,7 @@ if(!isset($_GET['p']) && !isset($_GET['busca']) ){
         </form>
       </p>
     <li>
-    <form>
+    <form action="membrete.php" method="GET" id="f1">
        <div id="yolo" name = "yolo">
           <input type="hidden" name="array" id="array">
           <a  href= "analisis.php?p=<?php echo urlencode(base64_encode($_GET['p']))?>&pro=<?php echo urlencode(base64_encode(0)) ?>" class="add">
