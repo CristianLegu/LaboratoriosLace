@@ -112,7 +112,7 @@
 #encabezado .fila #col_2 #span4{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
-#footer {padding:25px 0 0 0; border-top: 2px solid #10C86F; }
+#footer {padding:25px 0 0 0; border-top: 2px solid #10C86F; width:100%;}
 #footer .fila td {text-align:left; width:100%; padding:10px 0; }
 #footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
@@ -123,8 +123,9 @@
 
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#footer #atte1 td .attext{width:20%; margin: 0 0 0 440px;}
-#footer #atte2 td .name{width:44%; margin: 0 0 0 440px;}
+#footer #atte1 td .attext{width:20%; margin: -25px 0 0 440px; }
+#footer #atte2 td .name{width:44%; margin: 0 0 0 440px; }
+#footer #atteline td .divline{width:44%; margin: 0 0 0 440px; }
 #footer #atte1 td {font-size:10px; width:20%;}
 #footer #atte2 td {font-size:10px;}
 #paciente {margin-top:-15px;}
@@ -348,10 +349,17 @@
 					</div>
 				</td>
 			</tr>
+			<tr id="atteline">
+				<td>
+					<div class="divline">
+						________________________________
+					</div>
+				</td>
+			</tr>
 			<tr id="atte2">
 				<td>
 					<div class="name">
-						Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+						Q. F. B. Fabiola Espinosa Bribiesca 
 					</div>
 				</td>
 			</tr>
@@ -689,7 +697,7 @@
 		
 <?php		
 
-	if($filacontar <= 6){
+	if($filacontar <= 7){
 
 		$con = mysqli_connect($host, $user, $pwd, $db);
 
@@ -742,6 +750,9 @@
 #footer {padding-top:5px 0; border-top: 2px solid #10C86F; width:100%;}
 #footer .fila td {text-align:left; width:100%;}
 #footer .fila td span {font-size: 10px; color: #000;}
+#footer tr td .divatte {margin: 0 0 0 500px; font-size: 10px;}
+#footer tr td .divatte2 {margin: 10px 0 0 500px; font-size: 10px;}
+#footer tr td .divqfb {margin: 0 0 0 500px; font-size: 10px;}
 
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px;}
@@ -749,9 +760,8 @@
 #titulo tr td {font-size:11.5px; text-decoration: underline; font-weight: bold;}
 #subtitulo tr td {font-size:11.5px; align-text: center; font-weight: bold;}
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
-#atte {margin-top:30px;}
-#atte tr td .divatte {margin: 0 0 0 320px}
-#atte tr td .divqfb {margin: 0 0 0 320px}
+
+
 #paciente {margin-top:100px;}
 #paciente tr td {font-size: 11px;}
 #nobreak { page-break-inside: avoid;}
@@ -957,22 +967,7 @@
 						</td>
 					</tr>
 				</table>
-				<table id="atte">
-					<tr>
-						<td>
-							<div class="divatte">
-								Atentamente
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="divqfb">
-								Q. F. B. Fabiola Espinosa Bribiesca ________________________________
-							</div>
-						</td>
-					</tr>
-				</table>
+				
 				
 				
 	</table>
@@ -980,6 +975,27 @@
 
 	<page_footer> <!-- Define el footer de la hoja -->
 		<table id="footer">
+			<tr>
+				<td>
+					<div class="divatte">
+						Atentamente
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="divatte2">
+						________________________________
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="divqfb">
+						Q. F. B. Fabiola Espinosa Bribiesca 
+					</div>
+				</td>
+			</tr>
             <tr class="fila">
 				<td>
 					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
@@ -987,12 +1003,7 @@
 			</tr>
         </table>
     </page_footer>
-	<table id="nobreak">
-		<tr>
-			<td>
-			</td>
-		</tr>
-	</table>
+	
 
 </page>
 <?php 
@@ -1047,9 +1058,10 @@
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
 
-#footer {padding:1px 0 0 0; border-top: 2px solid #10C86F; }
+#footer {padding:1px 0 0 0; border-top: 2px solid #10C86F; width:100%;}
 #footer .fila td {text-align:left; width:100%; padding:10px 0; }
 #footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
+
 
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px; height:0px;}
@@ -1060,6 +1072,7 @@
 #line2 {margin-top:0px ; border-top: 1px solid #000; width:108%;}
 #footer #atte1 td .attext{width:20%; margin: 0 0 0 520px; padding: 0 0 40px 0;}
 #footer #atte2 td .name{width:44%; margin: 0 0 0 440px;}
+#footer #atteline td .divline{margin: 0 0 0 440px; }
 #footer #atte1 td {font-size:10px; width:20%;}
 #footer #atte2 td {font-size:10px;}
 #paciente {margin-top:-15px;}
@@ -1149,10 +1162,17 @@
 					</div>
 				</td>
 			</tr>
+			<tr id="atteline">
+				<td>
+					<div class="divline">
+						________________________________
+					</div>
+				</td>
+			</tr>
 			<tr id="atte2">
 				<td>
 					<div class="name">
-						Q. F. B. Fabiola Espinosa Bribiesca ________________________________
+						Q. F. B. Fabiola Espinosa Bribiesca
 					</div>
 				</td>
 			</tr>
