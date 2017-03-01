@@ -1088,7 +1088,7 @@
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px; height:0px;}
 
-#central #datos .fila {font-weight: bold;}
+#central #datos .fila {font-weight: bold; font-size:12px;}
 
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
 #line2 {margin-top:0px ; border-top: 1px solid #000; width:108%;}
