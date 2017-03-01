@@ -6,6 +6,8 @@
         $ar1   = $_GET['array'];
         $array = explode(",", $ar1);
     }  
+    //print_r($ar1);
+   // print_r($array);
         if(isset($_GET['idpaciente'])){
             $idpac = $_GET['idpaciente'];
         }

@@ -49,6 +49,7 @@
 				$filacontar = mysqli_num_rows($resultContar) + $filacontar;
 			}
 		}
+		
 		$conEstudio = mysqli_connect($host, $user, $pwd, $db);
 		$sqlEstudio = "SELECT  a.prueba, a.resultados, a.unidades, a.valorreferencia, a.comentario, a.subtitulo, a.estudio
                     FROM analisis AS a 
@@ -390,6 +391,7 @@
 
 					
 				$query = $con -> query($sql);
+				
 			}
 			
 		while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -725,8 +727,7 @@
                     ORDER BY a.idpropio;";
 
         
-        $queryname = $con -> query($sqlname);
-
+       
 	
 	
 	
@@ -747,13 +748,14 @@
 #encabezado .fila #col_2 #span4{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
+/*
 #footer {padding-top:5px 0; border-top: 2px solid #10C86F; width:100%;}
 #footer .fila td {text-align:left; width:100%;}
 #footer .fila td span {font-size: 10px; color: #000;}
 #footer tr td .divatte {margin: 0 0 0 500px; font-size: 10px;}
 #footer tr td .divatte2 {margin: 10px 0 0 500px; font-size: 10px;}
 #footer tr td .divqfb {margin: 0 0 0 500px; font-size: 10px;}
-
+*/
 #central {width:100%; margin: 20px 0 0 -40px;}
 #central tr td {text-align: left; width:100%; font-size:12px;}
 
@@ -762,10 +764,16 @@
 #line {margin-top:10px ; border-top: 1px solid #0B08AB; width:118%;}
 
 
-#paciente {margin-top:100px;}
+#linefooter {margin: 20px 30px 0 0 ; border-bottom: 2px solid #10C86F;  width:100%; }
+
+#paciente {margin: 100px 0 0 0 ;}
 #paciente tr td {font-size: 11px;}
 #nobreak { page-break-inside: avoid;}
 
+#divfooter #divfecha {width: 60px; font-size: 11px; display:inline}
+#divfooter #divatte {width: 65px; font-size: 11px; margin: 0 0 0 450px;}
+#divfooter #divline {width: 140px; margin: 10px 0 0 480px; }
+#divfooter #divnombre {width: 180px; font-size: 11px; margin: 2px 0 0 460px;}
 
 -->
 </style>
@@ -821,6 +829,8 @@
 					
 				$query = $con -> query($sql);
 			}
+			 
+		
 		while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 			$nombreMedico = $row['medico'];
 			$nombrePaciente = $row['paciente'];
@@ -857,43 +867,8 @@
 			</td>
 		</tr>
 	</table>
-
-	<table id="titulo">
-		<tr>
-			<td>
-				<span> <?php echo $estudio;?></span>
-			</td>
-		</tr>
-	</table>
-	<table id="subtitulo">
-		<tr>
-			<td>
-				<span> <?php echo $subtitulo;?></span>
-			</td>
-		</tr>
-	</table>
 	
 	<table id="central">
-		<tr>
-			<td >
-				<table id="datos">
-					<tr class="fila">
-						<td style="width:300px; font-size:12.2px">
-							Prueba
-						</td>
-						<td style="width:90px; font-size:12.px">
-							Resultados
-						</td>
-						<td style="width:100px; font-size:12.2px">
-							Unidades
-						</td>
-						<td style="width:120px; font-size:12.2px">
-							Valor de Referencia
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
 				<?php
 					foreach( $array_restored_from_db as $c){
 
@@ -906,7 +881,9 @@
 									WHERE a.idpropio = '$c'
 									ORDER BY a.estudio;";	
 						$query = $con -> query($sql);
-					}
+						
+					
+					
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
 								
@@ -915,7 +892,41 @@
 				?>
 						<tr>
 							<td >
-							<nobreak>
+							<div style="margin-top: -15px">
+								<?php
+										if($estudio != $row['estudio']){
+												$estudio = $row['estudio'];
+												echo "<br><b><u>".$estudio."</u></b>"."<br>";
+											}	
+								
+										if($subtitulo != $row['subtitulo']){
+											$subtitulo = $row['subtitulo'];
+											echo "<div align='center'><b>".$row['subtitulo']."</b></div>"; ?>
+											
+													<table id="datos">
+														<tr class="fila">
+															<td style="width:300px">
+																Prueba
+															</td>
+															<td style="width:90px">
+																Resultados
+															</td>
+															<td style="width:100px">
+																Unidades
+															</td>
+															<td style="width:120px">
+																Valor de Referencia
+															</td>
+														</tr>
+													</table>
+													<table id="line2">
+														<tr>
+															<td></td>
+														</tr>
+													</table>
+												
+										<?php } ?>
+									</div>
 								<table id="datos">
 									<tr>
 									
@@ -949,11 +960,12 @@
 										</td>						
 									</tr>
 								</table>
-							</nobreak>
+							
 							</td>
 						</tr>
 				<?php
 							}
+					}
 				?>
 				<table id="line">
 					<tr>
@@ -967,13 +979,23 @@
 						</td>
 					</tr>
 				</table>
-				
-				
-				
+				<table id="linefooter">
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+				<div id="divfooter">
+					<div id="divfecha"> <?php echo $fechaAct; ?></div>
+					<div id="divatte">Atentamente</div>
+					<div id="divline">__________________</div>
+					<div id="divnombre">Q. F. B. Fabiola Espinosa Bribiesca</div>
+				</div>
+
+
 	</table>
     <!-- Fin del cuerpo de la hoja -->
 
-	<page_footer> <!-- Define el footer de la hoja -->
+	<!--page_footer>
 		<table id="footer">
 			<tr>
 				<td>
@@ -998,11 +1020,11 @@
 			</tr>
             <tr class="fila">
 				<td>
-					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
+					<span>Pénjamo, Gto. <?php //echo $fechaAct; ?></span>
 				</td>
 			</tr>
         </table>
-    </page_footer>
+    </page_footer -->
 	
 
 </page>
