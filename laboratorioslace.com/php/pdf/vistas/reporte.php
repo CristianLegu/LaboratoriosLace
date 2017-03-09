@@ -113,7 +113,7 @@
 #encabezado .fila #col_2 #span4{margin:8px 0 0 65px;font-size: 10px; color: #000000; }
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
-#footer {padding:25px 0 0 0; border-top: 2px solid #10C86F; width:100%;}
+/*#footer {padding:25px 0 0 0; border-top: 2px solid #10C86F; width:100%;}*/
 #footer .fila td {text-align:left; width:100%; padding:10px 0; }
 #footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
@@ -366,7 +366,7 @@
 			</tr>
             <tr class="fila">
 				<td>
-					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
+				<!--<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span> -->
 				</td>
 			</tr>
         </table>
@@ -882,8 +882,8 @@
 									ORDER BY a.estudio;";	
 						$query = $con -> query($sql);
 						
-					
-					
+					$estudio = "";
+	                $subtitulo = "";
 					while($row = mysqli_fetch_array($query, MYSQLI_ASSOC))
         					{
 								
@@ -979,13 +979,13 @@
 						</td>
 					</tr>
 				</table>
-				<table id="linefooter">
+				<!--<table id="linefooter">
 					<tr>
 						<td></td>
 					</tr>
-				</table>
+				</table> -->
 				<div id="divfooter">
-					<div id="divfecha"> <?php echo $fechaAct; ?></div>
+					<div id="divfecha"> <?php// echo $fechaAct; ?></div> 
 					<div id="divatte">Atentamente</div>
 					<div id="divline">__________________</div>
 					<div id="divnombre">Q. F. B. Fabiola Espinosa Bribiesca</div>
@@ -1080,7 +1080,7 @@
 #encabezado .fila #col_2 #span5{margin:6px 0 0 50px;font-size: 10px; color: #000000; }
 
 
-#footer {padding:1px 0 0 0; border-top: 2px solid #10C86F; width:100%;}
+ /*#footer {padding:1px 0 0 0; border-top: 2px solid #10C86F; width:100%;}*/
 #footer .fila td {text-align:left; width:100%; padding:10px 0; }
 #footer .fila td span {font-size: 10px; color: #000; padding:50px 0; }
 
@@ -1200,7 +1200,7 @@
 			</tr>
             <tr class="fila">
 				<td>
-					<span>Pénjamo, Gto. <?php echo $fechaAct; ?></span>
+				<!--	<span>Pénjamo, Gto. <?php //echo $fechaAct; ?></span> -->
 				</td>
 			</tr>
         </table>
