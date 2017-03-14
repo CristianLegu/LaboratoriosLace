@@ -105,7 +105,7 @@
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
       $rows = $row[0];
-      $page_rows = 15;
+      $page_rows = 1;
 
       $last= ceil($rows/$page_rows);
 
@@ -139,11 +139,11 @@
       if($last != 1){
           if($pagenum > 1){
             $previous = $pagenum - 1;
-            $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Anterior</a> &nbsp; &nbsp; ';
+            $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'&V='.urlencode(base64_encode('variable')).'">Anterior</a> &nbsp; &nbsp; ';
 
             for($i = $pagenum-4; $i < $pagenum; $i++){
                 if($i > 0){
-                    $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+                    $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'&V='.urlencode(base64_encode('variable')).'">'.$i.'</a> &nbsp; ';
                 }
 	          }
           }
@@ -151,7 +151,7 @@
           $paginationCtrls .= ''.$pagenum.' &nbsp; ';
 
           for($i = $pagenum+1; $i <= $last; $i++){
-		        $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+		        $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'&V='.urlencode(base64_encode('variable')).'">'.$i.'</a> &nbsp; ';
 		        if($i >= $pagenum+4){
 			          break;
 		        }
@@ -159,7 +159,7 @@
 
           if ($pagenum != $last) {
                 $next = $pagenum + 1;
-                $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Siguiente</a> ';
+                $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'&V='.urlencode(base64_encode('variable')).'">Siguiente</a> ';
           }
       }
 
