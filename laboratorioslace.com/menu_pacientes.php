@@ -236,7 +236,7 @@
 
       $rows = $row[0];
 
-      $page_rows = 1;
+      $page_rows = 15;
 
 
 

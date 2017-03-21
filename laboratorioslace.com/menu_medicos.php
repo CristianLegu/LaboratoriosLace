@@ -110,7 +110,7 @@ if(!isset($_GET['V']) && !isset($_GET['busca']) ){
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
       $rows = $row[0];
-      $page_rows = 2;
+      $page_rows = 15;
 
       $last= ceil($rows/$page_rows);
 

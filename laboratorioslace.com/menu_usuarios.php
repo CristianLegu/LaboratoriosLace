@@ -105,7 +105,7 @@
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_row($result);
       $rows = $row[0];
-      $page_rows = 1;
+      $page_rows = 15;
 
       $last= ceil($rows/$page_rows);
 
