@@ -1398,7 +1398,7 @@
 
 <?php		
 
-echo $filacontar;
+
 
 	if($filacontar <= 7){
 
